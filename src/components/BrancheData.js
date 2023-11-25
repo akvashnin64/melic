@@ -2,42 +2,42 @@ const brancheData = [
     {
         id: 0,
         namePic: "ershov",
-        text: "ЕРШОВ"
+        text: "ЕРШОВСКИЙ"
     },
     {
         id: 1,
         namePic: "balakovo",
-        text: "БАЛАКОВО"
+        text: "БАЛАКОВСКИЙ"
     },
     {
         id: 2,
         namePic: "penza",
-        text: "ПЕНЗА"
+        text: "ПЕНЗЕНСКИЙ"
     },
     {
         id: 3,
         namePic: "kalininsk",
-        text: "КАЛИНИНСК"
+        text: "КАЛИНИНСКИЙ"
     },
     {
         id: 4,
         namePic: "samara",
-        text: "САМАРА"
+        text: "САМАРСКИЙ"
     },
     {
         id: 5,
         namePic: "privolg",
-        text: "ПРИВОЛЖЬЕ"
+        text: "ПРИВОЛЖСКИЙ"
     },
     {
         id: 6,
         namePic: "engels",
-        text: "ЭНГЕЛЬС"
+        text: "ЭНГЕЛЬССКИЙ"
     },
     {
         id: 7,
         namePic: "uliyanovsk",
-        text: "УЛЬЯНОВСК"
+        text: "УЛЬЯНОВСКИЙ"
     },
     {
         id: 8,
