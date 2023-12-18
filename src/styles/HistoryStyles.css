@@ -1,0 +1,452 @@
+.textHistory img {
+    width: 100%;
+}
+  
+.lineHistory {
+    background: #000000;
+    border: 1px solid #000000
+}
+  
+.containerThesis{
+    display: flex;
+    flex-direction: column;
+}
+  
+.thesis{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 1920px){
+
+    .mainHeaderHistory{
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 61px;
+        margin: 30px 0 50px 0;
+    }
+
+    .textHistory p {
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 36px;
+        text-align: justify;
+    }
+
+    .textHistory img {
+        margin: 50px 0;
+    }
+
+    .lineHistory {
+        width: 9%;
+        margin: 50px 0;
+    }
+
+    .boldTextHistory{
+        font-weight: 500;
+    }
+
+    .dateHistory{
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+        margin: 0 0 50px 0;
+        padding-top: 30px;
+    }
+
+    .thesis{
+        margin: 50px 0 0 0;
+    }
+
+    .numberThesis{
+        margin: 0;
+        width: 5%;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+    }
+
+    .textThesis{
+        margin: 0;
+        width: 95%;
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 36px;
+        text-align: justify;
+    }
+
+    .blockHistory1 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 20px;
+        padding: 70px;
+        margin: 50px 0;
+    }
+
+    .blockHistory1 p{
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 49px;
+        text-align: justify;
+    }
+
+    .blockHistory2 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 15px;
+        padding: 60px 80px;
+        margin: 80px 0;
+    }
+
+    .blockHistory2 p {
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 40px;
+        text-align: justify;
+    }
+}
+
+
+@media screen and (min-width: 1280px) and (max-width: 1919px){
+
+    .mainHeaderHistory{
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+        margin: 30px 0 50px 0;
+    }
+
+    .textHistory p {
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 32px;
+        text-align: justify;
+    }
+
+    .textHistory img {
+        margin: 30px 0;
+    }
+
+    .lineHistory {
+        width: 15%;
+        margin: 45px 0;
+    }
+
+    .boldTextHistory{
+        font-weight: 500;
+    }
+
+    .dateHistory{
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 39px;     
+        margin: 0 0 25px 0;
+        padding-top: 30px;
+    }
+
+    .thesis{
+        margin: 30px 0 0 0;
+    }
+
+    .numberThesis{
+        margin: 0;
+        width: 5%;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 39px;
+    }
+
+    .textThesis{
+        margin: 0;
+        width: 95%;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 32px;    
+        text-align: justify;
+    }
+
+    .blockHistory1 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 20px;
+        padding: 30px 50px;
+        margin: 50px 0;
+    }
+
+    .blockHistory1 p{
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 36px;     
+        text-align: justify;
+    }
+
+    .blockHistory2 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 15px;
+        padding: 30px 50px;
+        margin: 60px 0;
+    }
+
+    .blockHistory2 p {
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 36px;     
+        text-align: justify;
+    }
+}
+
+
+@media screen and (min-width: 960px) and (max-width: 1279px){
+    
+    .mainHeaderHistory{
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 37px;   
+        margin: 30px 0 40px 0;
+    }
+
+    .textHistory p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 23px;
+        text-align: justify;
+    }
+
+    .textHistory img {
+        margin: 50px 0;
+    }
+
+    .lineHistory {
+        width: 20%;
+        margin: 50px 0;
+    }
+
+    .boldTextHistory{
+        font-weight: 500;
+    }
+
+    .dateHistory{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;     
+        margin: 0 0 50px 0;
+    }
+
+    .thesis{
+        margin: 30px 0 0 0;
+    }
+
+    .numberThesis{
+        margin: 0;
+        width: 5%;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 37px;     
+    }
+
+    .textThesis{
+        margin: 0;
+        width: 90%;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 23px;    
+        text-align: justify;
+    }
+
+    .blockHistory1 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 20px;
+        padding: 40px;
+        margin: 50px 0;
+    }
+
+    .blockHistory1 p{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 26px;   
+        text-align: justify;
+    }
+
+    .blockHistory2 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 15px;
+        padding: 40px;
+        margin: 50px 0;
+    }
+
+    .blockHistory2 p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;     
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 959px){
+
+    .mainHeaderHistory{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin: 30px 0;
+    }
+
+    .textHistory p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: justify;
+    }
+
+    .textHistory img {
+        margin: 30px 0;
+    }
+
+    .lineHistory {
+        width: 20%;
+        margin: 50px 0;
+    }
+
+    .boldTextHistory{
+        font-weight: 500;
+    }
+
+    .dateHistory{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin: 0 0 30px 0;
+    }
+
+    .thesis{
+        margin: 30px 0 0 0;
+    }
+
+    .numberThesis{
+        margin: 0;
+        width: 5%;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+    }
+
+    .textThesis{
+        margin: 0;
+        width: 90%;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        text-align: justify;
+    }
+
+    .blockHistory1 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 20px;
+        padding: 30px;
+        margin: 50px 0;
+    }
+
+    .blockHistory1 p{
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 23px;
+        text-align: justify;
+    }
+
+    .blockHistory2 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 50px 0;
+    }
+
+    .blockHistory2 p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 23px;
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width: 340px) and (max-width: 639px){
+    .mainHeaderHistory{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin: 25px 0;
+    }
+
+    .textHistory p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: justify;
+    }
+
+    .textHistory img {
+        margin: 25px 0;
+    }
+
+    .lineHistory {
+        width: 20%;
+        margin: 40px 0;
+    }
+
+    .boldTextHistory{
+        font-weight: 500;
+    }
+
+    .dateHistory{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin: 0 0 25px 0;
+    }
+
+    .thesis{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 30px 0 0 0;
+    }
+
+    .numberThesis{
+        margin-bottom: 15px;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+    }
+
+    .textThesis{
+        margin: 0;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        text-align: justify;
+    }
+
+    .blockHistory1 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        padding: 50px 10px;
+        margin: 50px 0;
+    }
+
+    .blockHistory1 p{
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 23px;
+        text-align: justify;
+    }
+
+    .blockHistory2 {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 15px;
+        padding: 50px 10px;
+        margin: 50px 0;
+    }
+
+    .blockHistory2 p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 23px;
+        text-align: justify;
+    }
+}

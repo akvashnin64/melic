@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import anonsData from './AnonsData';
+import { Link } from "react-router-dom";
 
 const AnonsSlider = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -21,7 +22,7 @@ const AnonsSlider = () => {
     return (
         <div className="containerSlider">
         <div className="textSlider">
-            <div><p>АНОНСЫ</p></div>
+          <div><Link to='/news'>АНОНСЫ</Link></div>
             <div className='arrowNews'>
             <img
             src="/img/arrow-left.svg"

@@ -1,0 +1,236 @@
+.containerDirector{
+    border-radius: 20px;
+}
+
+.blockDirector{
+    display: flex;
+    flex-direction: column;
+}
+
+.containerBlocksDirector{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+@media screen and (min-width: 1920px){
+
+    .mainHeaderDirector{
+        margin: 30px 0 60px 0 ;
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 61px;
+    }
+
+    .containerDirector {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        height: 1320px;
+    }
+
+    .containerBlocksDirector {
+        height: 1050px;
+    }
+
+    .headerDirector{
+        text-align: center;
+        padding: 80px 140px;
+    }
+
+    .headerDirector p{
+        font-size: 40px;
+        font-weight: 500;
+        line-height: 55px;
+        margin: 0;
+    }
+
+    .blockDirector{
+        height: 95px;
+        width: 700px;
+        margin: 0 0 30px 80px;
+    }
+
+    .nameDirector{
+        font-size: 35px;
+        font-weight: 600;
+        line-height: 43px;
+        margin: 0%;
+    }
+
+    .workedDirector{
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 37px;
+        margin: 20px 0 0 0;
+    }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1919px){
+    .mainHeaderDirector{
+        margin: 30px 0 40px 0 ;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+    }
+
+    .containerDirector {
+        height: 960px;
+        box-shadow: 0px 0px 22px 0px #67676730;
+    }
+
+    .containerBlocksDirector {
+        height: 760px;
+    }
+
+    .headerDirector{
+        text-align: center;
+        padding: 50px 100px;
+    }
+
+    .headerDirector p{
+        font-size: 25px;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .blockDirector{
+        height: 70px;
+        width: 500px;
+        margin: 0 0 25px 60px;
+    }
+
+    .nameDirector{
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0%;
+    }
+
+    .workedDirector{
+        font-size: 20px;
+        font-weight: 500;
+        margin: 20px 0 0 0;
+    }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279px){
+    .mainHeaderDirector{
+        margin: 30px 0 60px 0 ;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 37px;
+    }
+
+    .containerDirector {
+        box-shadow: 0px 0px 22px 0px #67676730;
+        height: 910px;
+    }
+
+    .containerBlocksDirector {
+        height: 770px;
+    }
+
+    .headerDirector{
+        text-align: center;
+        padding: 40px 85px;
+    }
+
+    .headerDirector p{
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        margin: 0;
+    }
+
+    .blockDirector{
+        height: 70px;
+        width: 450px;
+        margin: 0 0 25px 40px;
+    }
+
+    .nameDirector{
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 27px;
+        margin: 0%;
+    }
+
+    .workedDirector{
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 20px 0 0 0;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 959px){
+    .mainHeaderDirector{
+        display: none;
+    }
+
+    .containerDirector {
+        height: 610px;  
+    }
+
+    .containerBlocksDirector {
+        height: 500px;
+    }
+
+    .headerDirector p{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin: 30px 0;
+    }
+
+    .blockDirector{
+        height: 42px;
+        width: 301px;
+        margin: 0 0 20px 0;
+    }
+
+    .nameDirector{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        margin: 0%;
+    }
+
+    .workedDirector{
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+        margin: 20px 0 0 0;
+    }
+}
+  
+@media screen and (min-width: 340px) and (max-width: 639px){
+    .mainHeaderDirector{
+        display: none;
+    }
+
+    .headerDirector p{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        margin: 25px 0;
+    }
+
+    .blockDirector{
+        height: 42px;
+        margin: 0 0 20px 0;
+    }
+
+    .nameDirector{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        margin: 0%;
+    }
+
+    .workedDirector{
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+        margin: 10px 0 20px 0;
+    }
+}

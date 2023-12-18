@@ -1,0 +1,42 @@
+.mobilePhoneContacts, .timeContacts, .locationContacts{
+    display: flex;
+}
+
+
+@media screen and (min-width: 1920px){
+
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1919px){
+    .headerContacts{
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+    }
+
+    .mobilePhoneContacts, .timeContacts, .locationContacts{
+        margin: 15px 0;
+    }
+
+    .mobilePhoneContacts img, .timeContacts img, .locationContacts img{
+        margin-right: 15px;
+    }
+
+    .mobilePhoneContacts p, .timeContacts p, .locationContacts p{
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px;
+    }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279px){
+
+}
+
+@media screen and (min-width: 640px) and (max-width: 959px){
+
+}
+
+@media screen and (min-width: 340px) and (max-width: 639px){
+    
+}
