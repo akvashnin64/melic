@@ -4,6 +4,16 @@ import { Link } from "react-router-dom";
 const Menu = ({ isVisible }) => {
     const menuStyle = isVisible ? 'menuVisible' : 'menuHidden';
 
+    const scrollToHeight = () => {
+        const targetElement = document.getElementById("forScroll");
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: "smooth",
+          });
+        }
+      };
+
     return(
     <>
     <div className={`menu ${menuStyle}`}>
@@ -18,15 +28,12 @@ const Menu = ({ isVisible }) => {
                 <Link to={"/history"} className='menuLevel2'>
                     ИСТОРИЯ МЕЛИОРАЦИИ
                     </Link>
-                <Link to={"/historydirectors"} className='menuLevel2'>
-                    ИСТОРИЯ РУКОВОДИТЕЛЕЙ
-                    </Link>
                 <Link to={"/persons"} className='menuLevel2'>
                     ЛЮДИ ДЕЛА
                     </Link>
             </div>
         </div>
-        <Link to={"/branches"} className='menuLevel1'>
+        <Link to={"/"} className='menuLevel1' onClick={scrollToHeight}>
             ФИЛИАЛЫ
             </Link>
         <Link to={"/news"} className='menuLevel1'>

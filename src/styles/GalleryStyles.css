@@ -1,0 +1,59 @@
+.photo{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+  
+.photo img {
+    border-radius: 15px;
+}
+
+.video {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три колонки с одинаковой шириной */
+    gap: 40px; /* Промежуток между элементами */
+}
+
+.video video {
+}
+
+
+
+
+@media screen and (min-width: 1920px){
+    .photo img{
+        width: 560px;
+        height: 400px;
+    }
+
+    .photo{
+        margin-bottom: 80px;
+    }
+
+    .video {
+        width: 560px;
+        height: 400px;
+    }
+    
+    .video video {
+        width: 560px;
+        height: 400px;
+        margin-bottom: 80px;
+    }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1919px){
+
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279px){
+
+}
+
+@media screen and (min-width: 640px) and (max-width: 959px){
+
+}
+
+@media screen and (min-width: 340px) and (max-width: 639px){
+    
+}

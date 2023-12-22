@@ -9,9 +9,9 @@ const Uliyanovsk = () => {
         </div>
 
         <div className="textAboutBranche">
-            <p>Главная задача Приволжского филиала — создание высоких и устойчивых урожаев сельскохозяйственных культур на орошаемых полях при условии эффективного использования воды и земельных ресурсов. </p>
-            <img src="/img/privolg1.jpg"/>
-            <img src="/img/privolg2.jpg"/>
+            <p>Главная задача Приволжского филиала — <span className="boldText500">создание высоких и устойчивых урожаев</span> сельскохозяйственных культур на орошаемых полях при условии эффективного использования воды и земельных ресурсов. </p>
+            <img className="firstImageBranche" src="/img/privolg1.jpg"/>
+            <img className="secondImageBranche" src="/img/privolg2.jpg"/>
         </div>
 
         <div className="headerFunctionBranche">

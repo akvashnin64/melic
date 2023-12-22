@@ -12,7 +12,7 @@ const Footer = () => (
             </div>
             <div className='footerMenu'>
                 <div><Link to={"/gallery"}>ГАЛЕРЕЯ</Link></div>
-                <div><Link to={"/service"}>УСЛУГИ</Link></div>
+                <div><Link to={"/guide"}>СПРАВОЧНИК</Link></div>
                 <div><Link to={"/contacts"}>КОНТАКТЫ</Link></div>
             </div>
             <div className='footerContacts'>

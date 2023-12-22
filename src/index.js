@@ -18,6 +18,8 @@ import './styles/GalleryStyles.css'
 import './styles/GuideStyles.css'
 import './styles/ContactsStyles.css'
 import './styles/ErshovStyles.css'
+import './styles/NewsStyles.css'
+import './styles/PersonStyles.css'
 import ErrorPage from './components/ErrorPage';
 import App from './components/App';
 import HomePage from './pages/HomePage'
@@ -41,6 +43,9 @@ import EngelsPage from './pages/EngelsPage';
 import SaratovPage from './pages/SaratovPage';
 import PartiaPage from './pages/PartiaPage';
 import MordvaPage from './pages/MordvaPage';
+import SamaraPage from './pages/SamaraPage';
+import AnnouncementsPage from './pages/AnnouncementsPage'
+import PersonPage from './pages/PersonPage';
 
 const router = createBrowserRouter([
   {
@@ -49,7 +54,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/news",
-    element: <NewsPage />,
+    element: <NewsPage />
+  },
+  {
+    path: "/announcements",
+    element: <AnnouncementsPage />,
   },
   {
     path: '/guide',
@@ -127,6 +136,14 @@ const router = createBrowserRouter([
   {
     path: '/mordva',
     element: <MordvaPage />
+  },
+  {
+    path: '/samara',
+    element: <SamaraPage />
+  },
+  {
+    path: '/persons',
+    element: <PersonPage />
   },
 ]);
 

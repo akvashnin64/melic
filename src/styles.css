@@ -6,6 +6,18 @@
   font-family: "Montserrat";
 }
 
+.boldText500{
+  font-weight: 500;
+}
+
+.boldText600{
+  font-weight: 600;
+}
+
+.boldText700{
+  font-weight: 700;
+}
+
 body {
   overflow-x: hidden;
 }
@@ -52,7 +64,7 @@ p {
 
 .banner {
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 25px;
 }
 
 .banner img {
@@ -60,14 +72,6 @@ p {
   display: block;
 }
 
-.photo{
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.photo img {
-  margin-right: 30px;
-}
 
 .banner2 {
   display: flex;
@@ -80,7 +84,7 @@ p {
   transition: 1s;
 }
 
-.banner2 .news-item {
+.banner2 .announcementsItem {
   position: relative;
   display: flex;
   justify-content: center;
@@ -200,8 +204,12 @@ p {
   margin-right: auto;
 }
 
-
-
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .menu{
   margin-top: 30px;
@@ -356,8 +364,8 @@ a:hover {
 
   .dropdownMenu{
     padding-top: 40px;
-    top: 15%;
-    left: 15%;
+    top: 16.5%;
+    left: 11%;
   }
 
   .submenu:hover .dropdownMenu {
@@ -380,16 +388,13 @@ a:hover {
   }
 
   .banner {
-    
     width: 1760px;
     height: 500px;
-    border-radius: 15px;
   }
 
   .banner img {
     width: 100%;
     height: 100%;
-    border-radius: 15px;
   }
 
   #text1 { 
@@ -419,13 +424,18 @@ a:hover {
     margin-left: 5%;
   }
 
-  .textSlider p, .textLinks p, .textBranches p, .textNews p{
+  .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
     font-size: 50px;
     font-weight: 700;
+    margin-bottom: 35px;
+  }
+
+  .textLinks p{
+    margin-top: 60px;
   }
 
   .branche {
-    margin-bottom: 40px;
+    
     width: 410px;
     height: 200px;
     font-size: 30px;
@@ -437,28 +447,32 @@ a:hover {
     height: 100%;
   }
 
-  
+  .linkBranche{
+    margin-bottom: 40px;
+  }
 
   .branche p{
     width: 400px;
   }
 
-  .branche:nth-child(9),
-  .branche:nth-child(10),
-  .branche:nth-child(11) {
+  .linkBranche:nth-child(9) .branche,
+  .linkBranche:nth-child(10) .branche,
+  .linkBranche:nth-child(11) .branche{
     width: 560px;
   }
+
 
   .news  p:nth-child(2) {
     font-size: 20px;
     font-weight: 600;
     text-align: left;
+    max-width: 550px;
     color: rgba(96, 96, 96, 1);
   }
   
-  .news  p:nth-child(3) {
+  .linkNewSlider {
     font-size: 30px;
-    max-width: 560px;
+    max-width: 550px;
     height: 50px;
     margin-bottom: 70px;
     font-weight: 600;
@@ -470,6 +484,7 @@ a:hover {
   }
 
   .link {
+    height: 250px;
     max-width: 220px;
   }
 
@@ -489,6 +504,10 @@ a:hover {
     width: 170px;
   }
 
+
+  .newsItem p:nth-child(2){
+    margin: 25px 0 10px 0;
+  }
  
 
   .breadCrumb{
@@ -680,17 +699,21 @@ a:hover {
   .textSlider p, .textLinks p, .textBranches p, .textNews p{
     font-size: 40px;
     font-weight: 700;
+    margin-bottom: 40px;
+  }
+
+  .linkBranche{
+    margin-bottom: 40px;
+    width: 30%;
   }
 
   .branche {
-    margin-bottom: 40px;
-    width: 30%;
     height: 200px;
     font-size: 22px;
     font-weight: 600;
   }
 
-  .branche img {
+  .linkBranche img {
     width: 100%;
     height: 100%;
   }
@@ -699,8 +722,8 @@ a:hover {
     width: 400px;
   }
 
-  .branche:nth-child(10),
-  .branche:nth-child(11) {
+  .linkBranche:nth-child(10),
+  .linkBranche:nth-child(11){
     width: 48%;
   }
 
@@ -867,11 +890,16 @@ a:hover {
   .textSlider p, .textLinks p, .textBranches p, .textNews p{
     font-size: 30px;
     font-weight: 700;
+    
+    margin-bottom: 20px;
+  }
+
+  .linkBranche{
+    margin-bottom: 20px;
+    width: 32%;
   }
 
   .branche {
-    margin-bottom: 20px;
-    width: 32%;
     height: 150px;
     font-size: 20px;
     font-weight: 600;
@@ -883,12 +911,9 @@ a:hover {
     height: 100%;
   }
 
-  .linkBranche {
-    z-index: 3;
-  }
 
-  .branche:nth-child(10),
-  .branche:nth-child(11) {
+  .linkBranche:nth-child(10),
+  .linkBranche:nth-child(11){
     width: 48%;
   }
 
@@ -1043,11 +1068,11 @@ a:hover {
   .textSlider p, .textLinks p, .textBranches p, .textNews p{
     font-size: 25px;
     font-weight: 700;
+    
+    margin-bottom: 20px;
   }
 
   .branche {
-    margin-bottom: 20px;
-    width: 48%;
     height: 125px;
     font-size: 20px;
     font-weight: 600;
@@ -1058,12 +1083,13 @@ a:hover {
     height: 100%;
   }
 
-  .branche:nth-child(11){
-    width: 100%;
+  .linkBranche{
+    margin-bottom: 20px;
+    width: 48%;
   }
 
-  .branche:nth-child(11) img{
-    transform: scale(1.1);;
+  .linkBranche:nth-child(11){
+    width: 100%;
   }
 
   .news  p:nth-child(2) {
@@ -1219,6 +1245,36 @@ a:hover {
     display: block;
   }
 
+  .textBranches{
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    margin-bottom: 20px;
+  }
+
+  .branche {
+    height: 125px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+
+  .branche img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .linkBranche{
+    margin-bottom: 20px;
+    width: 48%;
+  }
+
+  .linkBranche:nth-child(3),
+  .linkBranche:nth-child(6),
+  .linkBranche:nth-child(9){
+    width: 100%;
+  }
+
   .banner img{
     margin-left: -350%;
   }
@@ -1241,13 +1297,13 @@ a:hover {
 
   .footer {
     flex-wrap: wrap;
-    width: 100%;
+    width: 320px;
     font-size: 12px;
     font-weight: 500;
   }
 
   .footerPicture img {
-    margin: 26px 11px;
+    margin: 26px 0 0 11px;
     width: 67px;
   }
 
@@ -1261,7 +1317,7 @@ a:hover {
   }
   
   .footerContacts {
-    margin: 20px 10px 0 0;
+    margin: 20px 11px 0 0;
     order: 1;
     text-align: right;
   }

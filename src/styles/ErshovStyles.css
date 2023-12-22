@@ -194,11 +194,11 @@
         max-height: 480px;
     }
 
-    .textAboutBranche img:nth-child(2){
+    .firstImageBranche{
         width: 60%;
     }
 
-    .textAboutBranche img:nth-child(3){
+    .secondImageBranche{
         width: 34%;
     }
 
@@ -503,11 +503,11 @@
         max-height: 320px;
     }
 
-    .textAboutBranche img:nth-child(2){
+    .firstImageBranche{
         width: 60%;
     }
 
-    .textAboutBranche img:nth-child(3){
+    .secondImageBranche{
         width: 34%;
     }
 
@@ -809,11 +809,11 @@
         max-height: 280px;
     }
 
-    .textAboutBranche img:nth-child(2){
+    .firstImageBranche{
         width: 56%;
     }
 
-    .textAboutBranche img:nth-child(3){
+    .secondImageBranche{
         width: 42%;
     }
 
@@ -1110,11 +1110,11 @@
         max-height: 200px;
     }
 
-    .textAboutBranche img:nth-child(2){
+    .firstImageBranche{
         width: 100%;
     }
 
-    .textAboutBranche img:nth-child(3){
+    .secondImageBranche{
         display: none;
     }
 
@@ -1414,11 +1414,11 @@
         max-height: 200px;
     }
 
-    .textAboutBranche img:nth-child(2){
+    .firstImageBranche{
         width: 100%;
     }
 
-    .textAboutBranche img:nth-child(3){
+    .secondImageBranche{
         display: none;
     }
 

@@ -7,61 +7,61 @@ const brancheData = [
     },
     {
         id: 1,
-        location: "/ershov",
+        location: "/balakovo",
         namePic: "balakovo",
         text: "БАЛАКОВСКИЙ"
     },
     {
         id: 2,
-        location: "/ershov",
+        location: "/penza",
         namePic: "penza",
         text: "ПЕНЗЕНСКИЙ"
     },
     {
         id: 3,
-        location: "/ershov",
+        location: "/kalininsk",
         namePic: "kalininsk",
         text: "КАЛИНИНСКИЙ"
     },
     {
         id: 4,
-        location: "/ershov",
+        location: "/samara",
         namePic: "samara",
         text: "САМАРСКИЙ"
     },
     {
         id: 5,
-        location: "/ershov",
+        location: "/privolg",
         namePic: "privolg",
         text: "ПРИВОЛЖСКИЙ"
     },
     {
         id: 6,
-        location: "/ershov",
+        location: "/engels",
         namePic: "engels",
         text: "ЭНГЕЛЬССКИЙ"
     },
     {
         id: 7,
-        location: "/ershov",
+        location: "/uliyanovsk",
         namePic: "uliyanovsk",
         text: "УЛЬЯНОВСКИЙ"
     },
     {
         id: 8,
-        location: "/ershov",
+        location: "/mordva",
         namePic: "mordva",
         text: "ФИЛИАЛ ПО РЕСПУБЛИКЕ МОРДОВИЯ"
     },
     {
         id: 9,
-        location: "/ershov",
+        location: "/saratov",
         namePic: "saratov",
         text: "САРАТОВСКИЙ ОБВОДНИТЕЛЬНЫЙ КАНАЛ"
     },
     {
         id: 10,
-        location: "/ershov",
+        location: "/partia",
         namePic: "partia",
         text: "ГИДРОГЕОЛОГО-МЕЛИОРАТИВНАЯ ПАРТИЯ"
     }

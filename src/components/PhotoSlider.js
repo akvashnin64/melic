@@ -11,19 +11,19 @@ const photoData = [
     },
     {
         index: '3',
-        namePicture: 'photo1'
+        namePicture: 'photo3'
     },
     {
         index: '4',
-        namePicture: 'photo2'
+        namePicture: 'photo4'
     },
     {
         index: '5',
-        namePicture: 'photo1'
+        namePicture: 'photo5'
     },
     {
         index: '6',
-        namePicture: 'photo2'
+        namePicture: 'photo6'
     }
 ]
 
@@ -41,7 +41,7 @@ const PhotoSlider = () => {
     };
 
     const getImagePath = (namePicture) => {
-      return `/img/${namePicture}.png`;
+      return `/img/${namePicture}.jpg`;
     };
 
     return (

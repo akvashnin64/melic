@@ -4,6 +4,7 @@ import Menu from "../components/Menu";
 import Footer from '../components/Footer'
 import PhotoSlider from "../components/PhotoSlider";
 import Breadcrumbs from '../components/BreadCrumbs'
+import VideoSlider from "../components/VideoSlider";
 
 const GalleryPage = () => {
     const paths = [
@@ -23,6 +24,7 @@ const GalleryPage = () => {
         <Menu />
         <Breadcrumbs paths={paths} /> 
         <PhotoSlider/>
+        <VideoSlider/>
         <Footer />
         </>
     )

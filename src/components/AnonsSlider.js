@@ -22,7 +22,7 @@ const AnonsSlider = () => {
     return (
         <div className="containerSlider">
         <div className="textSlider">
-          <div><Link to='/news'>АНОНСЫ</Link></div>
+          <div><Link to='/announcements' className='headerSliderLink'>АНОНСЫ</Link></div>
             <div className='arrowNews'>
             <img
             src="/img/arrow-left.svg"
@@ -40,7 +40,7 @@ const AnonsSlider = () => {
         </div>
         <div className="banner2">
             {anonsData.slice(currentPage, currentPage + 1).map((anons, index) => (
-            <div key={index} className="news-item">
+            <div key={index} className="announcementsItem">
                 <img src={getImagePath(anons.namePic)}/>
                 <p id='text3'>{anons.titleAnons}</p>
                 <p id='text4'>{anons.dateAnons}</p>

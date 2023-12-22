@@ -9,9 +9,9 @@ const Kalininsk = () => {
         </div>
 
         <div className="textAboutBranche">
-            <p>Калининский филиал ФГБУ «Управление «Саратовмелиоводхоз» был создан в 1976 году в период коренного улучшения земель, подверженных неблагоприятным воздействиям ветра и воды, и рационального их использования. На сегодняшний день численность сотрудников филиала составляет 50 человек.</p>
-            <img src="/img/kalininsk1.jpg"/>
-            <img src="/img/kalininsk2.jpg"/>
+            <p>Калининский филиал ФГБУ «Управление «Саратовмелиоводхоз» <span className="boldText500">был создан в 1976 году</span> в период коренного улучшения земель, подверженных неблагоприятным воздействиям ветра и воды, и рационального их использования. На сегодняшний день численность сотрудников филиала <span className="boldText500">составляет 50 человек.</span></p>
+            <img className="firstImageBranche" src="/img/kalininsk1.jpg"/>
+            <img className="secondImageBranche" src="/img/kalininsk2.jpg"/>
         </div>
 
         <div className="headerFunctionBranche">

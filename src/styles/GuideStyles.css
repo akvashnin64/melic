@@ -11,7 +11,7 @@
   
   .director, .location, .phone, .email{
     display: flex;
-    align-items: stretch;
+    align-items: center;
     width: 100%;
     font-size: 16px;
     font-weight: 500;
@@ -30,12 +30,15 @@
 
 @media screen and (min-width: 1920px){
     .headerGuide {
-        
+      font-size: 50px;
+      font-weight: 700;
+      line-height: 61px;
+      margin-bottom: 50px;
     }
     
     .guide{
         margin-bottom: 40px;
-        width: 45%;
+        width: 860px;
         height: 100%;
       }
     
@@ -45,50 +48,62 @@
     
       .guide:nth-child(11) .containerGuide{
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        align-items: baseline;
-        align-content: stretch;
     
       }
     
       .guide:nth-child(11) .title{
-        width: 1300px;
+        width: 100%;
       }
     
       .guide:nth-child(11) .director,
       .guide:nth-child(11) .location,
       .guide:nth-child(11) .phone,
       .guide:nth-child(11) .email{
-        width: 500px;
+        width: 700px;
       }
     
       .title{
-        margin: 20px 0 0 30px;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+        margin: 35px 0 0 30px;
       }
     
       .director {
-        margin: 20px 0 20px 30px;
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 30px;
+        margin: 25px 0 30px 30px;
       }
     
       .location, .phone, .email{
-        width: 500px;
-        margin: 5px 0 10px 30px;
-        height: 50px;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 27px;
+        width: 800px;
+        margin: 0 0 25px 30px;
         align-items: center;
       }
     
       .location img, .phone img, .email img{
-        height: 30px;
+        height: 50px;
         margin-right: 20px;
       }
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){
-    .guide{
+      .headerGuide {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
         margin-bottom: 40px;
-        width: 45%;
+      }  
+      
+      .guide{
+        margin-bottom: 40px;
+        width: 49%;
         height: 100%;
       }
     
@@ -98,12 +113,8 @@
     
       .guide:nth-child(11) .containerGuide{
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        align-items: baseline;
-        align-content: stretch;
-    
       }
     
       .guide:nth-child(11) .title{
@@ -118,17 +129,26 @@
       }
     
       .title{
-        margin: 20px 0 0 30px;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin: 30px 0 0 30px;
       }
     
       .director {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
         margin: 20px 0 20px 30px;
       }
     
       .location, .phone, .email{
-        width: 500px;
-        margin: 5px 0 10px 30px;
-        height: 50px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        max-width: 450px;
+        margin: 0 0 20px 30px;
+        height: 40px;
         align-items: center;
       }
     
@@ -139,13 +159,177 @@
 }
 
 @media screen and (min-width: 960px) and (max-width: 1279px){
+  .headerGuide {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 37px;
+    margin-bottom: 40px;
+  }  
+  
+  .guide{
+    margin-bottom: 20px;
+    width: 49%;
+    height: 100%;
+  }
 
+  .guide:nth-child(11){
+    width: 100%;
+  }
+
+  .guide:nth-child(11) .containerGuide{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .guide:nth-child(11) .title{
+    max-width: 100%;
+  }
+
+  .guide:nth-child(11) .director,
+  .guide:nth-child(11) .location,
+  .guide:nth-child(11) .phone,
+  .guide:nth-child(11) .email{
+    width: 400px;
+  }
+
+  .title{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 25px 0 0 25px;
+    max-width: 420px;
+  }
+
+  .director {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    margin: 20px 0 20px 25px;
+  }
+
+  .location, .phone, .email{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    max-width: 420px;
+    margin: 0 0 15px 25px;
+    align-items: center;
+  }
+
+  .location img, .phone img, .email img{
+    height: 25px;
+    margin-right: 20px;
+  }
 }
 
 @media screen and (min-width: 640px) and (max-width: 959px){
+  .headerGuide {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    margin-bottom: 30px;
+  }  
+  
+  .guide{
+    margin-bottom: 20px;
+    width: 49%;
+    height: 205px;
+  }
 
+  .guide:nth-child(11){
+    width: 100%;
+    height: 140px;
+  }
+
+  .guide:nth-child(11) .containerGuide{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .guide:nth-child(11) .title{
+    max-width: 100%;
+  }
+
+  .guide:nth-child(11) .director,
+  .guide:nth-child(11) .location,
+  .guide:nth-child(11) .phone,
+  .guide:nth-child(11) .email{
+    width: 300px;
+    margin-top: 10px;
+  }
+
+  .title{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    margin: 15px 0 0 15px;
+    max-width: 250px;
+  }
+
+  .director {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    margin: 10px 0 15px 15px;
+  }
+
+  .location, .phone, .email{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    max-width: 250px;
+    margin: 0 0 10px 15px;
+    align-items: start;
+  }
+
+  .location img, .phone img, .email img{
+    height: 20px;
+    margin-right: 10px;
+  }
 }
 
 @media screen and (min-width: 340px) and (max-width: 639px){
-    
+  .headerGuide {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    margin-bottom: 25px;
+  }  
+  
+  .guide{
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .title{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    margin: 15px 0 0 15px;
+    max-width: 250px;
+  }
+
+  .director {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    margin: 10px 0 15px 15px;
+  }
+
+  .location, .phone, .email{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    max-width: 250px;
+    margin: 0 0 10px 15px;
+    align-items: start;
+  }
+
+  .location img, .phone img, .email img{
+    height: 20px;
+    margin-right: 10px;
+  }
 }

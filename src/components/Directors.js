@@ -19,7 +19,7 @@ function OneDirector(props){
 function Directors () {
     const directorComponents = directorsData.map(director => {
         return(
-            <OneDirector name={director.name} worked={director.worked}/>
+            <OneDirector key={director.id} name={director.name} worked={director.worked}/>
         )
     })
 

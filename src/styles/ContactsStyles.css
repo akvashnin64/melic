@@ -1,10 +1,143 @@
 .mobilePhoneContacts, .timeContacts, .locationContacts{
     display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.containerMapContactsPage YMaps{
+    border-radius: 15px;
+}
+
+.containerContactsPage{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.feedback{
+    box-shadow: 0px 0px 22px 0px #67676730;
+    border-radius: 24px;
+}
+
+.textFeedback{
+    opacity: 60%;
+}
+
+.inputFieldsFeedback{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.inputFieldsFeedback input {
+    background: #E8E8E8;
+    border-radius: 3px;
+}
+
+
+
+.sendFeedback button{
+    background-color: black;
+    color: white;
+    border: 0;
+    border-radius: 6px;
 }
 
 
 @media screen and (min-width: 1920px){
+    .headerContacts{
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 61px;
+        margin-bottom: 50px;
+    }
 
+    .mobilePhoneContacts, .timeContacts, .locationContacts{
+        margin: 30px 0;
+    }
+
+    .mobilePhoneContacts img, .timeContacts img, .locationContacts img{
+        margin-right: 40px;
+        width: 70px;
+    }
+
+    .mobilePhoneContacts p, .timeContacts p, .locationContacts p{
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 42px;
+    }
+
+    .containerMapContactsPage{
+        margin: 60px 0 0 0;
+    }
+
+    .mapContactsPage{
+        width: 850px;
+        height: 450px;
+    }
+
+    .feedback{
+        width: 50%;
+        height: 800px;
+    }
+
+    .headerFeedback{
+        font-size: 55px;
+        font-weight: 600;
+        line-height: 77px;
+        margin: 65px 0 0 65px;
+    }
+
+    .textFeedback{
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 48px;
+        margin: 25px 0 0 65px;
+        max-width: 700px;
+    }
+
+    .inputFieldsFeedback{
+        width: 80%;
+        margin: 45px 0 0 65px;
+    }
+
+    .inputFieldsFeedback input{
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 32px;
+        border: 0;
+    }
+
+    .inputFieldsFeedback input[type='text'], 
+    .inputFieldsFeedback input[type='email']{
+        padding: 20px;
+    }
+
+    #nameFeedback{
+        width: 40%;
+        height: 60px;
+    }
+
+    #emailFeedback{
+        width: 50%;
+        height: 60px;
+    }
+
+    #textFeedback{
+        width: 100%;
+        height: 250px;
+        margin-top: 35px;
+    }
+
+    .sendFeedback button{
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 36px;
+        width: 400px;
+        height: 60px;
+        margin: 35px 0 0 0;
+    }
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){
@@ -15,11 +148,13 @@
     }
 
     .mobilePhoneContacts, .timeContacts, .locationContacts{
-        margin: 15px 0;
+        margin: 20px 0;
+        
     }
 
     .mobilePhoneContacts img, .timeContacts img, .locationContacts img{
         margin-right: 15px;
+        width: 50px;
     }
 
     .mobilePhoneContacts p, .timeContacts p, .locationContacts p{
@@ -27,16 +162,381 @@
         font-weight: 600;
         line-height: 28px;
     }
+
+    .containerMapContactsPage{
+        margin: 40px 0 0 0;
+    }
+
+    .mapContactsPage{
+        width: 500px;
+        height: 250px;
+    }
+
+    .feedback{
+        width: 50%;
+        height: 540px;
+    }
+
+    .headerFeedback{
+        font-size: 35px;
+        font-weight: 600;
+        line-height: 49px;
+        margin: 40px 0 0 55px;
+    }
+
+    .textFeedback{
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 32px;
+        margin: 15px 0 0 55px;
+        max-width: 500px;
+    }
+
+    .inputFieldsFeedback{
+        width: 80%;
+        margin: 35px 0 0 55px;
+    }
+
+    .inputFieldsFeedback input{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+        border: 0;
+    }
+
+    .inputFieldsFeedback input[type='text'], 
+    .inputFieldsFeedback input[type='email']{
+        padding: 20px;
+    }
+
+    #nameFeedback{
+        width: 40%;
+        height: 50px;
+    }
+
+    #emailFeedback{
+        width: 50%;
+        height: 50px;
+    }
+
+    #textFeedback{
+        width: 100%;
+        height: 130px;
+        margin-top: 30px;
+    }
+
+    .sendFeedback button{
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 26px;
+        width: 270px;
+        height: 50px;
+        margin: 35px 0 0 0;
+    }
 }
 
 @media screen and (min-width: 960px) and (max-width: 1279px){
+    .headerContacts{
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 37px;
+        margin-bottom: 40px;
+    }
 
+    .mobilePhoneContacts, .timeContacts, .locationContacts{
+        margin: 20px 0;
+    }
+
+    .mobilePhoneContacts img, .timeContacts img, .locationContacts img{
+        margin-right: 35px;
+        width: 45px;
+    }
+
+    .mobilePhoneContacts p, .timeContacts p, .locationContacts p{
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 25px;
+    }
+
+    .containerMapContactsPage{
+        margin: 30px 0 0 0;
+    }
+
+    .mapContactsPage{
+        width: 450px;
+        height: 280px;
+    }
+
+    .feedback{
+        width: 50%;
+        height: 500px;
+    }
+
+    .headerFeedback{
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 37px;
+        margin: 40px 0 0 30px;
+    }
+
+    .textFeedback{
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 29px;
+        margin: 5px 0 0 30px;
+        max-width: 400px;
+    }
+
+    .inputFieldsFeedback{
+        width: 85%;
+        margin: 20px 0 0 30px;
+    }
+
+    .inputFieldsFeedback input{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+        border: 0;
+    }
+
+    .inputFieldsFeedback input[type='text'], 
+    .inputFieldsFeedback input[type='email']{
+        padding: 10px 20px;
+    }
+
+    #nameFeedback{
+        width: 190px;
+        height: 50px;
+    }
+
+    #emailFeedback{
+        width: 200px;
+        height: 50px;
+    }
+
+    #textFeedback{
+        width: 100%;
+        height: 130px;
+        margin-top: 30px;
+    }
+
+    .sendFeedback button{
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 26px;
+        width: 270px;
+        height: 50px;
+        margin: 20px 0 0 0;
+    }
 }
 
 @media screen and (min-width: 640px) and (max-width: 959px){
+    .containerContactsPage{
+        align-items: start;
+        height: 570px;
+    }
 
+    .headerContacts{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin-bottom: 30px;
+    }
+
+    .mobilePhoneContacts, .timeContacts, .locationContacts{
+        margin: 25px 0;
+    }
+
+    .mobilePhoneContacts img, .timeContacts img, .locationContacts img{
+        margin-right: 15px;
+        width: 35px;
+    }
+
+    .mobilePhoneContacts p, .timeContacts p, .locationContacts p{
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+    }
+
+    .containerMapContactsPage{
+        margin: 60px 0 0 0;
+    }
+
+    .mapContactsPage{
+        position: absolute;
+        margin-top: 10px;
+        width: 620px;
+        height: 280px;
+    }
+
+    .feedback{
+        width: 320px;
+        height: 270px;
+    }
+
+    .headerFeedback{
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        margin: 20px 0 0 30px;
+    }
+
+    .textFeedback{
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        margin: 5px 0 0 30px;
+        max-width: 260px;
+    }
+
+    .inputFieldsFeedback{
+        width: 82%;
+        margin: 15px 0 0 30px;
+    }
+
+    .inputFieldsFeedback input{
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 16px;
+        border: 0;
+    }
+
+    .inputFieldsFeedback input[type='text'], 
+    .inputFieldsFeedback input[type='email']{
+        padding: 10px 15px;
+    }
+
+    #nameFeedback{
+        width: 125px;
+        height: 30px;
+    }
+
+    #emailFeedback{
+        width: 125px;
+        height: 30px;
+    }
+
+    #textFeedback{
+        width: 260px;
+        height: 50px;
+        margin-top: 10px;
+    }
+
+    .sendFeedback button{
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        width: 200px;
+        height: 35px;
+        margin: 20px 0 0 0;
+    }
 }
 
 @media screen and (min-width: 340px) and (max-width: 639px){
-    
+    .containerContactsPage{
+        align-items: start;
+        height: 800px;
+    }
+
+    .headerContacts{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin-bottom: 30px;
+    }
+
+    .mobilePhoneContacts, .timeContacts, .locationContacts{
+        margin: 25px 0;
+    }
+
+    .mobilePhoneContacts img, .timeContacts img, .locationContacts img{
+        margin-right: 15px;
+        width: 35px;
+    }
+
+    .mobilePhoneContacts p, .timeContacts p, .locationContacts p{
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+    }
+
+    .containerMapContactsPage{
+        margin: 60px 0 0 0;
+    }
+
+    .mapContactsPage{
+        position: absolute;
+        margin-top: 280px;
+        width: 340px;
+        height: 250px;
+    }
+
+    .feedback{
+        margin-left: 10px;
+        position: absolute;
+        margin-top: 250px;
+        width: 320px;
+        height: 270px;
+    }
+
+    .headerFeedback{
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        margin: 20px 0 0 30px;
+    }
+
+    .textFeedback{
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        margin: 5px 0 0 30px;
+        max-width: 260px;
+    }
+
+    .inputFieldsFeedback{
+        width: 82%;
+        margin: 15px 0 0 30px;
+    }
+
+    .inputFieldsFeedback input{
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 16px;
+        border: 0;
+    }
+
+    .inputFieldsFeedback input[type='text'], 
+    .inputFieldsFeedback input[type='email']{
+        padding: 10px 15px;
+    }
+
+    #nameFeedback{
+        width: 125px;
+        height: 30px;
+    }
+
+    #emailFeedback{
+        width: 125px;
+        height: 30px;
+    }
+
+    #textFeedback{
+        width: 260px;
+        height: 50px;
+        margin-top: 10px;
+    }
+
+    .sendFeedback button{
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        width: 200px;
+        height: 35px;
+        margin: 20px 0 0 0;
+    }
+
+    .containerMapContactsPage YMaps{
+        border-radius: 0;
+    }
 }

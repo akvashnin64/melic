@@ -16,8 +16,7 @@ function Guide(props){
             </div>
             <div className='containerGuide'>
                 <div className='director'>
-                    <p>Директор: </p>
-                    <p>{props.director}</p>
+                    <p>Директор: {props.director}</p>
                 </div>
                 <div className='location'>
                     <img src='/img/location-icon.png'/>

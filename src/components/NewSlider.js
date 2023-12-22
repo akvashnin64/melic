@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import newsData from './NewsData';
+import newSliderData from './NewSliderData';
 import { Link } from "react-router-dom";
 
 const NewSlider = () => {
     const [currentPage, setCurrentPage] = useState(0);
 
-    const totalPages = Math.ceil(newsData.length);
+    const totalPages = Math.ceil(newSliderData.length);
   
     const handlePrevClick = () => {
       setCurrentPage((prev) => Math.max(prev - 1, 0));
@@ -22,7 +22,7 @@ const NewSlider = () => {
     return (
         <div className="containerSlider">
         <div className="textSlider">
-            <div><Link to='/news'>НОВОСТИ</Link></div>
+            <div><Link to='/news' className='headerSliderLink'>НОВОСТИ</Link></div>
             <div className='arrowNews'>
             <img
             src="/img/arrow-left.svg"
@@ -39,13 +39,18 @@ const NewSlider = () => {
             </div>
         </div>
         <div className="news">
-            {newsData.slice(currentPage, currentPage + 3).map((news, index) => (
-            <div key={index} className="news-item">
+            {newSliderData.slice(currentPage, currentPage + 3).map((news, index) => (
+            <div key={index} className="newsItem">
                 <img     
                 src={getImagePath(news.namePic)}
                 />
                 <p>{news.dateNews}</p>
-                <p>{news.titleNews}</p>
+                <div className='linkNewSlider' >
+                  <Link to={`/news/news_for_date_${news.dateNews}`}>
+                    {news.titleNews}
+                  </Link>
+                </div>
+                
             </div>
             ))}
         </div>
