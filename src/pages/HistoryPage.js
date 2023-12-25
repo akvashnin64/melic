@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../components/Header";
-import Menu from "../components/Menu";
 import Footer from '../components/Footer'
 import Breadcrumbs from "../components/BreadCrumbs";
 import History from "../components/History";
@@ -20,7 +19,6 @@ const HistoryPage = () => {
     return(
         <>
         <Header />
-        <Menu /> 
         <Breadcrumbs paths={paths} /> 
         <History/>
         <Footer />

@@ -21,7 +21,6 @@ const BalakovoPage = () => {
     return(
         <>
         <Header />
-        <Menu />  
         <Breadcrumbs paths={paths} />
         <Balakovo/>
         <Links />

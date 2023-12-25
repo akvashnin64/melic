@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../components/Header";
-import Menu from "../components/Menu";
 import NewSlider from '../components/NewSlider';
 import AnonsSlider from '../components/AnonsSlider'
 import Branches from '../components/Branches';
@@ -12,7 +11,6 @@ const HomePage = () => {
     return(
         <>
             <Header />
-            <Menu/>
             <Banner1 />
             <Branches />
             <NewSlider />  

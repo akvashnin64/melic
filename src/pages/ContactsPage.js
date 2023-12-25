@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../components/Header";
-import Menu from "../components/Menu";
 import Footer from '../components/Footer'
 import Breadcrumbs from "../components/BreadCrumbs";
 import Contacts from "../components/Contacts";
@@ -20,7 +19,6 @@ const ContactsPage = () => {
     return(
         <>
         <Header />
-        <Menu />  
         <Breadcrumbs paths={paths} />
         <Contacts />
         <Footer />

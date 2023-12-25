@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Header from "../components/Header";
-import Menu from "../components/Menu";
 import AnonsSlider from '../components/AnonsSlider'
 import Links from '../components/Links';
 import Footer from '../components/Footer'
@@ -58,7 +57,6 @@ const OneNewPage = (props) => {
     return(
         <>
         <Header />
-        <Menu />  
         <Breadcrumbs paths={paths} /> 
         <OneNew news_picture news_date news_title news_text/>
         <NewSlider/>

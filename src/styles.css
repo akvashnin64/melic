@@ -26,11 +26,7 @@ p {
   margin: 0;
 }
 
-.menuVisible {
-  display: block;
-}
-
-.menuHidden {
+.headerSmallMenu{
   display: none;
 }
 
@@ -1164,12 +1160,17 @@ a:hover {
   }
 
   .menu {
-    display: none;
+    display: flex;
     flex-direction: column;
+    justify-content: start;
     position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
+    top: 0;
+    right: 0%;
+    width: 52%;
+    height: 100%;
+    background-color: white;
+    margin: 0;
+    z-index: 10;
 }
 
   .phoneMenu {
@@ -1178,9 +1179,88 @@ a:hover {
     display: block;
   }
 
+  .menuVisible{
+    display: flex;
+  }
   
-  
+  .menuHidden{
+    display: none;
+  }
 
+  .dropdownMenu{
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 110px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  #secondItemMenu{
+    margin-top: 110px;
+  }
+
+  .menuLevel1{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    display:flex;
+    margin: 10px 0 10px 20px;
+  }
+
+  .menuLevel2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 7px 0 7px 20px;
+    z-index: 2;
+  }
+
+  .headerSmallMenu{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+  }
+  
+  .imagesSmallMenu{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .textHeaderSmallMenu{
+    width: 100%;
+  }
+
+  .textHeaderLevel1SmallMenu{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    margin-bottom: 5px;
+  }
+
+  .textHeaderLevel2SmallMenu{
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+  }
+
+  .mainLogoSmallMenu{
+    width: 45px;
+    height: 45px;
+  }
+
+  .closeIconSmallMenu{
+    width: 15px;
+    height: 15px;
+  }
+
+  /* #trigger-dropdown{
+    display: block;
+    height: 100px;
+  } */
   
 }
 

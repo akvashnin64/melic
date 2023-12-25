@@ -17,6 +17,20 @@ const Menu = ({ isVisible }) => {
     return(
     <>
     <div className={`menu ${menuStyle}`}>
+        <div className="headerSmallMenu">
+            <div className="imagesSmallMenu">
+                <img src='./img/logo.png' className="mainLogoSmallMenu"/>
+                <img src='./img/close-icon.png' className="closeIconSmallMenu"/>
+            </div>
+            <div className="textHeaderSmallMenu">
+                <p className='textHeaderLevel1SmallMenu'>
+                МИНИСТЕРСТВО СЕЛЬСКОГО ХОЗЯЙСТВА РОССИЙСКОЙ ФЕДЕРАЦИИ</p>
+                <p className='textHeaderLevel2SmallMenu'>
+                Федеральное государственное бюджетное учреждение</p>
+                <p className='textHeaderLevel2SmallMenu'>
+                «Управление мелиорации земель и сельскохозяйственного водоснабжения по Саратовской области». «САРАТОВМЕЛИОВОДХОЗ»</p>
+            </div>
+        </div>
         <div className='submenu'>
             <Link to={"/about"} className='menuLevel1' id="trigger-dropdown">
                 ОБ УЧРЕЖДЕНИИ
@@ -33,7 +47,7 @@ const Menu = ({ isVisible }) => {
                     </Link>
             </div>
         </div>
-        <Link to={"/"} className='menuLevel1' onClick={scrollToHeight}>
+        <Link to={"/"} className='menuLevel1'  id="secondItemMenu" onClick={scrollToHeight}>
             ФИЛИАЛЫ
             </Link>
         <Link to={"/news"} className='menuLevel1'>

@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../components/Header";
-import Menu from "../components/Menu";
 import AnonsSlider from '../components/AnonsSlider'
 import Links from '../components/Links';
 import Footer from '../components/Footer'
@@ -22,7 +21,6 @@ const NewsPage = () => {
     return(
         <>
         <Header />
-        <Menu />  
         <Breadcrumbs paths={paths} /> 
         <AllNews/>
         <AnonsSlider/>

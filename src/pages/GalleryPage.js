@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../components/Header";
-import Menu from "../components/Menu";
 import Footer from '../components/Footer'
 import PhotoSlider from "../components/PhotoSlider";
 import Breadcrumbs from '../components/BreadCrumbs'
@@ -21,7 +20,6 @@ const GalleryPage = () => {
     return(
         <>
         <Header />
-        <Menu />
         <Breadcrumbs paths={paths} /> 
         <PhotoSlider/>
         <VideoSlider/>

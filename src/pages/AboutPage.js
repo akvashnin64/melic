@@ -22,7 +22,6 @@ const AboutPage = () => {
     return(
         <>
         <Header />
-        <Menu />  
         <Breadcrumbs paths={paths} />
         <TextBlockAbout/>
         <CardsAbout/>

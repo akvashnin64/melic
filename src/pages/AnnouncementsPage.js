@@ -21,7 +21,6 @@ const AnnouncementsPage = () => {
     return(
         <>
         <Header />
-        <Menu />  
         <Breadcrumbs paths={paths} /> 
         <AnonsSlider/>
         <Links />
