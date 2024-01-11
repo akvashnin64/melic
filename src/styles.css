@@ -68,12 +68,22 @@ p {
   display: block;
 }
 
+.banner2:hover img{
+  transform: scale(1.1);
+  filter: brightness(70%);
+}
+
+.banner2 p{
+  cursor:context-menu;
+}
+
 
 .banner2 {
   display: flex;
   flex-wrap: nowrap;
   border-radius: 22px;
   margin-bottom: 30px;
+  overflow: hidden;
 }
 
 .banner2 img {
@@ -200,11 +210,22 @@ p {
   margin-right: auto;
 }
 
+.containerLinks{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content:space-between;
+}
+
 .link {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+#rightArrowLinks{
+  opacity: 0.3;
+  display: none;
 }
 
 .menu{
@@ -269,7 +290,6 @@ a:hover {
   }
 
 .textSlider {
-  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
   text-align: left;
@@ -296,7 +316,6 @@ a:hover {
   
 .news {
   display: flex;
-  justify-content: space-between;
 }
 
 .phoneMenu{
@@ -330,6 +349,10 @@ a:hover {
     width: 1760px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .textSlider{
+    margin-bottom: 40px;
   }
 
   .header {
@@ -413,7 +436,7 @@ a:hover {
   #text4 {
     font-size: 24px;
     font-weight: 600;
-    bottom: 15%;
+    bottom: 25%;
   }
 
   #text1, #text2 {
@@ -465,6 +488,14 @@ a:hover {
     max-width: 550px;
     color: rgba(96, 96, 96, 1);
   }
+
+  .newsItem{
+    margin-right: 48px;
+  }
+
+  .newsItem:nth-child(3){
+    margin-right: 0;
+  }
   
   .linkNewSlider {
     font-size: 30px;
@@ -480,13 +511,15 @@ a:hover {
   }
 
   .link {
-    height: 250px;
     max-width: 220px;
   }
 
   .link p{
     font-size: 20px;
     font-weight: 600;
+  }
+  .link img{
+    margin-bottom: 40px;
   }
 
   .footer {
@@ -596,6 +629,10 @@ a:hover {
     margin-right: auto;
   }
 
+  .textSlider{
+    margin-bottom: 40px;
+  }
+
   .breadCrumb{
     margin: 30px 0;
   }
@@ -608,6 +645,38 @@ a:hover {
 
   .breadCrumb .breadCrumbsSeparator {
     margin: 2px 14px;
+  }
+
+  .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 49px;
+  }
+
+  .newsItem{
+    margin-right: 40px;
+  }
+
+  .newsItem:nth-child(3){
+    margin-right: 0;
+  }
+
+  .news  p:nth-child(2) {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    max-width: 460px;
+    color: rgba(96, 96, 96, 1);
+    margin: 20px 0;
+  }
+  
+  .linkNewSlider {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    max-width: 460px;
+    height: 50px;
+    margin-bottom: 60px;
   }
 
   .header {
@@ -685,14 +754,14 @@ a:hover {
   #text4 {
     font-size: 25px;
     font-weight: 600;
-    bottom: 8%;
+    bottom: 15%;
   }
 
   #text1, #text2 {
     margin-left: 5%;
   }
 
-  .textSlider p, .textLinks p, .textBranches p, .textNews p{
+  .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 40px;
@@ -756,11 +825,13 @@ a:hover {
   .link img {
     max-width: 130px;
     max-height: 100px;
+    margin-bottom: 30px;
   }
 
   .link p{
     font-size: 14px;
     font-weight: 600;
+    line-height: 17.07px;
   }
 
   .footer {
@@ -787,6 +858,25 @@ a:hover {
     margin-right: auto;
   }
 
+  .link {
+    max-width: 150px;
+  }
+
+  .link img {
+    max-width: 130px;
+    max-height: 100px;
+  }
+
+  .link p{
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .textSlider{
+    margin-bottom: 20px;
+  }
+
+
   .breadCrumb{
     margin: 30px 0;
   }
@@ -799,6 +889,46 @@ a:hover {
 
   .breadCrumb .breadCrumbsSeparator {
     margin: 2px 14px;
+  }
+
+  .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 37px;
+  }
+
+  #leftArrowNews{
+    display: none;
+  }
+
+  #rightArrowNews{
+    
+  }
+
+  .newsItem{
+    margin-right: 40px;
+  }
+
+  .newsItem:nth-child(3){
+    margin-right: 0;
+  }
+
+  .news  p:nth-child(2) {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    max-width: 460px;
+    color: rgba(96, 96, 96, 1);
+    margin: 15px 0;
+  }
+  
+  .linkNewSlider {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    max-width: 460px;
+    height: 50px;
+    margin-bottom: 45px;
   }
 
   .header {
@@ -875,15 +1005,17 @@ a:hover {
   #text3 {
     font-size: 40px;
     font-weight: 800;
+    line-height: 49px;
   }
   
   #text4 {
     font-size: 18px;
     font-weight: 600;
-    bottom: 8%;
+    line-height: 22px;
+    bottom: 15%;
   }
 
-  .textSlider p, .textLinks p, .textBranches p, .textNews p{
+  .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
     font-size: 30px;
     font-weight: 700;
     
@@ -939,17 +1071,19 @@ a:hover {
   }
 
   .link {
-    max-width: 155px;
+    max-width: 130px;
   }
 
   .link img {
-    max-width: 130px;
+    max-width: 105px;
     max-height: 100px;
+    margin-bottom: 20px;
   }
 
   .link p{
     font-size: 12px;
     font-weight: 600;
+    line-height: 15px;
   }
 
   .footer {
@@ -993,6 +1127,36 @@ a:hover {
     margin-right: auto;
   }
 
+  .containerLink{
+    width: 1000px;
+  }
+
+  .textSlider{
+    margin-bottom: 20px;
+  }
+
+  .link {
+    max-width: 130px;
+  }
+
+  .link img {
+    max-width: 105px;
+    max-height: 100px;
+    margin-bottom: 20px;
+  }
+
+  .link p{
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+    max-width: 120px;
+  }
+
+  #rightArrowLinks{
+    display: flex;
+    margin-bottom: 15px;
+  }
+
   .breadCrumb{
     margin: 30px 0;
   }
@@ -1005,6 +1169,36 @@ a:hover {
 
   .breadCrumb .breadCrumbsSeparator {
     margin: 2px 6px;
+  }
+
+  #leftArrowNews{
+    display: none;
+  }
+
+  #rightArrowNews{
+    
+  }
+
+  .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+
+  .news  p:nth-child(2) {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+    color: rgba(96, 96, 96, 1);
+    margin: 10px 0;
+  }
+  
+  .linkNewSlider{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    margin-bottom: 30px;
+    width: 100%;
   }
 
   .header {
@@ -1053,15 +1247,17 @@ a:hover {
   #text3 {
     font-size: 40px;
     font-weight: 800;
+    line-height: 49px;
   }
   
   #text4 {
     font-size: 18px;
     font-weight: 600;
-    bottom: 5%;
+    line-height: 22px;
+    bottom: 15%;
   }
 
-  .textSlider p, .textLinks p, .textBranches p, .textNews p{
+  .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
     font-size: 25px;
     font-weight: 700;
     
@@ -1273,6 +1469,10 @@ a:hover {
     margin-right: auto;
   }
 
+  .textSlider{
+    margin-bottom: 20px;
+  }
+
   .breadCrumb{
     margin: 25px 0;
   }
@@ -1285,6 +1485,60 @@ a:hover {
 
   .breadCrumb .breadCrumbsSeparator {
     margin: 2px 5px;
+  }
+
+  .banner2{
+    width: 100%;
+  }
+
+  .banner2 img{
+    max-width: 235px;
+    height: 125px;
+    border-radius: 15px;
+  }
+
+  #leftArrowNews{
+    display: none;
+  }
+
+  #rightArrowLinks{
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+
+  .news  p:nth-child(2) {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+    color: rgba(96, 96, 96, 1);
+    margin: 10px 0;
+  }
+  
+  .linkNewSlider{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .news img{
+    width: 235px;
+    height: 125px;
+  }
+
+  .newsItem{
+    margin-right: 20px;
+  }
+
+  .announcementsItem{
+    margin-right: 20px;
   }
 
   .header {
@@ -1375,6 +1629,19 @@ a:hover {
     margin-left: 5%;
   }
 
+  #text3 {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 37px;
+  }
+  
+  #text4 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    bottom: 20%;
+  }
+
   .footer {
     flex-wrap: wrap;
     width: 320px;
@@ -1406,17 +1673,33 @@ a:hover {
     margin-bottom: 15px;
   }
 
+  .containerLinks{
+   margin-bottom: 25px;
+  }
+
+  .containerLink{
+    width: 750px;
+  }
+
   .link {
-    max-width: 155px;
+    max-width: 100px;
   }
 
   .link img {
-    max-width: 130px;
+    max-width: 105px;
     max-height: 100px;
+    margin-bottom: 20px;
   }
 
   .link p{
     font-size: 12px;
     font-weight: 600;
+    line-height: 15px;
+    max-width: 120px;
+  }
+
+  #rightArrowLinks{
+    display: flex;
+    margin-bottom: 15px;
   }
 }

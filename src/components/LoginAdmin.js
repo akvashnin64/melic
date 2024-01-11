@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginAdmin = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const history = useNavigate (); // Правильный импорт и использование useHistory
+  const navigate = useNavigate();
 
   const adminData = [
     {
@@ -19,21 +19,30 @@ const LoginAdmin = () => {
     },
   ];
 
-  const handleLogin = () => {
-    const user = adminData.find(
-      (admin) => admin.login === login && admin.password === password
-    );
+  const handleLoginChange = (e) => {
+    setLogin(e.target.value);
+  };
 
-    if (user) {
-      history.push(`/admin/${user.id}`);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleLogin = () => {
+    const admin = adminData.find((admin) => admin.login === login && admin.password === password);
+
+    if (admin) {
+      // Успешная авторизация
+      // Можешь использовать localStorage или sessionStorage для хранения информации об авторизации
+      // Например, localStorage.setItem('isLoggedIn', true);
+      navigate(`/admin/${admin.id}`); // Перенаправление на страницу админки
     } else {
-      alert("Неверные учетные данные");
+      // Неуспешная авторизация
+      alert("Неверный логин или пароль");
     }
   };
 
   return (
     <div className="containerLogin">
-      
       <div className="headerLogin">
         <p>Для доступа авторизуйтесь</p>
       </div>
@@ -43,21 +52,21 @@ const LoginAdmin = () => {
           name="login"
           placeholder="Введите логин"
           value={login}
-          onChange={(e) => setLogin(e.target.value)}
+          onChange={handleLoginChange}
         />
         <input
           type="password"
           name="password"
           placeholder="Введите пароль"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
         />
       </div>
       <div className="login">
         <Link onClick={handleLogin}>Войти</Link>
       </div>
       <div className="backSite">
-        <Link to='/'>Вернуться на сайт</Link>
+        <Link to="/">Вернуться на сайт</Link>
       </div>
     </div>
   );

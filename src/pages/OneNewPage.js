@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import {React, useState , useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from "../components/Header";
 import AnonsSlider from '../components/AnonsSlider'
 import Links from '../components/Links';
@@ -37,6 +38,14 @@ const OneNew = (props) => {
 const OneNewPage = (props) => {
     const { news_picture, news_date, news_title, news_text, news_id } = props;
     
+
+    
+  const location = useLocation();
+
+  useEffect(() => {
+    // Прокрутить в верхнюю часть страницы при изменении маршрута
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
 
     const paths = [
