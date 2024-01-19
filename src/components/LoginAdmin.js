@@ -6,19 +6,6 @@ const LoginAdmin = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const adminData = [
-    {
-      id: 1,
-      login: "admin1",
-      password: "admin1",
-    },
-    {
-      id: 2,
-      login: "admin2",
-      password: "admin2",
-    },
-  ];
-
   const handleLoginChange = (e) => {
     setLogin(e.target.value);
   };
@@ -27,18 +14,31 @@ const LoginAdmin = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = () => {
-    const admin = adminData.find((admin) => admin.login === login && admin.password === password);
+  const loginRequest = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/autorization', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ login, password }),
+      });
 
-    if (admin) {
-      // Успешная авторизация
-      // Можешь использовать localStorage или sessionStorage для хранения информации об авторизации
-      // Например, localStorage.setItem('isLoggedIn', true);
-      navigate(`/admin/${admin.id}`); // Перенаправление на страницу админки
-    } else {
-      // Неуспешная авторизация
-      alert("Неверный логин или пароль");
+      if (response.ok) {
+        const admin = await response.json();
+        // Успешная авторизация
+        navigate(`/admin/${admin.id}`);
+      } else {
+        // Неуспешная авторизация
+        alert("Неверный логин или пароль");
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке запроса на сервер: ', error);
     }
+  };
+
+  const handleLogin = () => {
+    loginRequest();
   };
 
   return (

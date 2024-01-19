@@ -1,55 +1,76 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
 const cors = require('cors');
+const mysql = require('mysql');
 
 const app = express();
-const port = 3001;
+const port = 3001; // Подставь свой порт
 
+app.use(cors());
 app.use(bodyParser.json());
-app.use(cors()); 
 
-// Создаем транспорт для отправки электронных писем
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'akvashnin64@gmail.com',
-    pass: 'Gue463hehu11',
-  },
+const db = mysql.createConnection({
+  host: 'h908197751.mysql', // Адрес сервера базы данных
+  user: 'h908197751_new1', // Имя пользователя базы данных
+  password: 'WH85str7', // Пароль пользователя базы данных
+  database: 'h908197751_newdb' // Имя базы данных
 });
 
-app.post('/api/send-feedback', async (req, res) => {
-  try {
-    const formData = req.body;
-
-    // Ваш код обработки данных формы здесь
-
-    console.log('Получены данные формы:', formData);
-
-    // Оставим отправку письма асинхронной
-    await sendEmail(formData);
-
-  } catch (error) {
-    console.error('Ошибка при обработке данных формы:', error);
-    res.status(500).json({ error: 'Внутренняя ошибка сервера', details: error.message });
+db.connect(err => {
+  if (err) {
+    console.error('Ошибка подключения к базе данных: ', err);
+  } else {
+    console.log('Подключено к базе данных');
   }
 });
 
-async function sendEmail(formData) {
-  try {
-    const info = await transporter.sendMail({
-      from: '"Саратовмелиоводхоз" <akvashnin64@gmail.com>',
-      to: 'akvashnin64@gmail.com',
-      subject: 'Ответ по вашему обращению',
-      text: `Имя: ${formData.nameFeedback}\nEmail: ${formData.emailFeedback}\nСообщение: ${formData.textFeedback}`,
-    });
+// Обработка изменения данных в БД через админку
+app.post('/updateData', (req, res) => {
+  const { id, newData } = req.body;
+  const query = `UPDATE your_table SET your_column = ? WHERE id = ?`;
 
-    console.log('Письмо успешно отправлено', info.response);
-  } catch (error) {
-    console.error('Ошибка при отправке письма:', error);
-    throw error; // Передайте ошибку выше для обработки в блоке catch в обработчике формы
-  }
-}
+  db.query(query, [newData, id], (err, result) => {
+    if (err) {
+      console.error('Ошибка при обновлении данных: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).send('Данные успешно обновлены');
+    }
+  });
+});
+
+// Обработка отправки обратной связи с сайта
+app.post('/feedback', (req, res) => {
+  const { name, email, message } = req.body;
+  const query = `INSERT INTO feedback (name, email, message) VALUES (?, ?, ?)`;
+
+  db.query(query, [name, email, message], (err, result) => {
+    if (err) {
+      console.error('Ошибка при сохранении обратной связи: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).send('Обратная связь успешно отправлена');
+    }
+  });
+});
+
+app.post('/autorization', (req, res) => {
+  const { login, password } = req.body;
+  const query = `SELECT * FROM table_users WHERE login = ? AND password = ?`;
+
+  db.query(query, [login, password], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении запроса: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      if (result.length > 0) {
+        res.status(200).json(result[0]);
+      } else {
+        res.status(401).send('Неверный логин или пароль');
+      }
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
