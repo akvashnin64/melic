@@ -65,7 +65,7 @@ const VideoSlider = () => {
             />
             </div>
         </div>
-        <div className="video-js vjs-theme-city">
+        <div className="video-js vjs-theme-city vjs-fluid">
             {videoData.slice(currentPage, currentPage + 3).map((video, index) => (
             <div key={index} className="news-item">
                 <video controls>

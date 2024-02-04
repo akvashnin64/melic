@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql');
+const path = require('path');
 
 const app = express();
 const port = 3001; // Подставь свой порт
@@ -9,11 +10,25 @@ const port = 3001; // Подставь свой порт
 app.use(cors());
 app.use(bodyParser.json());
 
+const imagesPath = path.join(__dirname, 'news_photo/news');
+
+app.use('/alexandr/news_photo/news', (req, res, next) => {
+  const url = req.url.toLowerCase();
+
+  if (url.includes('/alexandr/news_photo/news/'))
+    res.setHeader('Content-Type', 'image/jpeg');
+
+  next();
+});
+
+app.use('/alexandr/news_photo/news', express.static(imagesPath));
+
 const db = mysql.createConnection({
-  host: 'h908197751.mysql', // Адрес сервера базы данных
-  user: 'h908197751_new1', // Имя пользователя базы данных
-  password: 'WH85str7', // Пароль пользователя базы данных
-  database: 'h908197751_newdb' // Имя базы данных
+  host: '141.8.195.122', // Адрес сервера базы данных
+  port: '3306', 
+  user: 'alexandr', // Имя пользователя базы данных
+  password: 'SQLpass1word/', // Пароль пользователя базы данных
+  database: 'smvh_db' // Имя базы данных
 });
 
 db.connect(err => {
@@ -23,6 +38,63 @@ db.connect(err => {
     console.log('Подключено к базе данных');
   }
 });
+
+
+app.get('/getNewsById/:id', (req, res) => {
+  const id = req.params.id;
+
+  const query = `
+    SELECT
+      table_news.oldIndex,
+      table_news.titleNews,
+      table_news.dateNews,
+      table_news.textNews,
+      GROUP_CONCAT(table_picture_news.filename) AS imageNames
+    FROM table_news
+    LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
+    WHERE table_news.oldIndex = ?
+    GROUP BY table_news.idNews;
+  `;
+
+  db.query(query, [id], (error, results) => {
+    if (error) {
+      console.error('Ошибка при выполнении запроса: ', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.json(results[0]); // Отправляем результат в формате JSON
+    }
+  });
+});
+
+
+app.get('/getLastNews', (req, res) => {
+  const query = `
+    SELECT
+      table_news.oldIndex,
+      table_news.titleNews,
+      table_news.dateNews,
+      table_news.textNews,
+      GROUP_CONCAT(table_picture_news.filename) AS imageNames
+  FROM (
+      SELECT * FROM table_news
+      ORDER BY idNews DESC
+      LIMIT 20
+  ) table_news
+  LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
+  GROUP BY table_news.idNews
+  ORDER BY table_news.idNews DESC;
+  `;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении новостей: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 
 // Обработка изменения данных в БД через админку
 app.post('/updateData', (req, res) => {

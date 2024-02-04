@@ -490,7 +490,19 @@ a:hover {
   }
 
   .newsItem{
-    margin-right: 48px;
+    margin-right: 50px;
+  }
+
+  .containerPreviewImageForNewSlider{
+    width: 550px;
+    height: 250px;
+  }
+
+  .newsItem img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
   }
 
   .newsItem:nth-child(3){
@@ -655,6 +667,13 @@ a:hover {
 
   .newsItem{
     margin-right: 40px;
+  }
+
+  .newsItem img{
+    width: 460px;
+    height: 200px;
+    border-radius: 19px;
+    object-fit: cover;
   }
 
   .newsItem:nth-child(3){
@@ -907,6 +926,13 @@ a:hover {
 
   .newsItem{
     margin-right: 40px;
+  }
+
+  .newsItem img{
+    width: 460px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
   }
 
   .newsItem:nth-child(3){
@@ -1177,6 +1203,13 @@ a:hover {
 
   #rightArrowNews{
     
+  }
+
+  .newsItem img{
+    width: 300px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
   }
 
   .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
@@ -1535,6 +1568,13 @@ a:hover {
 
   .newsItem{
     margin-right: 20px;
+  }
+
+  .newsItem img{
+    width: 235px;
+    height: 125px;
+    border-radius: 10px;
+    object-fit: cover;
   }
 
   .announcementsItem{

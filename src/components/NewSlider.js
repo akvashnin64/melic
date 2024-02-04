@@ -3,9 +3,11 @@ import newSliderData from './NewSliderData';
 import { Link } from "react-router-dom";
 import { useSwipeable } from 'react-swipeable';
 
+
 const NewSlider = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(calculateItemsPerPage());
+  const [newsData, setNewsData] = useState([]);
 
   const totalPages = Math.ceil(newSliderData.length);
 
@@ -56,9 +58,49 @@ const NewSlider = () => {
     return window.innerWidth <= 1279 ? 2 : 3;
   }
 
-    const getImagePath = (namePic) => {
-      return `/img/${namePic}.png`;
-   };
+  function getImagePath(imageNames, oldIndex) {
+
+    const namesArray = imageNames ? imageNames.split(',') : [];
+
+    if (namesArray.length === 0) {
+      var filepath = `http://141.8.195.122/news/default.jpg`;
+      return filepath; 
+    }
+    else {
+      var filepath = `http://141.8.195.122/news/${oldIndex}/${namesArray[0].trim()}`;
+      return filepath;
+    }
+  }
+
+  const truncateText = (text, maxLength) => {
+    if (text.length <= maxLength) {
+      return text;
+    }
+  
+    const truncatedText = text.slice(0, maxLength);
+    const lastSpaceIndex = truncatedText.lastIndexOf(' ');
+  
+    return lastSpaceIndex !== -1 ? truncatedText.slice(0, lastSpaceIndex) + '...' : truncatedText;
+  };
+
+   const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    return `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
+  };
+
+   useEffect(() => {
+    // Асинхронный запрос на сервер при монтировании компонента
+    fetch('http://localhost:3001/getLastNews')
+      .then(response => response.json())
+      .then(data => {
+        setNewsData(data.map(news => ({
+          ...news,
+          formattedDate: formatTimestamp(news.dateNews),
+        })));
+      })
+      .catch(error => console.error('Ошибка при запросе новостей: ', error));
+  }, []); // Пустой массив зависимостей гарантирует, что useEffect сработает только при монтировании компонента
+
 
     return (
         <div className="containerSlider">
@@ -82,18 +124,20 @@ const NewSlider = () => {
             </div>
         </div>
         <div className="news"  {...handlers}>
-            {newSliderData.slice(currentPage, currentPage + itemsPerPage).map((news, index) => (
+            {newsData.slice(currentPage, currentPage + itemsPerPage).map((news, index) => (
             <div key={index} className="newsItem">
-                <img     
-                src={getImagePath(news.namePic)}
-                />
-                <p>{news.dateNews}</p>
-                <div className='linkNewSlider' >
-                  <Link to={`/news/news_for_date_${news.dateNews}`}>
-                    {news.titleNews}
-                  </Link>
+              <Link to={`/news/${news.oldIndex}`}>
+                <div className='containerPreviewImageForNewSlider'>
+                  <img     
+                    src={getImagePath(news.imageNames, news.oldIndex)}
+                    alt='image news'
+                  />
                 </div>
-                
+                <p>{formatTimestamp(news.dateNews * 1000)}</p>
+                <div className='linkNewSlider' >
+                  {truncateText(news.titleNews, 50)}
+                </div>
+                </Link>
             </div>
             ))}
         </div>

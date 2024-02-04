@@ -46,6 +46,7 @@ import MordvaPage from './pages/MordvaPage';
 import SamaraPage from './pages/SamaraPage';
 import AnnouncementsPage from './pages/AnnouncementsPage'
 import PersonPage from './pages/PersonPage';
+import OneNewPage from './pages/OneNewPage';
 
 const router = createBrowserRouter([
   {
@@ -57,8 +58,8 @@ const router = createBrowserRouter([
     element: <NewsPage />
   },
   {
-    path: "/news",
-    element: <NewsPage />
+    path: "/news/:id",
+    element: <OneNewPage />
   },
   {
     path: "/announcements",

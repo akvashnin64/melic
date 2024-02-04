@@ -1,79 +1,111 @@
-import {React, useState , useEffect} from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Header from "../components/Header";
 import AnonsSlider from '../components/AnonsSlider'
 import Links from '../components/Links';
 import Footer from '../components/Footer'
 import Breadcrumbs from '../components/BreadCrumbs'
-import AllNews from "../components/AllNews";
-import { Link } from "react-router-dom";
-import newSliderData from './NewSliderData';
-import NewSlider from '../components/NewSlider';
+import NewSlider from "../components/NewSlider";
 
-const OneNew = (props) => {
-    const { news_picture, news_date, news_title, news_text} = props;
-    
-    return(
-        <>
-            <div className='mainHeaderOneNew'>
-                <p>НОВОСТИ</p>
-            </div>
-            <div className='dateOneNew'>
-                <p>{news_date}</p>
-            </div>
-            <div className='titleOneNew'>
-                <p>{news_title}</p>
-            </div>
-            <div className='textOneNew'>
-                <p>{news_text}</p>
-            </div>
-            <div className='textOneNew'>
-                <img src={news_picture}/>
-            </div>
-        </>
-        
-    )
-}
-
-const OneNewPage = (props) => {
-    const { news_picture, news_date, news_title, news_text, news_id } = props;
-    
-
-    
-  const location = useLocation();
+const OneNew = ({ setNewsDataForPage }) => {
+  const { id } = useParams();
+  const [newsData, setNewsData] = useState(null);
 
   useEffect(() => {
-    // Прокрутить в верхнюю часть страницы при изменении маршрута
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    if (id) {
+      fetch(`http://localhost:3001/getNewsById/${parseInt(id, 10)}`)
+        .then(response => response.json())
+        .then(data => {
+          setNewsData(data);
+          setNewsDataForPage(data); // Передаем данные в родительский компонент
+        })
+        .catch(error => console.error('Ошибка при получении данных:', error));
+    }
+  }, [id, setNewsDataForPage]);
 
 
-    const paths = [
+  if (!newsData) {
+    return <p>Загрузка...</p>;
+  }
+
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    return `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
+  };
+
+  function cleanString(input) {
+    const withoutHtmlTags = input.replace(/<[^>]*>/g, '');
+    const replacedText = withoutHtmlTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/, '').replace(/&ndash;/, '-').replace(/&mdash;/, '-');
+    const decodedString = decodeURIComponent(replacedText);
+    return decodedString;
+  }
+
+  function getImagePath(imageNames, oldIndex) {
+    const namesArray = imageNames ? imageNames.split(',') : [];
+    if (namesArray.length === 0) return null; 
+    else {
+      var filepath = `http://141.8.195.122/news/${oldIndex}/${namesArray[0].trim()}`;
+      return filepath;
+    }
+  }
+
+
+  return(
+    <div className='containerOneNew'>
+      <div className='containerHeaderOneNew'>
+        <p>НОВОСТИ</p>
+      </div>
+      <div className='containerDateOneNew'>
+        <p>{formatTimestamp(newsData.dateNews * 1000)}</p>
+      </div>
+      <div className='containerTitleOneNew'>
+        <p>{newsData.titleNews}</p>
+      </div>
+      <div className='containerTextOneNew'>
+        <p>{cleanString(newsData.textNews)}</p>
+      </div>
+    </div>
+  )
+}
+
+
+const OneNewPage = () =>{
+  const [newsDataForPage, setNewsDataForPage] = useState(null);
+
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    return `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
+  };
+
+  const paths = newsDataForPage
+    ? [
         {
-            label: "Главная",
-            url: "/"
+          label: "Главная",
+          url: "/"
         },
         {
-            label: "Новости",
-            url: "/news"
+          label: "Новости",
+          url: "/news"
         },
         {
-            label: news_date,
-            url: "/news/news_for_date_" + news_date
+          label: formatTimestamp(newsDataForPage.dateNews * 1000),
+          url: "/news"
         }
-    ];
-    
-    return(
-        <>
+      ]
+    : [];
+
+  return(
+    <>
         <Header />
         <Breadcrumbs paths={paths} /> 
-        <OneNew news_picture news_date news_title news_text/>
+        <OneNew setNewsDataForPage={setNewsDataForPage}
+        />
         <NewSlider/>
         <AnonsSlider/>
         <Links />
         <Footer />
         </>
-    )
+  )
 }
 
 export default OneNewPage

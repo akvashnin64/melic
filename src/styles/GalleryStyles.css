@@ -1,7 +1,7 @@
 .photo{
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    overflow: hidden;
 }
   
 .photo img {
@@ -9,9 +9,9 @@
 }
 
 .video {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Три колонки с одинаковой шириной */
-    gap: 40px; /* Промежуток между элементами */
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
 
 .video video {
@@ -24,6 +24,7 @@
     .photo img{
         width: 560px;
         height: 400px;
+        margin-right: 40px;
     }
 
     .photo{
@@ -43,17 +44,49 @@
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){
+    .photo img{
+        width: 560px;
+        height: 295px;
+        margin-right: 40px;
+    }
 
+    .photo{
+        margin-bottom: 70px;
+    }
 }
 
 @media screen and (min-width: 960px) and (max-width: 1279px){
+    .photo img{
+        width: 380px;
+        height: 200px;
+        margin-right: 20px;
+    }
 
+    .photo{
+        margin-bottom: 50px;
+    }
 }
 
 @media screen and (min-width: 640px) and (max-width: 959px){
+    .photo img{
+        width: 300px;
+        height: 200px;
+        margin-right: 20px;
+    }
 
+    .photo{
+        margin-bottom: 70px;
+    }
 }
 
 @media screen and (min-width: 340px) and (max-width: 639px){
-    
+    .photo img{
+        width: 235px;
+        height: 150px;
+        margin-right: 20px;
+    }
+
+    .photo{
+        margin-bottom: 50px;
+    }
 }
