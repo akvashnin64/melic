@@ -41,7 +41,7 @@ const AnonsSlider = () => {
     <div className="containerSlider">
       <div className="textSlider">
         <div>
-          <Link to='/announcements' className='headerSliderLink'>АНОНСЫ</Link>
+          <Link className='headerSliderLink'>АНОНСЫ</Link>
         </div>
         <div className='arrowNews'>
           <img

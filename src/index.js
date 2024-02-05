@@ -65,10 +65,10 @@ const router = createBrowserRouter([
     path: "/news/:id",
     element: <OneNewPage />
   },
-  {
-    path: "/announcements",
-    element: <AnnouncementsPage />,
-  },
+  //{
+  //  path: "/announcements",
+  //  element: <AnnouncementsPage />,
+  //},
   {
     path: '/guide',
     element: <GuidePage />,

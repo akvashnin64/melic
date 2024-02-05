@@ -6,6 +6,9 @@ const AllNews = () => {
   const itemsPerPage = 4;
   const [newsData, setNewsData] = useState([]);
 
+  const [startDate, setStartDate] = useState(0);
+  const [endDate, setEndDate] = useState(0);
+
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
     return `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
@@ -31,6 +34,24 @@ const AllNews = () => {
       .catch(error => console.error('Ошибка при запросе новостей: ', error));
   }, []); // Пустой массив зависимостей гарантирует, что useEffect сработает только при монтировании компонента
 
+  useEffect(() => {
+    // Передаем параметры startDate и endDate в URL-строку
+    const url = `http://localhost:3001/getNewsForDate?startDate=${startDate/1000}&endDate=${endDate/1000}`;
+
+    // Выполняем запрос только если есть выбранные даты
+    if (startDate && endDate) {
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setNewsData(data.map((news) => ({
+            ...news,
+            formattedDate: formatTimestamp(news.dateNews),
+          })));
+        })
+        .catch((error) => console.error('Ошибка при запросе новостей: ', error));
+    }
+  }, [startDate, endDate]);
+
   const totalPages = Math.ceil((newsData.length || 1) / itemsPerPage);
 
   function getImagePath(imageNames, oldIndex) {
@@ -47,6 +68,14 @@ const AllNews = () => {
     }
   }
 
+  const handleStartDateChange = (e) => {
+    setStartDate(new Date(e.target.value).getTime());
+  };
+
+  const handleEndDateChange = (e) => {
+    setEndDate(new Date(e.target.value).getTime());
+  };
+
   const loadMoreNews = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
@@ -62,9 +91,9 @@ const AllNews = () => {
         </div>
         <div className="filterAllNews">
           <p>Дата от</p>
-          <input id='startDate' type="date"/>
+          <input id="startDate" type="date" onChange={handleStartDateChange} />
           <p>до</p>
-          <input id='endDate' type="date"/>
+          <input id="endDate" type="date" onChange={handleEndDateChange} />
         </div>
       </div>
 

@@ -39,6 +39,39 @@ db.connect(err => {
   }
 });
 
+app.get('/getNewsForDate', (req, res) => {
+  const startDate = req.query.startDate; // Используйте req.query для получения параметров из строки запроса
+  const endDate = req.query.endDate;
+
+  // Измененный SQL-запрос с использованием условия WHERE для фильтрации по дате
+  const query = `
+    SELECT
+      table_news.oldIndex,
+      table_news.titleNews,
+      table_news.dateNews,
+      table_news.textNews,
+      GROUP_CONCAT(table_picture_news.filename) AS imageNames
+    FROM (
+      SELECT * FROM table_news
+      WHERE table_news.dateNews BETWEEN ? AND ?  -- Добавлено условие WHERE
+      ORDER BY idNews DESC
+      LIMIT 20
+    ) table_news
+    LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
+    GROUP BY table_news.idNews
+    ORDER BY table_news.idNews DESC;
+  `;
+
+  db.query(query, [startDate, endDate], (err, result) => {  // Передаем параметры для запроса вместе с [startDate, endDate]
+    if (err) {
+      console.error('Ошибка при получении новостей: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 
 app.get('/getNewsById/:id', (req, res) => {
   const id = req.params.id;
