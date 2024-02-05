@@ -47,6 +47,10 @@ import SamaraPage from './pages/SamaraPage';
 import AnnouncementsPage from './pages/AnnouncementsPage'
 import PersonPage from './pages/PersonPage';
 import OneNewPage from './pages/OneNewPage';
+import AdminNewsSection from './components/AdminNewsSection';
+import AdminAnonsSection from './components/AdminAnonsSection';
+import AdminPhotoSection from './components/AdminPhotoSection';
+import AdminVideoSection from './components/AdminVideoSection';
 
 const router = createBrowserRouter([
   {
@@ -97,8 +101,24 @@ const router = createBrowserRouter([
         element: <AdminAutorizationPage />
       },
       {
-        path: '/admin/:id',
+        path: '/admin',
         element: <AdminPage />
+      },
+      {
+        path: '/admin/news',
+        element: <AdminNewsSection />
+      },
+      {
+        path: '/admin/announcements',
+        element: <AdminAnonsSection />
+      },
+      {
+        path: '/admin/photos',
+        element: <AdminPhotoSection />
+      },
+      {
+        path: '/admin/videos',
+        element: <AdminVideoSection />
       },
     ]
   },

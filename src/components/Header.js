@@ -17,8 +17,7 @@ const Header = () => {
   return(
     <>
     <div className='header'>
-      <Link to='/' className='mainLogo'><img src='./img/logo.png' className='mainLogo' alt='Main logo' /></Link>
-      <div>
+    <Link to='/' className='mainLogo'><img src={process.env.PUBLIC_URL + '/img/logo.png'} className='mainLogo' alt='Main logo' /></Link>      <div>
         <p className='textHeaderLevel1'>
           МИНИСТЕРСТВО СЕЛЬСКОГО ХОЗЯЙСТВА РОССИЙСКОЙ ФЕДЕРАЦИИ</p>
         <p className='textHeaderLevel2'>
@@ -26,10 +25,10 @@ const Header = () => {
         <p className='textHeaderLevel2'>
           «Управление мелиорации земель и сельскохозяйственного водоснабжения по Саратовской области». «САРАТОВМЕЛИОВОДХОЗ»</p>
       </div>
-      <img src='./img/menu.png' 
-          className='phoneMenu' 
-          alt='phoneMenu'
-          onClick={toggleMenu}/>
+      <img src={process.env.PUBLIC_URL + '/img/menu.png'} 
+        className='phoneMenu' 
+        alt='phoneMenu'
+        onClick={toggleMenu}/>
     </div>
     <Line />
     <Menu isVisible={isMenuVisible} />

@@ -96,34 +96,16 @@ app.get('/getLastNews', (req, res) => {
 });
 
 
-// Обработка изменения данных в БД через админку
-app.post('/updateData', (req, res) => {
-  const { id, newData } = req.body;
-  const query = `UPDATE your_table SET your_column = ? WHERE id = ?`;
+app.post('/api/addNews', (req, res) => {
+  const newsData = req.body;
 
-  db.query(query, [newData, id], (err, result) => {
-    if (err) {
-      console.error('Ошибка при обновлении данных: ', err);
-      res.status(500).send('Ошибка сервера');
-    } else {
-      res.status(200).send('Данные успешно обновлены');
-    }
-  });
-});
+  // Вывод данных в консоль
+  console.log('Получены новые данные:', newsData);
 
-// Обработка отправки обратной связи с сайта
-app.post('/feedback', (req, res) => {
-  const { name, email, message } = req.body;
-  const query = `INSERT INTO feedback (name, email, message) VALUES (?, ?, ?)`;
+  // Здесь вы можете добавить логику сохранения в базу данных
 
-  db.query(query, [name, email, message], (err, result) => {
-    if (err) {
-      console.error('Ошибка при сохранении обратной связи: ', err);
-      res.status(500).send('Ошибка сервера');
-    } else {
-      res.status(200).send('Обратная связь успешно отправлена');
-    }
-  });
+  // Ответ клиенту
+  res.status(200).send('Новость успешно добавлена в консоль сервера');
 });
 
 app.post('/autorization', (req, res) => {

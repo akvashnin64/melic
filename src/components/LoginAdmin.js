@@ -27,7 +27,7 @@ const LoginAdmin = () => {
       if (response.ok) {
         const admin = await response.json();
         // Успешная авторизация
-        navigate(`/admin/${admin.id}`);
+        navigate(`/admin`);
       } else {
         // Неуспешная авторизация
         alert("Неверный логин или пароль");

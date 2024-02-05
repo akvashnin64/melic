@@ -88,8 +88,7 @@ const OneNewPage = () =>{
           url: "/news"
         },
         {
-          label: formatTimestamp(newsDataForPage.dateNews * 1000),
-          url: "/news"
+          label: formatTimestamp(newsDataForPage.dateNews * 1000)
         }
       ]
     : [];

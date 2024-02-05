@@ -36,6 +36,10 @@
     justify-content: space-evenly;
 }
 
+.pointInAdminPage div{
+    display: flex;
+    flex-direction: column;
+}
 
 
 @media screen and (min-width: 1920px){
@@ -62,6 +66,24 @@
     .backSite {
         margin-top: 200px;
         font-size: 25px;
+    }
+
+    .pointInAdminPage{
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+
+    .pointInAdminPage div {
+        margin-top: 15px;
+    }
+
+    .pointInAdminPage div input{
+        margin: 5px 0;
+        max-width: 500px;
+    }
+
+    .pointInAdminPage div button{
+        max-width: 500px;
     }
 }
 

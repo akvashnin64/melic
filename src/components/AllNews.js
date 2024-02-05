@@ -33,14 +33,6 @@ const AllNews = () => {
 
   const totalPages = Math.ceil((newsData.length || 1) / itemsPerPage);
 
-  const handlePrevClick = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 0));
-  };
-
-  const handleNextClick = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
-  };
-
   function getImagePath(imageNames, oldIndex) {
 
     const namesArray = imageNames ? imageNames.split(',') : [];
@@ -69,9 +61,10 @@ const AllNews = () => {
           <p>НОВОСТИ</p>
         </div>
         <div className="filterAllNews">
-          <p>Дата</p>
-          <input type="date" placeholder="с" />
-          <input type="date" placeholder="по" />
+          <p>Дата от</p>
+          <input id='startDate' type="date"/>
+          <p>до</p>
+          <input id='endDate' type="date"/>
         </div>
       </div>
 
