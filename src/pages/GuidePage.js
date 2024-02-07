@@ -31,6 +31,7 @@ const GuidePage = () => {
         <Header />
         <Breadcrumbs paths={paths} /> 
         <Guides />
+        <Links/>
         <Footer />
         </>
     )

@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import PhotoSlider from "../components/PhotoSlider";
 import Breadcrumbs from '../components/BreadCrumbs'
 import VideoSlider from "../components/VideoSlider";
+import Links from "../components/Links"
 
 const GalleryPage = () => {
     const location = useLocation();
@@ -31,6 +32,7 @@ const GalleryPage = () => {
         <Breadcrumbs paths={paths} /> 
         <PhotoSlider/>
         <VideoSlider/>
+        <Links />
         <Footer />
         </>
     )

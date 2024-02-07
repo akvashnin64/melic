@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Menu = ({ isVisible }) => {
+const Menu = ({ isVisible, closeMenu  }) => {
     const menuStyle = isVisible ? 'menuVisible' : 'menuHidden';
 
     const scrollToHeight = () => {
@@ -20,7 +20,7 @@ const Menu = ({ isVisible }) => {
         <div className="headerSmallMenu">
             <div className="imagesSmallMenu">
                 <img src='./img/logo.png' className="mainLogoSmallMenu"/>
-                <img src='./img/close-icon.png' className="closeIconSmallMenu"/>
+                <img src='./img/close-icon.png' className="closeIconSmallMenu" onClick={closeMenu}/>
             </div>
             <div className="textHeaderSmallMenu">
                 <p className='textHeaderLevel1SmallMenu'>

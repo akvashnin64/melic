@@ -35,15 +35,58 @@
     border-radius: 3px;
 }
 
-
+#message{
+    background: #E8E8E8;
+    border-radius: 3px;
+    resize: none;
+}
 
 .sendFeedback button{
     background-color: black;
     color: white;
-    border: 0;
     border-radius: 6px;
 }
 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .modal img{
+    margin-left: 95%;
+    margin-bottom: 50px;
+    margin-top: 10px;
+  }
+
+  .modal img:hover{
+    cursor: pointer;
+  }
+
+  .sendFeedback button:hover{
+    cursor: pointer;
+  }
+
+  .defaultBorder{
+    border: 2px solid white;
+  }
+
+  .errorField {
+    border: 2px solid red;
+  }
 
 @media screen and (min-width: 1920px){
     .headerContacts{
@@ -96,21 +139,22 @@
         margin: 25px 0 0 65px;
         max-width: 700px;
     }
+    
 
     .inputFieldsFeedback{
         width: 80%;
         margin: 45px 0 0 65px;
     }
 
-    .inputFieldsFeedback input{
+    .inputFieldsFeedback input, #message{
         font-size: 20px;
         font-weight: 400;
         line-height: 32px;
-        border: 0;
     }
 
     .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email']{
+    .inputFieldsFeedback input[type='email'],
+    .inputFieldsFeedback textarea[type='text']{
         padding: 20px;
     }
 
@@ -124,7 +168,7 @@
         height: 60px;
     }
 
-    #textFeedback{
+    #message{
         width: 100%;
         height: 250px;
         margin-top: 35px;
@@ -138,6 +182,17 @@
         height: 60px;
         margin: 35px 0 0 0;
     }
+
+    .modal{
+        width: 800px;
+    }
+
+    .modal p{
+        font-size: 25px;
+        line-height: 30px;
+        font-weight: 500;
+        margin-bottom: 50px;
+      }
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){
@@ -197,15 +252,15 @@
         margin: 35px 0 0 55px;
     }
 
-    .inputFieldsFeedback input{
+    .inputFieldsFeedback input, #message{
         font-size: 16px;
         font-weight: 400;
         line-height: 26px;
-        border: 0;
     }
 
     .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email']{
+    .inputFieldsFeedback input[type='email'],
+    .inputFieldsFeedback textarea[type='text']{
         padding: 20px;
     }
 
@@ -219,7 +274,7 @@
         height: 50px;
     }
 
-    #textFeedback{
+    #message{
         width: 100%;
         height: 130px;
         margin-top: 30px;
@@ -233,6 +288,17 @@
         height: 50px;
         margin: 35px 0 0 0;
     }
+
+    .modal{
+        width: 650px;
+    }
+
+    .modal p{
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: 500;
+        margin-bottom: 50px;
+      }
 }
 
 @media screen and (min-width: 960px) and (max-width: 1279px){
@@ -292,15 +358,15 @@
         margin: 20px 0 0 30px;
     }
 
-    .inputFieldsFeedback input{
+    .inputFieldsFeedback input, #message{
         font-size: 16px;
         font-weight: 400;
         line-height: 26px;
-        border: 0;
     }
 
     .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email']{
+    .inputFieldsFeedback input[type='email'],
+    .inputFieldsFeedback textarea[type='text']{
         padding: 10px 20px;
     }
 
@@ -314,7 +380,7 @@
         height: 50px;
     }
 
-    #textFeedback{
+    #message{
         width: 100%;
         height: 130px;
         margin-top: 30px;
@@ -328,6 +394,17 @@
         height: 50px;
         margin: 20px 0 0 0;
     }
+
+    .modal{
+        width: 650px;
+    }
+
+    .modal p{
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: 500;
+        margin-bottom: 50px;
+      }
 }
 
 @media screen and (min-width: 640px) and (max-width: 959px){
@@ -394,15 +471,15 @@
         margin: 15px 0 0 30px;
     }
 
-    .inputFieldsFeedback input{
+    .inputFieldsFeedback input, #message{
         font-size: 10px;
         font-weight: 400;
         line-height: 16px;
-        border: 0;
     }
 
     .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email']{
+    .inputFieldsFeedback input[type='email'],
+    .inputFieldsFeedback textarea[type='text']{
         padding: 10px 15px;
     }
 
@@ -416,7 +493,7 @@
         height: 30px;
     }
 
-    #textFeedback{
+    #message{
         width: 260px;
         height: 50px;
         margin-top: 10px;
@@ -430,6 +507,17 @@
         height: 35px;
         margin: 20px 0 0 0;
     }
+
+    .modal{
+        width: 500px;
+    }
+
+    .modal p{
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        margin-bottom: 50px;
+      }
 }
 
 @media screen and (min-width: 340px) and (max-width: 639px){
@@ -499,15 +587,15 @@
         margin: 15px 0 0 30px;
     }
 
-    .inputFieldsFeedback input{
+    .inputFieldsFeedback input, #message{
         font-size: 10px;
         font-weight: 400;
         line-height: 16px;
-        border: 0;
     }
 
     .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email']{
+    .inputFieldsFeedback input[type='email'],
+    .inputFieldsFeedback textarea[type='text']{
         padding: 10px 15px;
     }
 
@@ -521,7 +609,7 @@
         height: 30px;
     }
 
-    #textFeedback{
+    #message{
         width: 260px;
         height: 50px;
         margin-top: 10px;
@@ -539,4 +627,15 @@
     .containerMapContactsPage YMaps{
         border-radius: 0;
     }
+
+    .modal{
+        width: 300px;
+    }
+
+    .modal p{
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        margin-bottom: 50px;
+      }
 }

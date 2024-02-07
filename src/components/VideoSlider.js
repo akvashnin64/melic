@@ -1,31 +1,17 @@
 import React, { useState } from 'react';
-import videojs from 'video.js';
-import 'video.js/dist/video-js.css';
 
 const videoData = [
     {
         index: '1',
-        nameVideo: 'video'
+        nameVideo: 'Дом воды v2'
     },
     {
         index: '2',
-        nameVideo: 'video'
+        nameVideo: 'МЕЛИОВОДХОЗ_ИСТОРИЯ_ФИЛЬМ 3'
     },
     {
         index: '3',
-        nameVideo: 'video'
-    },
-    {
-        index: '4',
-        nameVideo: 'video'
-    },
-    {
-        index: '5',
-        nameVideo: 'video'
-    },
-    {
-        index: '6',
-        nameVideo: 'video'
+        nameVideo: 'Работа на Пятерку'
     }
 ]
 
@@ -43,7 +29,7 @@ const VideoSlider = () => {
     };
 
     const getVideoPath = (nameVideo) => {
-      return `/img/${nameVideo}.mp4`;
+      return `/img/videoSlider/${nameVideo}.mp4`;
     };
 
     return (
@@ -52,12 +38,14 @@ const VideoSlider = () => {
             <div><p>ВИДЕО</p></div>
             <div className='arrowNews'>
             <img
+            className='leftArrowGallery'
             src="/img/arrow-left.svg"
             alt="Left Arrow"
             style={{ opacity: currentPage > 0 ? 1 : 0.3 }}
             onClick={handlePrevClick}
             />
             <img
+            className='rightArrowGallery'
             src="/img/arrow-right.svg"
             alt="Right Arrow"
             style={{ opacity: currentPage < totalPages - 1 ? 1 : 0.3 }}
@@ -65,11 +53,15 @@ const VideoSlider = () => {
             />
             </div>
         </div>
-        <div className="video-js vjs-theme-city vjs-fluid">
+        <div className="videoSlider">
             {videoData.slice(currentPage, currentPage + 3).map((video, index) => (
-            <div key={index} className="news-item">
-                <video controls>
-                    <source src={getVideoPath(video.nameVideo)} type="video/mp4" />
+            <div key={index} className="video-items">
+                <video className='oneVideoInSlider' 
+                controls
+                poster={`/img/videoSlider/${video.nameVideo}.png`}
+                >
+                    <source src={getVideoPath(video.nameVideo)} 
+                    type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>

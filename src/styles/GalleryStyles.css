@@ -1,24 +1,17 @@
 .photo{
     display: flex;
     flex-wrap: nowrap;
-    overflow: hidden;
 }
   
 .photo img {
     border-radius: 15px;
 }
 
-.video {
+.videoSlider {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
 }
-
-.video video {
-}
-
-
-
 
 @media screen and (min-width: 1920px){
     .photo img{
@@ -31,15 +24,20 @@
         margin-bottom: 80px;
     }
 
-    .video {
+    .oneVideoInSlider{
         width: 560px;
-        height: 400px;
+        margin: 0 40px 0 0;
+       border-radius: 20px;
     }
-    
-    .video video {
-        width: 560px;
-        height: 400px;
-        margin-bottom: 80px;
+
+    .textSlider{
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 61px;
+    }
+
+    .videoSlider{
+        margin-bottom: 30px;
     }
 }
 
@@ -53,6 +51,22 @@
     .photo{
         margin-bottom: 70px;
     }
+
+    .oneVideoInSlider{
+        width: 560px;
+        margin: 0 40px 80px 0;
+       border-radius: 20px;
+    }
+
+    .textSlider{
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+    }
+
+    .videoSlider{
+        margin-bottom: 60px;
+    }
 }
 
 @media screen and (min-width: 960px) and (max-width: 1279px){
@@ -64,6 +78,26 @@
 
     .photo{
         margin-bottom: 50px;
+    }
+
+    .oneVideoInSlider{
+        width: 380px;
+        margin-right: 20px;
+       border-radius: 20px;
+    }
+
+    .textSlider{
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 37px;
+    }
+
+    .videoSlider{
+        margin-bottom: 50px;
+    }
+
+    .leftArrowGallery{
+        display: none;
     }
 }
 
@@ -77,6 +111,26 @@
     .photo{
         margin-bottom: 70px;
     }
+
+    .oneVideoInSlider{
+        width: 300px;
+        margin-right: 20px;
+       border-radius: 20px;
+    }
+
+    .textSlider{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+    }
+
+    .videoSlider{
+        margin-bottom: 55px;
+    }
+
+    .leftArrowGallery{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 340px) and (max-width: 639px){
@@ -88,5 +142,25 @@
 
     .photo{
         margin-bottom: 50px;
+    }
+
+    .oneVideoInSlider{
+        width: 235px;
+        margin-right: 20px;
+       border-radius: 20px;
+    }
+
+    .textSlider{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+    }
+
+    .videoSlider{
+        margin-bottom: 50px;
+    }
+
+    .leftArrowGallery{
+        display: none;
     }
 }

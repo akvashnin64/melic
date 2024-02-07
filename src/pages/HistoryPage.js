@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from '../components/Footer'
 import Breadcrumbs from "../components/BreadCrumbs";
 import History from "../components/History";
+import Links from "../components/Links";
 
 const HistoryPage = () => {
     const location = useLocation();
@@ -29,6 +30,7 @@ const HistoryPage = () => {
         <Header />
         <Breadcrumbs paths={paths} /> 
         <History/>
+        <Links/>
         <Footer />
         </>
     )

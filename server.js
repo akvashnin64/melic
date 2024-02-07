@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const nodemailer = require('nodemailer'); 
 const mysql = require('mysql');
 const path = require('path');
 
@@ -40,10 +41,9 @@ db.connect(err => {
 });
 
 app.get('/getNewsForDate', (req, res) => {
-  const startDate = req.query.startDate; // Используйте req.query для получения параметров из строки запроса
+  const startDate = req.query.startDate;
   const endDate = req.query.endDate;
 
-  // Измененный SQL-запрос с использованием условия WHERE для фильтрации по дате
   const query = `
     SELECT
       table_news.oldIndex,
@@ -157,6 +157,36 @@ app.post('/autorization', (req, res) => {
       }
     }
   });
+});
+
+app.post('/api/send-feedback', async (req, res) => {
+  const { nameFeedback, emailFeedback, textFeedback } = req.body;
+
+  // Настройте транспорт для отправки электронной почты (здесь используется nodemailer)
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'akvashnin64@gmail.com',
+      pass: 'Gue463hehu11',
+    }
+  });
+
+  // Настройте данные для отправки электронного письма
+  const mailOptions = {
+    from: 'akvashnin64@gmail.com',
+    to: 'akvashnin64@gmail.com',
+    subject: 'Новое обращение',
+    text: `Имя: ${nameFeedback}\nEmail: ${emailFeedback}\nСообщение: ${textFeedback}`,
+  };
+
+  try {
+    // Отправка электронного письма
+    await transporter.sendMail(mailOptions);
+    res.status(200).send('Письмо успешно отправлено');
+  } catch (error) {
+    console.error('Ошибка при отправке электронного письма', error);
+    res.status(500).send('Ошибка при отправке электронного письма');
+  }
 });
 
 app.listen(port, () => {

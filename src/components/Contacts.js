@@ -1,41 +1,98 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
 function Contacts () {
-    const [formData, setFormData] = useState({
-        nameFeedback: '',
-        emailFeedback: '',
-        textFeedback: '',
+  const form = useRef();
+  const [validationErrorName, setValidationErrorName] = useState('');
+  const [validationErrorEmail, setValidationErrorEmail] = useState('');
+  const [validationErrorMessage, setValidationErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const validateForm = () => {
+    const name = form.current['name'].value.trim();
+    const email = form.current['email'].value.trim();
+    const message = form.current['message'].value.trim();
+
+    let isValid = true;
+
+    if (name.length < 2 || !/^[а-яА-Яa-zA-Z ]+$/.test(name)) {
+      setValidationErrorName('Имя должно содержать минимум 2 буквы и состоять только из букв');
+      isValid = false;
+    } else {
+      setValidationErrorName('');
+    }
+
+    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
+      setValidationErrorEmail('Неправильный формат email');
+      isValid = false;
+    } else {
+      setValidationErrorEmail('');
+    }
+
+    if (message.length < 10 || !/^[а-яА-Яa-zA-Z0-9.,?!]+$/.test(message)) {
+      setValidationErrorMessage('Сообщение должно содержать минимум 10 букв и состоять только из букв');
+      isValid = false;
+    } else {
+      setValidationErrorMessage('');
+    }
+
+    return isValid;
+  };
+
+  const handleNameBlur = () => {
+    const name = form.current['name'].value.trim();
+    if (name.length < 2 || !/^[а-яА-Яa-zA-Z ]+$/.test(name)) {
+      setValidationErrorName('Имя должно содержать минимум 2 буквы и состоять только из букв');
+    } else {
+      setValidationErrorName('');
+    }
+  };
+  
+  const handleEmailBlur = () => {
+    const email = form.current['email'].value.trim();
+    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
+      setValidationErrorEmail('Неправильный формат email');
+    } else {
+      setValidationErrorEmail('');
+    }
+  };
+  
+  const handleMessageBlur = () => {
+    const message = form.current['message'].value.trim();
+    if (message.length < 10 || !/^[а-яА-Яa-zA-Z0-9.,?!]+$/.test(message)) {
+      setValidationErrorMessage('Сообщение должно содержать минимум 10 букв и состоять только из букв');
+    } else {
+      setValidationErrorMessage('');
+    }
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    emailjs.sendForm('service_fisgh5e', 'template_aicjr0n', form.current, 'SBC5ENSTTk7AMMeNE')
+      .then((result) => {
+        setSuccessMessage('Ваше обращение успешно отправлено, мы постараемся дать ответ как можно скорее!');
+        setValidationErrorName('');
+        setValidationErrorEmail('');
+        setValidationErrorMessage('');
+        form.current.reset();
+        setIsModalOpen(true);
+      })
+      .catch((error) => {
+        setSuccessMessage('');
+        setIsModalOpen(true);
       });
+  };
 
-      const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.id]: e.target.value });
-      };
-
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        try {
-          const response = await fetch('http://localhost:3001/api/send-feedback', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-            },
-            body: JSON.stringify(formData),
-          });
-    
-          if (response.ok) {
-            // Обработка успешной отправки
-            console.log('Форма успешно отправлена');
-          } else {
-            // Обработка ошибки отправки
-            console.error('Ошибка при отправке формы');
-          }
-        } catch (error) {
-          console.error('Ошибка при отправке формы', error);
-        }
-      };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
     return(
         <div className='containerContactsPage'>
@@ -74,42 +131,52 @@ function Contacts () {
                 <div className='textFeedback'>
                     <p>Оставьте свои контакты и мы свяжемся с вами <span className='boldTextAbout2'>в ближайшее время</span></p>
                 </div>
-                <form className='inputFieldsFeedback' action="send-email.php" method="post">
+                <form className='inputFieldsFeedback' ref={form} onSubmit={sendEmail}>
                     
                     <input 
                     id='nameFeedback' 
-                    className='inputFieldFeedback'
+                    name='name'
+                    className={`inputFieldFeedback defaultBorder ${validationErrorName ? 'errorField' : ''}`}
                     type='text'
-                    placeholder='Имя'
-                    value={formData.nameFeedback}
-                    onChange={handleChange}>
+                    placeholder='Имя *'
+                    onBlur={handleNameBlur}>
                     </input>
                     
                     <input 
                     id='emailFeedback' 
-                    className='inputFieldFeedback'
+                    name='email'
+                    className={`inputFieldFeedback defaultBorder ${validationErrorEmail ? 'errorField' : ''}`}
                     type='email'
-                    placeholder='Email'
-                    value={formData.emailFeedback}
-                    onChange={handleChange}>
+                    placeholder='Email *'
+                    onBlur={handleEmailBlur}>
                     </input>
                     
-                    <input 
-                    id='textFeedback' 
-                    className='inputFieldFeedback'
+                    <textarea 
+                    id='message' 
+                    name='message'
+                    className={`inputFieldFeedback defaultBorder ${validationErrorMessage ? 'errorField' : ''}`}
                     type='text'
-                    placeholder='Текст сообщения'
-                    value={formData.textFeedback}
-                    onChange={handleChange}>
-                    </input>
-                    
+                    placeholder='Текст сообщения *'
+                    onBlur={handleMessageBlur}>
+                    </textarea>
+
                     <div className='sendFeedback'>
                         <button type='submit'>Отправить обращение</button>
                     </div>
                 </form>
-            </div>
+
+                {/* Модальное окно */}
+                  {isModalOpen && (
+                    <div className='modal-overlay'>
+                      <div className='modal'>
+                        <img src='./img/close-icon.png' onClick={closeModal}/>
+                        <p>{successMessage}</p>
+                      </div>
+                    </div>
+                  )}
+              </div>
+          </div>
         
-        </div>
     )}
 
 export default Contacts

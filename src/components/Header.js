@@ -14,6 +14,10 @@ const Header = () => {
     setMenuVisible(!isMenuVisible);
   };
 
+  const closeMenu = () => {
+    setMenuVisible(false);
+  };
+
   return(
     <>
     <div className='header'>
@@ -31,7 +35,7 @@ const Header = () => {
         onClick={toggleMenu}/>
     </div>
     <Line />
-    <Menu isVisible={isMenuVisible} />
+    <Menu isVisible={isMenuVisible} closeMenu={closeMenu} />
     </>
   )
 

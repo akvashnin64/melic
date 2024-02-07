@@ -50,12 +50,14 @@ const PhotoSlider = () => {
             <div><p>ФОТО</p></div>
             <div className='arrowNews'>
             <img
+            className='leftArrowGallery'
             src="/img/arrow-left.svg"
             alt="Left Arrow"
             style={{ opacity: currentPage > 0 ? 1 : 0.3 }}
             onClick={handlePrevClick}
             />
             <img
+            className='rightArrowGallery'
             src="/img/arrow-right.svg"
             alt="Right Arrow"
             style={{ opacity: currentPage < totalPages - 1 ? 1 : 0.3 }}

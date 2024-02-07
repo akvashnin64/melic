@@ -26,6 +26,35 @@
     justify-content: space-between;
 }
 
+.containerTextAbout2{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    margin: 30px 0 30px 0;
+    border-radius: 20px;
+}
+
+.containerTextAbout2:hover{
+    cursor:context-menu;
+  }
+
+  .containerTextAbout2:hover img{
+    transform: scale(1.2);
+    filter: brightness(70%);
+  }
+
+
+.imageTextAbout2{
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.imageTextAbout2 img {
+    transform: scale(1.15);
+    transition: 1s;
+    display: block;
+}
+
 
 @media screen and (min-width: 1920px){
     .mainHeaderAbout{
@@ -59,22 +88,22 @@
         width: 50%;
     }
 
-    .containerTextAbout2{
-        width: 100%;
-        position: relative;
-        margin: 30px 0 0 0;
-    }
-
-    .containerTextAbout2 img{
-        width: 100%;
+    .imageTextAbout2{
+        width: 1760px;
         height: 400px;
-        border-radius: 15px;
     }
 
-    .containerTextAbout2 div {
+    .imageTextAbout2 img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .textInTextAbout2{
         position: absolute;
-        top: 5%;
-        margin: 2% 0 0 5%;
+    }
+
+    .textInTextAbout2{
+        margin: 2% 0 0 3%;
     }
 
     .containerTextAbout2 p{
@@ -157,26 +186,26 @@
         width: 40%;
     }
 
-    .containerTextAbout2{
-        position: relative;
-        height: 320px;
-        margin: 50px 0 0 0;
+    .imageTextAbout2{
+        width: 100%;
+        height: 300px;
     }
 
-    .containerTextAbout2 img{
+    .imageTextAbout2 img{
         width: 100%;
         height: 100%;
-        border-radius: 15px;
     }
 
-    .containerTextAbout2 div {
+    .textInTextAbout2{
         position: absolute;
-        top: 5%;
-        margin: 2% 0 0 5%;
+    }
+
+    .textInTextAbout2{
+        margin: 2% 0 0 3%;
     }
 
     .containerTextAbout2 p{
-        max-width: 97%;
+        max-width: 99%;
         color: white;
     }
 
@@ -260,26 +289,26 @@
         height: 300px;
     }
 
-    .containerTextAbout2{
-        position: relative;
-        height: 280px;
-        margin: 30px 0 0 0;
+    .imageTextAbout2{
+        width: 100%;
+        height: 230px;
     }
 
-    .containerTextAbout2 img{
+    .imageTextAbout2 img{
         width: 100%;
         height: 100%;
-        border-radius: 15px;
     }
 
-    .containerTextAbout2 div {
+    .textInTextAbout2{
         position: absolute;
-        top: 5%;
-        margin: 2% 0 0 5%;
+    }
+
+    .textInTextAbout2{
+        margin: 2% 0 0 3%;
     }
 
     .containerTextAbout2 p{
-        max-width: 97%;
+        max-width: 99%;
         color: white;
     }
 
@@ -361,25 +390,26 @@
         display: none;
     }
 
-    .containerTextAbout2{
-        position: relative;
-        margin: 30px 0 0 0;
+    .imageTextAbout2{
+        width: 100%;
+        height: 330px;
     }
 
-    .containerTextAbout2 img{
-        max-width: 100%;
-        height: 380px;
-        border-radius: 15px;
+    .imageTextAbout2 img{
+        width: 100%;
+        height: 100%;
     }
 
-    .containerTextAbout2 div {
+    .textInTextAbout2{
         position: absolute;
-        top: 5%;
-        margin: 2% 0 0 5%;
+    }
+
+    .textInTextAbout2{
+        margin: 2% 0 0 3%;
     }
 
     .containerTextAbout2 p{
-        max-width: 97%;
+        max-width: 99%;
         color: white;
     }
 
@@ -461,24 +491,26 @@
         display: none;
     }
 
-    .containerTextAbout2{
-        position: relative;
-        margin: 30px 0 0 0;
+    .imageTextAbout2{
+        width: 100%;
+        height: 420px;
     }
 
-    .containerTextAbout2 img{
-        width: 340px;
-        height: 450px;
+    .imageTextAbout2 img{
+        width: 100%;
+        height: 100%;
     }
 
-    .containerTextAbout2 div {
+    .textInTextAbout2{
         position: absolute;
-        top: 5%;
-        margin: 2% 0 0 5%;
+    }
+
+    .textInTextAbout2{
+        margin: 2% 0 0 3%;
     }
 
     .containerTextAbout2 p{
-        max-width: 97%;
+        max-width: 99%;
         color: white;
     }
 
