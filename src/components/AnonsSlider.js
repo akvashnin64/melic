@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSpring, animated, config } from 'react-spring';
 import anonsData from './AnonsData';
 import { Link } from "react-router-dom";
 
@@ -37,6 +38,16 @@ const AnonsSlider = () => {
     return `/img/${namePic}.png`;
   };
 
+  const fadeProps = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    reset: true,
+    config: config.molasses, // Вы можете изменить параметры конфигурации для регулировки скорости анимации
+    onRest: () => {
+      fadeProps.start({ reset: true });
+    },
+  });
+
   return (
     <div className="containerSlider">
       <div className="textSlider">
@@ -62,11 +73,11 @@ const AnonsSlider = () => {
       </div>
       <div className="banner2">
         {anonsData.slice(currentPage, currentPage + itemsPerPage).map((anons, index) => (
-          <div key={index} className="announcementsItem">
+          <animated.div key={index} className="announcementsItem" style={fadeProps}>
             <img src={getImagePath(anons.namePic)} />
             <p id='text3'>{anons.titleAnons}</p>
             <p id='text4'>{anons.dateAnons}</p>
-          </div>
+          </animated.div>
         ))}
       </div>
     </div>

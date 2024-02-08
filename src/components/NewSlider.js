@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSpring, animated, config } from 'react-spring';
 import newSliderData from './NewSliderData';
 import { Link } from "react-router-dom";
 import { useSwipeable } from 'react-swipeable';
@@ -101,6 +102,15 @@ const NewSlider = () => {
       .catch(error => console.error('Ошибка при запросе новостей: ', error));
   }, []); // Пустой массив зависимостей гарантирует, что useEffect сработает только при монтировании компонента
 
+  const fadeProps = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    reset: true,
+    config: config.molasses, // Вы можете изменить параметры конфигурации для регулировки скорости анимации
+    onRest: () => {
+      fadeProps.start({ reset: true });
+    },
+  });
 
     return (
         <div className="containerSlider">
@@ -125,7 +135,7 @@ const NewSlider = () => {
         </div>
         <div className="news"  {...handlers}>
             {newsData.slice(currentPage, currentPage + itemsPerPage).map((news, index) => (
-            <div key={index} className="newsItem">
+            <animated.div key={index} className="newsItem" style={fadeProps}>
               <Link to={`/news/${news.oldIndex}`}>
                 <div className='containerPreviewImageForNewSlider'>
                   <img     
@@ -138,7 +148,7 @@ const NewSlider = () => {
                   {truncateText(news.titleNews, 50)}
                 </div>
                 </Link>
-            </div>
+            </animated.div>
             ))}
         </div>
         </div>

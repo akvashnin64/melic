@@ -234,6 +234,7 @@ p {
   margin-right: auto;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .dropdownMenu {
@@ -245,6 +246,7 @@ p {
 
 .submenu {
   z-index: 2;
+  position: relative;
 }
 
 .submenu:hover .dropdownMenu {
@@ -285,6 +287,7 @@ a:hover {
 }
 
 .containerSlider {
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   }
@@ -312,6 +315,7 @@ a:hover {
   display: flex;
 }
 
+
 .phoneMenu{
   display: none; /* Изначально скрыть кнопку на больших экранах */
   cursor: pointer;
@@ -329,12 +333,6 @@ a:hover {
 .breadCrumb a{
   color: #999999;
 }
-
-
-
-
-
-
 
 
 
@@ -377,12 +375,12 @@ a:hover {
 
   .dropdownMenu{
     padding-top: 40px;
-    top: 16.5%;
-    left: 11%;
+    top: -20%;
+    left: -5%;
   }
 
   .submenu:hover .dropdownMenu {
-    width: 335px;
+    width: 400px;
   }
 
   .menuLevel1{
@@ -724,8 +722,8 @@ a:hover {
 
   .dropdownMenu{
     padding-top: 40px;
-    top: 15%;
-    left: 6.5%;
+    top: -50%;
+    left: -5%;
   }
 
   .menuLevel1{
@@ -983,8 +981,8 @@ a:hover {
 
   .dropdownMenu{
     padding-top: 40px;
-    top: 15%;
-    left: 6.5%;
+    top: -50%;
+    left: -5%;
   }
 
   .menuLevel1{
@@ -1419,8 +1417,20 @@ a:hover {
     box-shadow: none;
   }
 
+  .submenu:hover .dropdownMenu {
+    display: block;
+    background-color: white;
+  }
+
   #secondItemMenu{
     margin-top: 110px;
+  }
+
+   .menuLevel1,
+  .menuLevel2 {
+    display: block;
+    width: 100%;
+    margin: 0;
   }
 
   .menuLevel1{
