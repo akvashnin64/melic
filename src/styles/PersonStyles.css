@@ -1,7 +1,6 @@
 .containerPerson{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 
@@ -10,19 +9,19 @@
         width: 101%;
     }
 
-    .containerPerson .onePerson:nth-child(25),
-    .containerPerson .onePerson:nth-child(26),
-    .containerPerson .onePerson:nth-child(27),
-    .containerPerson .onePerson:nth-child(28){
-        justify-content: start;
-    }
+    
     
     .onePerson{
         display: flex;
         flex-direction: column;
         max-width: 285px;
         margin-bottom: 50px;
+        margin-right: 13px;
     }
+
+    .onePerson:nth-child(6n) {
+        margin-right: 0; /* У последнего элемента в каждом шестом ряду нет отступа */
+      }
 
     .onePerson img{
         width: 260px;
@@ -44,10 +43,15 @@
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){
+    .containerPerson{
+       justify-content: space-between;
+    }
+
+    
     .onePerson{
         display: flex;
         flex-direction: column;
-        max-width: 250px;
+        max-width: 260px;
         margin-bottom: 50px;
     }
 

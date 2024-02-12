@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 const imagesPath = path.join(__dirname, 'graphContent');
 
-app.use('/var/www/html/graphContent', (req, res, next) => {
+app.use('/graphContent', (req, res, next) => {
   const url = req.url.toLowerCase();
 
   if (url.includes('/var/www/html/graphContent'))
@@ -22,7 +22,7 @@ app.use('/var/www/html/graphContent', (req, res, next) => {
   next();
 });
 
-app.use('/var/www/html/graphContent', express.static(imagesPath));
+app.use('/graphContent', express.static(imagesPath));
 app.use(express.static(path.join(__dirname, 'build')));
 
 const db = mysql.createConnection({

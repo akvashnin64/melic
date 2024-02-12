@@ -54,120 +54,120 @@ import AdminVideoSection from './components/AdminVideoSection';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: process.env.PUBLIC_URL + "/",
     element: <HomePage />
   },
   {
-    path: "/news",
+    path: process.env.PUBLIC_URL + "/news",
     element: <NewsPage />
   },
   {
-    path: "/news/:id",
+    path: process.env.PUBLIC_URL + "/news/:id",
     element: <OneNewPage />
   },
   //{
-  //  path: "/announcements",
+  //  path: process.env.PUBLIC_URL + "/announcements",
   //  element: <AnnouncementsPage />,
   //},
   {
-    path: '/guide',
+    path: process.env.PUBLIC_URL + '/guide',
     element: <GuidePage />,
   },
   {
-    path: '/directors',
+    path: process.env.PUBLIC_URL + '/directors',
     element: <DirectorsPage/>
   },
   {
-    path: '/gallery',
+    path: process.env.PUBLIC_URL + '/gallery',
     element: <GalleryPage/>
   },
   {
-    path: '/about',
+    path: process.env.PUBLIC_URL + '/about',
     element: <AboutPage /> 
   },
   {
-    path: '/history',
+    path: process.env.PUBLIC_URL + '/history',
     element: <HistoryPage/>
   },
   {
-    path: "/contacts",
+    path: process.env.PUBLIC_URL + "/contacts",
     element: <ContactsPage/>
   },
   {
-    path: '/admin',
+    path: process.env.PUBLIC_URL + '/admin',
     children: [
       {
-        path: '/admin/login',
+        path: process.env.PUBLIC_URL + '/admin/login',
         element: <AdminAutorizationPage />
       },
       {
-        path: '/admin',
+        path: process.env.PUBLIC_URL + '/admin',
         element: <AdminPage />
       },
       {
-        path: '/admin/news',
+        path: process.env.PUBLIC_URL + '/admin/news',
         element: <AdminNewsSection />
       },
       {
-        path: '/admin/announcements',
+        path: process.env.PUBLIC_URL + '/admin/announcements',
         element: <AdminAnonsSection />
       },
       {
-        path: '/admin/photos',
+        path: process.env.PUBLIC_URL + '/admin/photos',
         element: <AdminPhotoSection />
       },
       {
-        path: '/admin/videos',
+        path: process.env.PUBLIC_URL + '/admin/videos',
         element: <AdminVideoSection />
       },
     ]
   },
   {
-    path: '/ershov',
+    path: process.env.PUBLIC_URL + '/ershov',
     element: <ErshovPage />
   },
   {
-    path: '/balakovo',
+    path: process.env.PUBLIC_URL + '/balakovo',
     element: <BalakovoPage />
   },
   {
-    path: '/penza',
+    path: process.env.PUBLIC_URL + '/penza',
     element: <PenzaPage />
   },
   {
-    path: '/kalininsk',
+    path: process.env.PUBLIC_URL + '/kalininsk',
     element: <KalininskPage />
   },
   {
-    path: '/uliyanovsk',
+    path: process.env.PUBLIC_URL + '/uliyanovsk',
     element: <UliyanovskPage />
   },
   {
-    path: '/privolg',
+    path: process.env.PUBLIC_URL + '/privolg',
     element: <PrivolgPage />
   },
   {
-    path: '/engels',
+    path: process.env.PUBLIC_URL + '/engels',
     element: <EngelsPage />
   },
   {
-    path: '/saratov',
+    path: process.env.PUBLIC_URL + '/saratov',
     element: <SaratovPage />
   },
   {
-    path: '/partia',
+    path: process.env.PUBLIC_URL + '/partia',
     element: <PartiaPage />
   },
   {
-    path: '/mordva',
+    path: process.env.PUBLIC_URL + '/mordva',
     element: <MordvaPage />
   },
   {
-    path: '/samara',
+    path: process.env.PUBLIC_URL + '/samara',
     element: <SamaraPage />
   },
   {
-    path: '/persons',
+    path: process.env.PUBLIC_URL + '/persons',
     element: <PersonPage />
   },
 ]);

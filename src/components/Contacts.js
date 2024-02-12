@@ -2,6 +2,15 @@ import React, { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
+const Modal = ({ onClose, successMessage }) => (
+  <div className='modal-overlay' onClick={onClose}>
+    <div className='modal' onClick={(e) => e.stopPropagation()}>
+      <img src='./img/close-icon.png' onClick={onClose} alt="Close Icon" />
+      <p>{successMessage}</p>
+    </div>
+  </div>
+);
+
 function Contacts () {
   const form = useRef();
   const [validationErrorName, setValidationErrorName] = useState('');
@@ -166,14 +175,9 @@ function Contacts () {
                 </form>
 
                 {/* Модальное окно */}
-                  {isModalOpen && (
-                    <div className='modal-overlay'>
-                      <div className='modal'>
-                        <img src='./img/close-icon.png' onClick={closeModal}/>
-                        <p>{successMessage}</p>
-                      </div>
-                    </div>
-                  )}
+                {isModalOpen && (
+                  <Modal onClose={() => setIsModalOpen(false)} successMessage={successMessage} />
+                )}
               </div>
           </div>
         

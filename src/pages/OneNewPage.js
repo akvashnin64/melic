@@ -79,14 +79,16 @@ const OneNew = ({ setNewsDataForPage }) => {
             basePath={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}`}
           />
         ) : (
-          newsData.imageNames.split(',').map((imageName, index) => (
-            <img
-              className='photoInOneNewPage'
-              key={index}
-              src={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}/${imageName.trim()}`}
-              alt={`Image ${index + 1}`}
-            />
-          ))
+          (newsData.imageNames && newsData.imageNames.trim() !== '') ? (
+            newsData.imageNames.split(',').map((imageName, index) => (
+              <img
+                className='photoInOneNewPage'
+                key={index}
+                src={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}/${imageName.trim()}`}
+                alt={`Image ${index + 1}`}
+              />
+            ))
+          ) : null
         )}
       </div>
 
