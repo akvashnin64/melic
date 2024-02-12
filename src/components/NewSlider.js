@@ -90,7 +90,7 @@ const NewSlider = ({ headerText }) => {
 
    useEffect(() => {
     // Асинхронный запрос на сервер при монтировании компонента
-    fetch('http://localhost:3001/getLastNews')
+    fetch('http://89.111.154.224:3001/getLastNews')
       .then(response => response.json())
       .then(data => {
         setNewsData(data.map(news => ({

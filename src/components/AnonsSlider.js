@@ -37,7 +37,7 @@ const AnonsSlider = () => {
 
   useEffect(() => {
     // Асинхронный запрос на сервер при монтировании компонента
-    fetch('http://localhost:3001/getLastAnonses')
+    fetch('http://89.111.154.224:3001/getLastAnonses')
       .then(response => response.json())
       .then(data => {
         setAnonsData(data.map(anons => ({

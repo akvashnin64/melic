@@ -23,7 +23,7 @@ const AllNews = () => {
 
   useEffect(() => {
     // Асинхронный запрос на сервер при монтировании компонента
-    fetch('http://localhost:3001/getLastNews')
+    fetch('http://89.111.154.224:3001/getLastNews')
       .then(response => response.json())
       .then(data => {
         setNewsData(data.map(news => ({
@@ -36,7 +36,7 @@ const AllNews = () => {
 
   useEffect(() => {
     // Передаем параметры startDate и endDate в URL-строку
-    const url = `http://localhost:3001/getNewsForDate?startDate=${startDate/1000}&endDate=${endDate/1000}`;
+    const url = `http://89.111.154.224:3001/getNewsForDate?startDate=${startDate/1000}&endDate=${endDate/1000}`;
 
     // Выполняем запрос только если есть выбранные даты
     if (startDate && endDate) {
