@@ -51,7 +51,7 @@ const brancheData = [
         id: 8,
         location: "/mordva",
         namePic: "mordva",
-        text: "ФИЛИАЛ ПО РЕСПУБЛИКЕ МОРДОВИЯ"
+        text: "ФИЛИАЛ \n ПО РЕСПУБЛИКЕ МОРДОВИЯ"
     },
     {
         id: 9,

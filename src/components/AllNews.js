@@ -59,11 +59,11 @@ const AllNews = () => {
     const namesArray = imageNames ? imageNames.split(',') : [];
 
     if (namesArray.length === 0) {
-      var filepath = `http://141.8.195.122/news/default.jpg`;
+      var filepath = `http://89.111.154.224/graphContent/news/default/default.jpg`;
       return filepath; 
     }
     else {
-      var filepath = `http://141.8.195.122/news/${oldIndex}/${namesArray[0].trim()}`;
+      var filepath = `http://89.111.154.224/graphContent/news/${oldIndex}/${namesArray[0].trim()}`;
       return filepath;
     }
   }

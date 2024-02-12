@@ -31,7 +31,7 @@ function Contacts () {
       setValidationErrorEmail('');
     }
 
-    if (message.length < 10 || !/^[а-яА-Яa-zA-Z0-9.,?!]+$/.test(message)) {
+    if (message.length < 10 || !/^[а-яА-Яa-zA-Z0-9.,-?!]+$/.test(message)) {
       setValidationErrorMessage('Сообщение должно содержать минимум 10 букв и состоять только из букв');
       isValid = false;
     } else {

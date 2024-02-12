@@ -12,7 +12,8 @@ const Footer = () => {
       };
 
       return(
-        <div className='footer'>
+        <div className="containerFooter">
+            <div className='footer'>
                 <div className='footerPicture'>
                     <div><img src='/img/footer.png'></img></div>
                 </div>
@@ -32,6 +33,8 @@ const Footer = () => {
                     <div><p>8(8452) 22-74-01</p></div>
                 </div>
         </div>
+        </div>
+        
       )
 
 

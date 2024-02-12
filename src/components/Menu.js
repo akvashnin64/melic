@@ -19,8 +19,8 @@ const Menu = ({ isVisible, closeMenu  }) => {
     <div className={`menu ${menuStyle}`}>
         <div className="headerSmallMenu">
             <div className="imagesSmallMenu">
-                <img src='./img/logo.png' className="mainLogoSmallMenu"/>
-                <img src='./img/close-icon.png' className="closeIconSmallMenu" onClick={closeMenu}/>
+                <img src={process.env.PUBLIC_URL + '/img/logo.png'} className="mainLogoSmallMenu"/>
+                <img src={process.env.PUBLIC_URL + '/img/close-icon.png'} className="closeIconSmallMenu" onClick={closeMenu}/>
             </div>
             <div className="textHeaderSmallMenu">
                 <p className='textHeaderLevel1SmallMenu'>

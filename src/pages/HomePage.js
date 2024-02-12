@@ -21,7 +21,7 @@ const HomePage = () => {
             <Header />
             <Banner1 />
             <Branches />
-            <NewSlider />  
+            <NewSlider headerText={'НОВОСТИ'} />
             <AnonsSlider/>
             <Links />
             <Footer />

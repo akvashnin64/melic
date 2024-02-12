@@ -23,6 +23,9 @@ body {
 }
 
 p {
+  display: block;
+  white-space: pre-line;
+  
   margin: 0;
 }
 
@@ -166,14 +169,22 @@ p {
   color: white;
 }
 
+.containerFooter{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  margin-top: 50px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 22px 0px rgba(103, 103, 103, 0.19);
+}
+
 .footer{
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
-  border-radius: 30px;
-  box-shadow: 0px 0px 22px 0px rgba(103, 103, 103, 0.19);
+  width: 70%;
 }
 
 .footerMenu {
@@ -324,8 +335,6 @@ a:hover {
 
 
 
-
-
 .breadCrumb .breadCrumbsSeparator{
   text-decoration: none;
 }
@@ -345,6 +354,7 @@ a:hover {
 
   .textSlider{
     margin-bottom: 40px;
+    
   }
 
   .header {
@@ -530,6 +540,7 @@ a:hover {
     font-size: 30px;
     font-weight: 500;
     max-height: 263px;
+    width: 1760px;
   }
 
   .footerPicture img {
@@ -758,14 +769,14 @@ a:hover {
   }
 
   #text3 {
-    font-size: 70px;
+    font-size: 40px;
     font-weight: 800;
   }
   
   #text4 {
     font-size: 25px;
     font-weight: 600;
-    bottom: 15%;
+    bottom: 25%;
   }
 
   #text1, #text2 {
@@ -849,6 +860,8 @@ a:hover {
     font-size: 20px;
     font-weight: 500;
     max-height: 263px;
+    width: 80%;
+
   }
 
   .footerPicture img {
@@ -1021,7 +1034,7 @@ a:hover {
   }
 
   #text3 {
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 800;
     line-height: 49px;
   }
@@ -1030,7 +1043,7 @@ a:hover {
     font-size: 18px;
     font-weight: 600;
     line-height: 22px;
-    bottom: 15%;
+    bottom: 25%;
   }
 
   .headerSliderLink, .textLinks p, .textBranches p, .textNews p{
@@ -1107,6 +1120,7 @@ a:hover {
   .footer {
     font-size: 12px;
     font-weight: 500;
+    width: 900px;
   }
 
   .footerPicture img {
@@ -1270,7 +1284,7 @@ a:hover {
   }
 
   #text3 {
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 800;
     line-height: 49px;
   }
@@ -1354,7 +1368,7 @@ a:hover {
   }
 
   .footer {
-    width: 100%;
+    width: 700px;
     font-size: 12px;
     font-weight: 500;
   }
@@ -1529,9 +1543,10 @@ a:hover {
   }
 
   .banner2 img{
-    max-width: 235px;
+    width: 235px;
     height: 125px;
     border-radius: 15px;
+    object-fit: cover;
   }
 
   #leftArrowNews{
@@ -1674,9 +1689,10 @@ a:hover {
   }
 
   #text3 {
-    font-size: 30px;
+    text-align: center;
+    font-size: 15px;
     font-weight: 800;
-    line-height: 37px;
+    line-height: 20px;
   }
   
   #text4 {
@@ -1746,4 +1762,6 @@ a:hover {
     display: flex;
     margin-bottom: 15px;
   }
+
+  
 }

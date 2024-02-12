@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useSpring, animated, config } from 'react-spring';
-import newSliderData from './NewSliderData';
 import { Link } from "react-router-dom";
 import { useSwipeable } from 'react-swipeable';
 
 
-const NewSlider = () => {
+const NewSlider = ({ headerText }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(calculateItemsPerPage());
   const [newsData, setNewsData] = useState([]);
 
-  const totalPages = Math.ceil(newSliderData.length);
+  const totalPages = Math.ceil(newsData.length);
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,11 +63,11 @@ const NewSlider = () => {
     const namesArray = imageNames ? imageNames.split(',') : [];
 
     if (namesArray.length === 0) {
-      var filepath = `http://141.8.195.122/news/default.jpg`;
+      var filepath = `http://89.111.154.224/graphContent/news/default/default.jpg`;
       return filepath; 
     }
     else {
-      var filepath = `http://141.8.195.122/news/${oldIndex}/${namesArray[0].trim()}`;
+      var filepath = `http://89.111.154.224/graphContent/news/${oldIndex}/${namesArray[0].trim()}`;
       return filepath;
     }
   }
@@ -115,20 +114,20 @@ const NewSlider = () => {
     return (
         <div className="containerSlider">
         <div className="textSlider">
-            <div><Link to='/news' className='headerSliderLink'>НОВОСТИ</Link></div>
+            <div><Link to='/news' className='headerSliderLink'>{headerText}</Link></div>
             <div className='arrowNews'>
               <img
               id='leftArrowNews'
               src="/img/arrow-left.svg"
               alt="Left Arrow"
-              style={{ opacity: currentPage > 0 ? 1 : 0.3 }}
+              style={{ opacity: window.innerWidth <= 1280 ? 0.3 : (currentPage > 0 ? 1 : 0.3) }}
               onClick={handlePrevClick}
               />
               <img
               id='rightArrowNews'
               src="/img/arrow-right.svg"
               alt="Right Arrow"
-              style={{ opacity: currentPage < totalPages - 1 ? 1 : 0.3 }}
+              style={{ opacity: window.innerWidth <= 1280 ? 0.3 : (currentPage < totalPages - 1 ? 1 : 0.3) }}
               onClick={handleNextClick}
               />
             </div>

@@ -11,24 +11,24 @@ const port = 3001; // Подставь свой порт
 app.use(cors());
 app.use(bodyParser.json());
 
-const imagesPath = path.join(__dirname, 'news_photo/news');
+const imagesPath = path.join(__dirname, 'graphContent');
 
-app.use('/alexandr/news_photo/news', (req, res, next) => {
+app.use('/var/www/html/graphContent', (req, res, next) => {
   const url = req.url.toLowerCase();
 
-  if (url.includes('/alexandr/news_photo/news/'))
+  if (url.includes('/var/www/html/graphContent'))
     res.setHeader('Content-Type', 'image/jpeg');
 
   next();
 });
 
-app.use('/alexandr/news_photo/news', express.static(imagesPath));
+app.use('/var/www/html/grahpContent', express.static(imagesPath));
 
 const db = mysql.createConnection({
-  host: '141.8.195.122', // Адрес сервера базы данных
+  host: '89.111.154.224', // Адрес сервера базы данных
   port: '3306', 
-  user: 'alexandr', // Имя пользователя базы данных
-  password: 'SQLpass1word/', // Пароль пользователя базы данных
+  user: 'smvh_mysql', // Имя пользователя базы данных
+  password: 'gsV4Hsf/53n', // Пароль пользователя базы данных
   database: 'smvh_db' // Имя базы данных
 });
 
@@ -53,7 +53,7 @@ app.get('/getNewsForDate', (req, res) => {
       GROUP_CONCAT(table_picture_news.filename) AS imageNames
     FROM (
       SELECT * FROM table_news
-      WHERE table_news.dateNews BETWEEN ? AND ?  -- Добавлено условие WHERE
+      WHERE table_news.dateNews BETWEEN ? AND ? 
       ORDER BY idNews DESC
       LIMIT 20
     ) table_news
@@ -82,7 +82,8 @@ app.get('/getNewsById/:id', (req, res) => {
       table_news.titleNews,
       table_news.dateNews,
       table_news.textNews,
-      GROUP_CONCAT(table_picture_news.filename) AS imageNames
+      GROUP_CONCAT(table_picture_news.filename) AS imageNames,
+      COUNT(table_picture_news.filename) AS imageCount
     FROM table_news
     LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
     WHERE table_news.oldIndex = ?
@@ -111,11 +112,39 @@ app.get('/getLastNews', (req, res) => {
   FROM (
       SELECT * FROM table_news
       ORDER BY idNews DESC
-      LIMIT 20
+      LIMIT 50
   ) table_news
   LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
   GROUP BY table_news.idNews
   ORDER BY table_news.idNews DESC;
+  `;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении новостей: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+app.get('/getLastAnonses', (req, res) => {
+  const query = `
+    SELECT
+      table_anonses.idAnons,
+      table_anonses.authorAnons,
+      table_anonses.titleAnons,
+      table_anonses.dateAnons,
+      GROUP_CONCAT(table_picture_anonses.filename) AS imageNames
+  FROM (
+      SELECT * FROM table_anonses
+      ORDER BY idAnons DESC
+      LIMIT 20
+  ) table_anonses
+  LEFT JOIN table_picture_anonses ON table_picture_anonses.content_id = table_anonses.idAnons
+  GROUP BY table_anonses.idAnons
+  ORDER BY table_anonses.idAnons DESC;
   `;
 
   db.query(query, (err, result) => {

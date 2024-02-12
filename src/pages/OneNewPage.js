@@ -6,10 +6,12 @@ import Links from '../components/Links';
 import Footer from '../components/Footer'
 import Breadcrumbs from '../components/BreadCrumbs'
 import NewSlider from "../components/NewSlider";
+import PhotoSlider from '../components/PhotoSlider';
 
 const OneNew = ({ setNewsDataForPage }) => {
   const { id } = useParams();
   const [newsData, setNewsData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     if (id) {
@@ -34,8 +36,10 @@ const OneNew = ({ setNewsDataForPage }) => {
   };
 
   function cleanString(input) {
-    const withoutHtmlTags = input.replace(/<[^>]*>/g, '');
-    const replacedText = withoutHtmlTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/, '').replace(/&ndash;/, '-').replace(/&mdash;/, '-');
+    const withoutHtmlTags = input.replace(/<(?!\/?p(\s+[^>]*)?>)[^>]+>/g, '');
+    const addNewLineAfterClosingPTags = withoutHtmlTags.replace(/<\/p>/g, '</p>\n');
+    const removeRemainingTags = addNewLineAfterClosingPTags.replace(/<[^>]*>/g, '');
+    const replacedText = removeRemainingTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/g, '').replace(/&ndash;/g, '-').replace(/&mdash;/g, '-');
     const decodedString = decodeURIComponent(replacedText);
     return decodedString;
   }
@@ -44,10 +48,14 @@ const OneNew = ({ setNewsDataForPage }) => {
     const namesArray = imageNames ? imageNames.split(',') : [];
     if (namesArray.length === 0) return null; 
     else {
-      var filepath = `http://141.8.195.122/news/${oldIndex}/${namesArray[0].trim()}`;
-      return filepath;
+      return `http://89.111.154.224/news/${oldIndex}/${namesArray[currentPage].trim()}`;
     }
   }
+
+  function usageSlider(imageCount) {
+    return imageCount > 3;
+  }
+
 
 
   return(
@@ -64,6 +72,24 @@ const OneNew = ({ setNewsDataForPage }) => {
       <div className='containerTextOneNew'>
         <p>{cleanString(newsData.textNews)}</p>
       </div>
+      <div className='containerImagesOneNew'>
+        {usageSlider(newsData.imageCount) ? (
+          <PhotoSlider 
+            photos={newsData.imageNames.split(',')} 
+            basePath={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}`}
+          />
+        ) : (
+          newsData.imageNames.split(',').map((imageName, index) => (
+            <img
+              className='photoInOneNewPage'
+              key={index}
+              src={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}/${imageName.trim()}`}
+              alt={`Image ${index + 1}`}
+            />
+          ))
+        )}
+      </div>
+
     </div>
   )
 }
@@ -99,7 +125,7 @@ const OneNewPage = () =>{
         <Breadcrumbs paths={paths} /> 
         <OneNew setNewsDataForPage={setNewsDataForPage}
         />
-        <NewSlider/>
+        <NewSlider headerText={'ДРУГИЕ'} />
         <AnonsSlider/>
         <Links />
         <Footer />

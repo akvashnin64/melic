@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const AnonsSlider = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(calculateItemsPerPage());
+  const [anonsData, setAnonsData] = useState([]);
 
   const totalPages = Math.ceil(anonsData.length);
 
@@ -34,8 +35,20 @@ const AnonsSlider = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages - itemsPerPage));
   };
 
+  useEffect(() => {
+    // Асинхронный запрос на сервер при монтировании компонента
+    fetch('http://localhost:3001/getLastAnonses')
+      .then(response => response.json())
+      .then(data => {
+        setAnonsData(data.map(anons => ({
+          ...anons,
+        })));
+      })
+      .catch(error => console.error('Ошибка при запросе новостей: ', error));
+  }, []);
+
   const getImagePath = (namePic) => {
-    return `/img/${namePic}.png`;
+    return `/img/anonses/${namePic}`;
   };
 
   const fadeProps = useSpring({
@@ -59,14 +72,14 @@ const AnonsSlider = () => {
             id='leftArrowNews'
             src="/img/arrow-left.svg"
             alt="Left Arrow"
-            style={{ opacity: currentPage > 0 ? 1 : 0.3 }}
+            style={{ opacity: window.innerWidth <= 1280 ? 0.3 : (currentPage > 0 ? 1 : 0.3) }}
             onClick={handlePrevClick}
           />
           <img
             id='rightArrowNews'
             src="/img/arrow-right.svg"
             alt="Right Arrow"
-            style={{ opacity: currentPage < totalPages - itemsPerPage ? 1 : 0.3 }}
+            style={{ opacity: window.innerWidth <= 1280 ? 0.3 : (currentPage < totalPages - 1 ? 1 : 0.3) }}
             onClick={handleNextClick}
           />
         </div>
@@ -74,7 +87,7 @@ const AnonsSlider = () => {
       <div className="banner2">
         {anonsData.slice(currentPage, currentPage + itemsPerPage).map((anons, index) => (
           <animated.div key={index} className="announcementsItem" style={fadeProps}>
-            <img src={getImagePath(anons.namePic)} />
+            <img src={getImagePath(anons.imageNames)} />
             <p id='text3'>{anons.titleAnons}</p>
             <p id='text4'>{anons.dateAnons}</p>
           </animated.div>
