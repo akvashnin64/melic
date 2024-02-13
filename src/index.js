@@ -1,13 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-/* import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom"; */
+import ReactDOM from 'react-dom';
 
-import * as ReactDOM from 'react-dom/client';
+
 import './index.css';
 import './styles.css';
 import './styles/DirectorStyles.css'
@@ -20,8 +15,6 @@ import './styles/ContactsStyles.css'
 import './styles/ErshovStyles.css'
 import './styles/NewsStyles.css'
 import './styles/PersonStyles.css'
-import ErrorPage from './components/ErrorPage';
-import App from './components/App';
 import HomePage from './pages/HomePage'
 import NewsPage from './pages/NewsPage'
 import GuidePage from './pages/GuidePage'
@@ -44,7 +37,6 @@ import SaratovPage from './pages/SaratovPage';
 import PartiaPage from './pages/PartiaPage';
 import MordvaPage from './pages/MordvaPage';
 import SamaraPage from './pages/SamaraPage';
-import AnnouncementsPage from './pages/AnnouncementsPage'
 import PersonPage from './pages/PersonPage';
 import OneNewPage from './pages/OneNewPage';
 import AdminNewsSection from './components/AdminNewsSection';
