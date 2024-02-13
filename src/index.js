@@ -104,23 +104,23 @@ const router = createBrowserRouter([
       },
       {
         path: process.env.PUBLIC_URL + "/admin",
-        element: <PrivateRoute element={<AdminPage />}/>
+        element: <PrivateRoute element={AdminPage}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/news',
-        element: <PrivateRoute element={<AdminNewsSection />}/>
+        element: <PrivateRoute element={AdminNewsSection}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/announcements',
-        element: <PrivateRoute element={<AdminAnonsSection />}/>
+        element: <PrivateRoute element={AdminAnonsSection}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/photos',
-        element: <PrivateRoute element={<AdminPhotoSection />}/>
+        element: <PrivateRoute element={AdminPhotoSection}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/videos',
-        element: <PrivateRoute element={<AdminVideoSection />}/>
+        element: <PrivateRoute element={AdminVideoSection}/>
       },
     ]
   },

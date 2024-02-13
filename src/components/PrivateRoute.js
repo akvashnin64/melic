@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 import AdminPage from '../pages/AdminPage';
 
 
-const PrivateRoute = ({ element: Element }) => {
+const PrivateRoute = ({ element: Element, ...rest }) => {
     const [cookies] = useCookies(['authToken']);
     const authToken = cookies.authToken;
   
@@ -49,7 +49,7 @@ const PrivateRoute = ({ element: Element }) => {
       }
     };
   
-    return checkTokenValidity() !== undefined ? <Element /> : <Navigate to="/admin/login" />;
+    return checkTokenValidity() !== undefined ? <Element {...rest} /> : <Navigate to="/admin/login" />;
 
   };
   
