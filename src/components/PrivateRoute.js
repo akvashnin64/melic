@@ -9,11 +9,11 @@ const PrivateRoute = ({ element, ...rest }) => {
         method: 'POST',
         credentials: 'include',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({ token }),
+        body: `token=${token}`,
       });
-
+  
       if (response.ok) {
         return true;
       } else {

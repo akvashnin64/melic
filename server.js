@@ -199,6 +199,8 @@ app.post('/autorization', (req, res) => {
 
 app.post('/validate-token', (req, res) => {
   const { token } = req.body;
+  console.log('Received token:', token);
+
   jwt.verify(token, 'FDH245bnmhsNG4SJs6743', (err, decoded) => {
     if (err) {
       console.error('Ошибка при валидации токена: ', err);
