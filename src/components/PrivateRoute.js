@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 import AdminPage from '../pages/AdminPage';
 
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
+const PrivateRoute = ({ element: Element }) => {
     const [cookies] = useCookies(['authToken']);
     const authToken = cookies.authToken;
   
