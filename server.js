@@ -6,9 +6,7 @@ const mysql = require('mysql');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
-const multer = require('multer');
 const cookieParser = require('cookie-parser');
-const upload = multer({ dest: '/var/www/html/graphContent/news' }); 
 
 const app = express();
 const port = 3001; // Подставь свой порт
