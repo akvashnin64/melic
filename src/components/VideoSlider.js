@@ -43,7 +43,7 @@ const VideoSlider = ({ videoData, basePath }) => {
             <div key={index} className="video-items">
                 <video className='oneVideoInSlider' 
                 controls
-                poster={`/img/videoSlider/${video.nameVideo}.png`}
+                poster={`${basePath}/${video.nameVideo}.png`}
                 >
                     <source src={getVideoPath(video.nameVideo)} 
                     type="video/mp4" />

@@ -41,7 +41,7 @@ const GalleryPage = () => {
             />
 
         <VideoSlider
-            videos={videoData.map(video => video.nameVideo)}
+            videoData={videoData.map(video => video.nameVideo)}
             basePath={basePathVideo} 
         />
         <Links />
