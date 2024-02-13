@@ -199,19 +199,9 @@ app.post('/autorization', (req, res) => {
 
 
 app.post('/validate-token', (req, res) => {
-  const cookies = req.headers.cookie;
-  if (!cookies) {
-    res.status(401).send('Токен не предоставлен');
-    return;
-  }
+  const token = req.headers.cookie.split('=')[1]; // Получаем токен из заголовка
 
-  const token = cookies.split(';').find(cookie => cookie.trim().startsWith('authToken='));
-  if (!token) {
-    res.status(401).send('Токен не найден');
-    return;
-  }
-
-  jwt.verify(token.split('=')[1], 'FDH245bnmhsNG4SJs6743', (err, decoded) => {
+  jwt.verify(token, 'FDH245bnmhsNG4SJs6743', (err, decoded) => {
     if (err) {
       console.error('Ошибка при валидации токена: ', err);
       res.status(401).send('Невалидный токен');
