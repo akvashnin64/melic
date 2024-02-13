@@ -1,4 +1,4 @@
-import { Navigate, Route } from 'react-router-dom';
+import { Navigate, Routes } from 'react-router-dom';
 
 const PrivateRoute = ({ element, ...rest }) => {
   const authToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('authToken='));
@@ -35,7 +35,7 @@ const PrivateRoute = ({ element, ...rest }) => {
 
   const redirectToLogin = () => <Navigate to="/admin/login" replace={true} />;
 
-  return checkTokenValidity() ? <Route element={element} {...rest} /> : redirectToLogin();
+  return checkTokenValidity() ? <Routes element={element} {...rest} /> : redirectToLogin();
 };
 
 export default PrivateRoute;
