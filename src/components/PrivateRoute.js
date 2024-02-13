@@ -2,7 +2,16 @@ import { Navigate, Routes } from 'react-router-dom';
 import { Link, useNavigate } from "react-router-dom";
 
 const PrivateRoute = ({ element, ...rest }) => {
-  const authToken = document.cookie.split(';')[1].find(cookie => cookie.trim().startsWith('authToken='));
+    const cookies = document.cookie.split(';');
+    let secondToken;
+    
+    for (const cookie of cookies) {
+      const trimmedCookie = cookie.trim();
+      if (trimmedCookie.startsWith('authToken=')) {
+      } else if (trimmedCookie.startsWith('authToken=')) {
+        secondToken = trimmedCookie.split('=')[1];
+      }
+    }
 
   const validateToken = async (token) => {
     try {
@@ -27,8 +36,8 @@ const PrivateRoute = ({ element, ...rest }) => {
   };
 
   const checkTokenValidity = async () => {
-    if (authToken) {
-      const isValid = await validateToken(authToken.split('=')[1]);
+    if (secondToken) {
+      const isValid = await validateToken(secondToken.split('=')[1]);
       return isValid;
     } else {
       return false;
