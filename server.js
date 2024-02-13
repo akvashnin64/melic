@@ -41,19 +41,10 @@ db.connect(err => {
   }
 });
 
-app.get('*', (req, res, next) => {
-  // Проверка типа запроса
+app.get('*', (req, res) => {
   const acceptHeader = req.get('Accept');
-
-  // Если тип запроса - документ, например, HTML
-  if (acceptHeader && acceptHeader.includes('text/html')) {
-    // Ваша логика для обработки GET-запросов, возвращающих документ
-    res.send('<h1>Hello, World!</h1>');
-  } else {
-    // Если тип запроса - данные, например, JSON
-    // Ваша логика для обработки GET-запросов, возвращающих данные
-    res.json({ message: 'Данные из сервера' });
-  }
+  if (acceptHeader && acceptHeader.includes('text/html'))
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.get('/getNewsForDate', (req, res) => {
