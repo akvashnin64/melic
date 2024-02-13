@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 const PrivateRoute = ({ element, ...rest }) => {
+  // Получение куки с токеном синхронно
   const authToken = Cookies.get('authToken');
   console.log('authToken:', authToken);
 
