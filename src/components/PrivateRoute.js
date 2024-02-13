@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Routes } from 'react-router-dom';
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
+import AdminPage from '../pages/AdminPage';
 
 
 const PrivateRoute = ({ element, ...rest }) => {
@@ -48,7 +49,7 @@ const PrivateRoute = ({ element, ...rest }) => {
       }
     };
   
-    return checkTokenValidity() ? <Routes element={'/admin'} {...rest} /> : null;
+    return checkTokenValidity() ? <Routes element={<AdminPage/>} {...rest} /> : null;
   };
   
   export default PrivateRoute;
