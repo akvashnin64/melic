@@ -1,13 +1,16 @@
 import { Navigate, Routes } from 'react-router-dom';
 import { Link, useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie';
 
 const PrivateRoute = ({ element, ...rest }) => {
   const checkTokenValidity = async () => {
     console.log('Проверка токена...');
-    
-    // Пытаемся получить куки
-    const authToken = Cookies.get('authToken');
+
+    // Используем document.cookie для получения всех кук
+    const cookies = document.cookie;
+    console.log('Cookies:', cookies);
+
+    // Ищем authToken в куках
+    const authToken = cookies.split(';').find(cookie => cookie.trim().startsWith('authToken='));
 
     if (authToken) {
       console.log('authToken:', authToken);
