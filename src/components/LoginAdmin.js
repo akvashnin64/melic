@@ -30,7 +30,7 @@ const LoginAdmin = () => {
         console.log('Токен перед установкой:', admin.authToken);
   
         // Устанавливаем куку
-        document.cookie = `authToken=${admin.authToken}; path=/; domain=ваш_домен; HttpOnly`;
+        document.cookie = `authToken=${admin.authToken}; path=/; HttpOnly`;
   
         console.log('Токен после установки:', document.cookie);
   
