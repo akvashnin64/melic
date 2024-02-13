@@ -8,6 +8,9 @@ const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const cookieParser = require('cookie-parser');
 
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 const app = express();
 const port = 3001; // Подставь свой порт
 
@@ -164,14 +167,13 @@ app.get('/getLastAnonses', (req, res) => {
 
 
 app.post('/api/addNews', (req, res) => {
-  const newsData = req.body;
+  const { title, text, date } = req.body;
+  const files = req.files.files;
 
   // Вывод данных в консоль
-  console.log('Получены новые данные:', newsData);
+  console.log('Получены новые данные:', { title, text, date, files });
 
   // Здесь вы можете добавить логику сохранения в базу данных
-  const { title, text, date, files } = newsData;
-
   const insertNewsQuery = `
     INSERT INTO table_news (titleNews, dateNews, textNews)
     VALUES (?, ?, ?);
@@ -191,8 +193,8 @@ app.post('/api/addNews', (req, res) => {
           VALUES (?, ?);
         `;
 
-        files.forEach(async (filename) => {
-          db.query(insertPictureQuery, [newsId, filename], (err) => {
+        files.forEach(async (file) => {
+          db.query(insertPictureQuery, [newsId, file.name], (err) => {
             if (err) {
               console.error('Ошибка при добавлении файла к новости: ', err);
             }
@@ -203,6 +205,10 @@ app.post('/api/addNews', (req, res) => {
       res.status(200).send('Новость успешно добавлена в базу данных');
     }
   });
+});
+
+app.listen(3001, () => {
+  console.log('Сервер запущен на порту 3001');
 });
 
 app.post('/autorization', (req, res) => {

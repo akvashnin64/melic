@@ -21,7 +21,7 @@ const AdminNewsSection = () => {
             formData.append('date', newsData.date);
     
             newsData.files.forEach((file, index) => {
-                formData.append(`file${index + 1}`, file);
+                formData.append(`files[${index}]`, file);
             });
     
             const response = await fetch('http://89.111.154.224/api/addNews', {
@@ -59,14 +59,14 @@ const AdminNewsSection = () => {
                 <Link className="" onClick={() => setOperation("add")}>Добавить новость</Link>
                 {operation === "add" && (
                     // Поля ввода для добавления новости
-                    <div>
+                    <form encType="multipart/form-data">
                         <input id="titleInput" type="text" placeholder="Заголовок" />
                         <input id="textInput" type="text" placeholder="Текст новости" />
                         <input id="dateInput" type="date" placeholder="Дата новости" />
                         <input id="fileInput" type="file" onChange={handleFileChange} multiple accept="image/*" />
 
                         <button onClick={handleSaveNews}>Сохранить</button>
-                    </div>
+                    </form>
                 )}
             </div>
 
