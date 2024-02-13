@@ -25,10 +25,6 @@ app.use('/graphContent', (req, res, next) => {
 app.use('/graphContent', express.static(imagesPath));
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 const db = mysql.createConnection({
   host: '89.111.154.224', // Адрес сервера базы данных
   port: '3306', 
