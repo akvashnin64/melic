@@ -24,7 +24,7 @@ const AdminNewsSection = () => {
                 formData.append(`file${index + 1}`, file);
             });
     
-            const response = await fetch('http://localhost:3001/api/addNews', {
+            const response = await fetch('http://89.111.154.224/api/addNews', {
                 method: 'POST',
                 body: formData,
             });
