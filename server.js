@@ -41,12 +41,6 @@ db.connect(err => {
   }
 });
 
-app.get('*', (req, res) => {
-  const acceptHeader = req.get('Accept');
-  if (acceptHeader && acceptHeader.includes('text/html'))
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 app.get('/getNewsForDate', (req, res) => {
   const startDate = req.query.startDate;
   const endDate = req.query.endDate;
@@ -223,6 +217,12 @@ app.post('/api/send-feedback', async (req, res) => {
     console.error('Ошибка при отправке электронного письма', error);
     res.status(500).send('Ошибка при отправке электронного письма');
   }
+});
+
+app.get('*', (req, res) => {
+  const acceptHeader = req.get('Accept');
+  if (acceptHeader && acceptHeader.includes('text/html'))
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(port, () => {
