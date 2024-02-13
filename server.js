@@ -170,9 +170,39 @@ app.post('/api/addNews', (req, res) => {
   console.log('Получены новые данные:', newsData);
 
   // Здесь вы можете добавить логику сохранения в базу данных
+  const { title, text, date, files } = newsData;
 
-  // Ответ клиенту
-  res.status(200).send('Новость успешно добавлена в консоль сервера');
+  const insertNewsQuery = `
+    INSERT INTO table_news (titleNews, dateNews, textNews)
+    VALUES (?, ?, ?);
+  `;
+
+  db.query(insertNewsQuery, [title, date, text], (err, result) => {
+    if (err) {
+      console.error('Ошибка при добавлении новости в таблицу table_news: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      const newsId = result.insertId;
+
+      // Добавление файлов к новости в таблицу table_picture_news
+      if (files && files.length > 0) {
+        const insertPictureQuery = `
+          INSERT INTO table_picture_news (content_id, filename)
+          VALUES (?, ?);
+        `;
+
+        files.forEach(async (filename) => {
+          db.query(insertPictureQuery, [newsId, filename], (err) => {
+            if (err) {
+              console.error('Ошибка при добавлении файла к новости: ', err);
+            }
+          });
+        });
+      }
+
+      res.status(200).send('Новость успешно добавлена в базу данных');
+    }
+  });
 });
 
 app.post('/autorization', (req, res) => {
