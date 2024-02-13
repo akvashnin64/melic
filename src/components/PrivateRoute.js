@@ -10,7 +10,7 @@ const PrivateRoute = ({ element, ...rest }) => {
     console.log('Cookies:', cookies);
 
     // Ищем authToken в куках
-    const authToken = cookies.split(';').find(cookie => cookie.trim().startsWith('authToken='));
+    const authToken = cookies.split(';').find(cookie => cookie.trim().startsWith('authToken'));
 
     if (authToken) {
       console.log('authToken:', authToken);
