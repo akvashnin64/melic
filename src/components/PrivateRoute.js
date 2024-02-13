@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 
 const PrivateRoute = ({ element, ...rest }) => {
     const authToken = Cookies.get('authToken');
+    console.log(authToken);
 
   const validateToken = async (token) => {
     try {
