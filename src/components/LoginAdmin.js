@@ -16,7 +16,7 @@ const LoginAdmin = () => {
 
   const loginRequest = async () => {
     try {
-      const response = await fetch('http://localhost:3001/autorization', {
+      const response = await fetch('http://89.111.154.224/autorization', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
