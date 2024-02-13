@@ -207,10 +207,6 @@ app.post('/api/addNews', (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log('Сервер запущен на порту 3001');
-});
-
 app.post('/autorization', (req, res) => {
   const { login, password } = req.body;
   const md5Password = md5(password);
