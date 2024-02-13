@@ -1,8 +1,10 @@
 import { Navigate, Routes } from 'react-router-dom';
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+
 
 const PrivateRoute = ({ element, ...rest }) => {
-  const authToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('authToken='));
+    const authToken = Cookies.get('authToken');
 
   const validateToken = async (token) => {
     try {
