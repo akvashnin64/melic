@@ -7,11 +7,12 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 
 app.use(fileUpload());
-const fileUpload = require('express-fileupload');
+
 
 const port = 3001; // Подставь свой порт
 
