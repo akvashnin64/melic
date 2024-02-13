@@ -35,7 +35,7 @@ const PrivateRoute = ({ element, ...rest }) => {
     }
   };
 
-  return checkTokenValidity() ? <Routes element={element} {...rest} /> : null;
+  return checkTokenValidity() ? <Routes element={'/admin'} {...rest} /> : null;
 };
 
 export default PrivateRoute;
