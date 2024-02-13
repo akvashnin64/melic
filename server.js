@@ -181,7 +181,11 @@ app.post('/autorization', (req, res) => {
       res.status(500).send('Ошибка сервера');
     } else {
       if (result.length > 0) {
-        res.status(200).json(result[0]);
+        const user = result[0];
+        const token = jwt.sign({ userId: user.id }, 'FDH245bnmhsNG4SJs6743', { expiresIn: '1h' });
+
+        res.cookie('authToken', token, { httpOnly: true });
+        res.status(200).json(user);
       } else {
         res.status(401).send('Неверный логин или пароль');
       }

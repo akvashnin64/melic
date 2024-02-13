@@ -40,8 +40,8 @@ function Contacts () {
       setValidationErrorEmail('');
     }
 
-    if (message.length < 10 || !/^[а-яА-Яa-zA-Z0-9.,-?!]+$/.test(message)) {
-      setValidationErrorMessage('Сообщение должно содержать минимум 10 букв и состоять только из букв');
+    if (message.length < 10 || !/^[а-яА-Яa-zA-Z0-9.,\-?!()\s]+$/.test(message)) {
+      setValidationErrorMessage('Сообщение должно содержать минимум 10 символов и состоять только из букв, цифр и знаков препинания');
       isValid = false;
     } else {
       setValidationErrorMessage('');
