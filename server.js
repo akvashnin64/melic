@@ -178,7 +178,7 @@ app.post('/api/addNews', (req, res) => {
 
 app.post('/autorization', (req, res) => {
   const { login, password } = req.body;
-  const md5Password = md5(password); // Преобразование пароля в MD5
+  const md5Password = md5(password);
 
   const query = `SELECT * FROM table_users WHERE user_login = ? AND user_password = ?`;
 
@@ -191,7 +191,10 @@ app.post('/autorization', (req, res) => {
         const user = result[0];
         const token = jwt.sign({ userId: user.user_id }, 'FDH245bnmhsNG4SJs6743', { expiresIn: '1h' });
 
-        res.cookie('authToken', token, { httpOnly: true });
+        // Добавляем токен к объекту ответа
+        user.authToken = token;
+
+        // Отправляем объект ответа с токеном
         res.status(200).json(user);
       } else {
         res.status(401).send('Неверный логин или пароль');
@@ -199,6 +202,7 @@ app.post('/autorization', (req, res) => {
     }
   });
 });
+
 
 
 app.post('/validate-token', (req, res) => {
