@@ -26,19 +26,16 @@ const LoginAdmin = () => {
   
       if (response.ok) {
         const admin = await response.json();
-        // Сохранение токена в cookie
         document.cookie = `authToken=${admin.authToken}`;
-        // Успешная авторизация
         navigate(`/admin`);
       } else {
-        // Неуспешная авторизация
         alert('Неверный логин или пароль');
       }
     } catch (error) {
       console.error('Ошибка при отправке запроса на сервер: ', error);
     }
   };
-  
+
   const handleLogin = () => {
     loginRequest();
   };

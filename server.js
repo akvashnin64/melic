@@ -4,6 +4,8 @@ const cors = require('cors');
 const nodemailer = require('nodemailer'); 
 const mysql = require('mysql');
 const path = require('path');
+const jwt = require('jsonwebtoken');
+const md5 = require('md5');
 
 const app = express();
 const port = 3001; // Подставь свой порт
@@ -173,16 +175,18 @@ app.post('/api/addNews', (req, res) => {
 
 app.post('/autorization', (req, res) => {
   const { login, password } = req.body;
-  const query = `SELECT * FROM table_users WHERE login = ? AND password = ?`;
+  const md5Password = md5(password); // Преобразование пароля в MD5
 
-  db.query(query, [login, password], (err, result) => {
+  const query = `SELECT * FROM table_users WHERE user_login = ? AND user_password = ?`;
+
+  db.query(query, [login, md5Password], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
     } else {
       if (result.length > 0) {
         const user = result[0];
-        const token = jwt.sign({ userId: user.id }, 'FDH245bnmhsNG4SJs6743', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.user_id }, 'FDH245bnmhsNG4SJs6743', { expiresIn: '1h' });
 
         res.cookie('authToken', token, { httpOnly: true });
         res.status(200).json(user);
