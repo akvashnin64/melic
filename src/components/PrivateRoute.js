@@ -6,7 +6,7 @@ const PrivateRoute = ({ element, ...rest }) => {
     console.log('Проверка токена...');
 
     // Используем document.cookie для получения всех кук
-    const cookies = document.cookie;
+    const cookies = document.сookie;
     console.log('Cookies:', cookies);
 
     // Ищем authToken в куках
