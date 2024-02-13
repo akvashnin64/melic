@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
 
+const videoData = [
+    {
+        index: '1',
+        nameVideo: 'Дом воды v2'
+    },
+    {
+        index: '2',
+        nameVideo: 'МЕЛИОВОДХОЗ_ИСТОРИЯ_ФИЛЬМ 3'
+    },
+    {
+        index: '3',
+        nameVideo: 'Работа на Пятерку'
+    }
+]
+
 const VideoSlider = () => {
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -43,7 +58,7 @@ const VideoSlider = () => {
             <div key={index} className="video-items">
                 <video className='oneVideoInSlider' 
                 controls
-                poster={`/graphContent/videoSlider/${video.nameVideo}.png`}
+                poster={`/img/videoSlider/${video.nameVideo}.png`}
                 >
                     <source src={getVideoPath(video.nameVideo)} 
                     type="video/mp4" />
