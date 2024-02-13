@@ -28,9 +28,12 @@ const LoginAdmin = () => {
       if (response.ok) {
         const admin = await response.json();
         console.log('Токен перед установкой:', admin.authToken);
-        Cookies.set('authToken', admin.authToken, { path: '/', domain: 'ваш_домен', httpOnly: true });
-        console.log('Токен после установки:', Cookies.get('authToken'));
-        navigate(`/admin`);
+        await Cookies.set('authToken', admin.authToken, { path: '/', httpOnly: true });
+        // Добавим небольшую задержку (1 секунда) перед чтением куки
+        setTimeout(() => {
+          console.log('Токен после установки:', Cookies.get('authToken'));
+          navigate(`/admin`);
+        }, 1000);
       } else {
         alert('Неверный логин или пароль');
       }
