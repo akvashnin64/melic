@@ -6,12 +6,15 @@ const mysql = require('mysql');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 const port = 3001; // Подставь свой порт
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 const imagesPath = path.join(__dirname, 'graphContent');
 
