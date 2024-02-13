@@ -15,12 +15,18 @@ const AdminNewsSection = () => {
 
     const saveNews = async (newsData) => {
         try {
+            const formData = new FormData();
+            formData.append('title', newsData.title);
+            formData.append('text', newsData.text);
+            formData.append('date', newsData.date);
+    
+            newsData.files.forEach((file, index) => {
+                formData.append(`file${index + 1}`, file);
+            });
+    
             const response = await fetch('http://localhost:3001/api/addNews', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newsData),
+                body: formData,
             });
     
             if (!response.ok) throw new Error('Ошибка при добавлении новости');
@@ -43,9 +49,11 @@ const AdminNewsSection = () => {
     
 
     return (
+        <>
+        <AdminMenu />
         <div className="adminSection">
 
-            <AdminMenu />
+            
 
             <div className="pointInAdminPage">
                 <Link className="" onClick={() => setOperation("add")}>Добавить новость</Link>
@@ -88,6 +96,7 @@ const AdminNewsSection = () => {
                 )}
             </div>
         </div>
+        </>
     );
 }
 

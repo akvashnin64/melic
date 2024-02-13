@@ -85,6 +85,13 @@
     .pointInAdminPage div button{
         max-width: 500px;
     }
+
+    .adminSection{
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 50px;
+        width: 1300px;
+    }
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){

@@ -6,8 +6,9 @@ const mysql = require('mysql');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
+const multer = require('multer');
 const cookieParser = require('cookie-parser');
-
+const upload = multer({ dest: '/var/www/html/graphContent/news' }); 
 
 const app = express();
 const port = 3001; // Подставь свой порт
@@ -164,17 +165,24 @@ app.get('/getLastAnonses', (req, res) => {
 });
 
 
-app.post('/api/addNews', (req, res) => {
+app.post('/api/addNews', upload.array('files', 10), (req, res) => {
   const newsData = req.body;
 
   // Вывод данных в консоль
   console.log('Получены новые данные:', newsData);
+  console.log('Получены файлы:', req.files);
 
   // Здесь вы можете добавить логику сохранения в базу данных
 
   // Ответ клиенту
   res.status(200).send('Новость успешно добавлена в консоль сервера');
 });
+
+app.listen(3001, () => {
+  console.log('Сервер запущен на порту 3001');
+});
+
+
 
 app.post('/autorization', (req, res) => {
   const { login, password } = req.body;

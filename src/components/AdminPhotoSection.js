@@ -4,8 +4,10 @@ import AdminMenu from "./AdminMenu";
 
 const AdminPhotoSection = () => {
     return(
+        <>
+        <AdminMenu/>
         <div className="adminSection">
-            <AdminMenu/>
+            
             <div className="pointInAdminPage">
                 <Link>Добавить фото в галерею</Link>
             </div>
@@ -14,6 +16,7 @@ const AdminPhotoSection = () => {
                 <Link>Удалить фото из галерею</Link>
             </div>
         </div>
+        </>
     )
 }
 
