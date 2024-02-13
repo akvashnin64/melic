@@ -8,11 +8,11 @@ const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const cookieParser = require('cookie-parser');
 
+const app = express();
+
 app.use(fileUpload());
 const fileUpload = require('express-fileupload');
 
-
-const app = express();
 const port = 3001; // Подставь свой порт
 
 app.use(cors());
