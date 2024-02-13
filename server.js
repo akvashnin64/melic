@@ -202,20 +202,18 @@ app.post('/autorization', (req, res) => {
 
 
 app.post('/validate-token', (req, res) => {
-  const authToken = req.cookies.authToken; // Используйте метод express для извлечения значения куки
+  const token = req.headers.cookie ? req.headers.cookie.split('=')[1] : null; // Получаем токен из заголовка
 
-  console.log(authToken);
-
-  if (!authToken) {
+  if (!token) {
     return res.status(401).send('Токен отсутствует');
   }
 
-  jwt.verify(authToken, 'FDH245bnmhsNG4SJs6743', (err, decoded) => {
+  jwt.verify(token, 'FDH245bnmhsNG4SJs6743', (err, decoded) => {
     if (err) {
       console.error('Ошибка при валидации токена: ', err);
-      return res.status(401).send('Невалидный токен');
+      res.status(401).send('Невалидный токен');
     } else {
-      return res.status(200).send('Токен валиден');
+      res.status(200).send('Токен валиден');
     }
   });
 });
