@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from '../components/Footer'
 import PhotoSlider from "../components/PhotoSlider";
 import photoData from "../components/PhotoSliderData";
+import videoData from "../components/videoData";
 import Breadcrumbs from '../components/BreadCrumbs'
 import VideoSlider from "../components/VideoSlider";
 import Links from "../components/Links"
@@ -39,7 +40,10 @@ const GalleryPage = () => {
             basePath={basePathImg} 
             />
 
-        <VideoSlider/>
+        <VideoSlider
+            videos={videoData.map(video => video.nameVideo)}
+            basePath={basePathVideo} 
+        />
         <Links />
         <Footer />
         </>

@@ -1,21 +1,6 @@
 import React, { useState } from 'react';
 
-const videoData = [
-    {
-        index: '1',
-        nameVideo: 'Дом воды v2'
-    },
-    {
-        index: '2',
-        nameVideo: 'МЕЛИОВОДХОЗ_ИСТОРИЯ_ФИЛЬМ 3'
-    },
-    {
-        index: '3',
-        nameVideo: 'Работа на Пятерку'
-    }
-]
-
-const VideoSlider = () => {
+const VideoSlider = ({ videoData, basePath }) => {
     const [currentPage, setCurrentPage] = useState(0);
 
     const totalPages = Math.ceil(videoData.length);
@@ -29,7 +14,7 @@ const VideoSlider = () => {
     };
 
     const getVideoPath = (nameVideo) => {
-      return `/img/videoSlider/${nameVideo}.mp4`;
+      return `${basePath}/${nameVideo}`;
     };
 
     return (
