@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const PrivateRoute = ({ element, ...rest }) => {
   const authToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('authToken='));
-
   const navigate = useNavigate();
 
   const validateToken = async (token) => {
@@ -12,11 +11,11 @@ const PrivateRoute = ({ element, ...rest }) => {
         method: 'POST',
         credentials: 'include',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: `token=${token}`,
+        body: JSON.stringify({ token }),
       });
-  
+
       if (response.ok) {
         return true;
       } else {
