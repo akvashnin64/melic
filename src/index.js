@@ -99,7 +99,7 @@ const router = createBrowserRouter([
     path: process.env.PUBLIC_URL + '/admin',
     children: [
       {
-        path: process.env.PUBLIC_URL + ":/admin/login",
+        path: process.env.PUBLIC_URL + "/admin/login",
         element: <AdminAutorizationPage />
       },
       {
