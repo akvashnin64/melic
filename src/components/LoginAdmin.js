@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const LoginAdmin = () => {
   const [login, setLogin] = useState("");
@@ -26,7 +27,7 @@ const LoginAdmin = () => {
   
       if (response.ok) {
         const admin = await response.json();
-        document.cookie = `authToken=${admin.authToken}; path=/`;
+        Cookies.set('authToken', admin.authToken, { path: '/' });
         navigate(`/admin`);
       } else {
         alert('Неверный логин или пароль');
