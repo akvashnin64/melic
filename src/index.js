@@ -95,10 +95,11 @@ const Index = () => {
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.render(
   <React.StrictMode>
     <Index />
   </React.StrictMode>,
+  document.getElementById('root')
 );
 
 export default Index
