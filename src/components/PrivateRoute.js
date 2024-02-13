@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const PrivateRoute = ({ element, ...rest }) => {
   const authToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('authToken='));
-  const navigate = useNavigate();
 
   const validateToken = async (token) => {
     try {
@@ -35,8 +34,6 @@ const PrivateRoute = ({ element, ...rest }) => {
       return false;
     }
   };
-
-  const redirectToLogin = () => navigate(`/admin/login`);
 
   return checkTokenValidity() ? <Routes element={element} {...rest} /> : redirectToLogin();
 };
