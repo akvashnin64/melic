@@ -29,7 +29,7 @@ const AdminNewsSection = () => {
                 body: formData,
             });
     
-            if (!response.ok) throw new Error('Ошибка при добавлении новости');
+            if (!response.ok) throw new Error('Ошибка при добавлении новости Код ошибки: ${response.status}`');
             
             console.log('Новость успешно добавлена');
         } catch (error) {
