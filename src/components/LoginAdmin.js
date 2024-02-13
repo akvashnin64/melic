@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie';
+import { useCookies } from 'react-cookie'
 
 const LoginAdmin = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [cookies, setCookie] = useCookies(['authToken'])
   const navigate = useNavigate();
 
   const handleLoginChange = (e) => {
@@ -30,9 +31,9 @@ const LoginAdmin = () => {
         console.log('Токен перед установкой:', admin.authToken);
   
         // Устанавливаем куку
-        document.cookie = `authToken=${admin.authToken}; path=/; HttpOnly`;
+        setCookie('authToken', admin.authToken, {path: '/'})
   
-        console.log('Токен после установки:', document.cookie);
+        console.log('Токен после установки:', cookies);
   
         navigate(`/admin`);
       } else {
