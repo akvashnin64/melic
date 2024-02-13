@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const VideoSlider = ({ videoData, basePath }) => {
+const VideoSlider = ({ videoData, poster ,  basePath }) => {
     const [currentPage, setCurrentPage] = useState(0);
 
     const totalPages = Math.ceil(videoData.length);
@@ -43,7 +43,7 @@ const VideoSlider = ({ videoData, basePath }) => {
             <div key={index} className="video-items">
                 <video className='oneVideoInSlider' 
                 controls
-                poster={`${basePath}/${video.nameVideo}.png`}
+                poster={`${basePath}/${video.poster}`}
                 >
                     <source src={getVideoPath(video.nameVideo)} 
                     type="video/mp4" />
