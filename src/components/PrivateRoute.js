@@ -7,6 +7,7 @@ const PrivateRoute = ({ element, ...rest }) => {
     try {
       const response = await fetch('http://89.111.154.224/validate-token', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
