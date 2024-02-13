@@ -197,6 +197,18 @@ app.post('/autorization', (req, res) => {
   });
 });
 
+app.post('/validate-token', (req, res) => {
+  const { token } = req.body;
+  jwt.verify(token, 'FDH245bnmhsNG4SJs6743', (err, decoded) => {
+    if (err) {
+      console.error('Ошибка при валидации токена: ', err);
+      res.status(401).send('Невалидный токен');
+    } else {
+      res.status(200).send('Токен валиден');
+    }
+  });
+});
+
 app.post('/api/send-feedback', async (req, res) => {
   const { nameFeedback, emailFeedback, textFeedback } = req.body;
 

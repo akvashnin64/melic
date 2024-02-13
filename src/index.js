@@ -51,6 +51,7 @@ import AdminNewsSection from './components/AdminNewsSection';
 import AdminAnonsSection from './components/AdminAnonsSection';
 import AdminPhotoSection from './components/AdminPhotoSection';
 import AdminVideoSection from './components/AdminVideoSection';
+import PrivateRoute from './components/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -102,23 +103,23 @@ const router = createBrowserRouter([
       },
       {
         path: process.env.PUBLIC_URL + '/admin',
-        element: <AdminPage />
+        element: <PrivateRoute element={<AdminPage />}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/news',
-        element: <AdminNewsSection />
+        element: <PrivateRoute element={<AdminNewsSection />}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/announcements',
-        element: <AdminAnonsSection />
+        element: <PrivateRoute element={<AdminAnonsSection />}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/photos',
-        element: <AdminPhotoSection />
+        element: <PrivateRoute element={<AdminPhotoSection />}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/videos',
-        element: <AdminVideoSection />
+        element: <PrivateRoute element={<AdminVideoSection />}/>
       },
     ]
   },
