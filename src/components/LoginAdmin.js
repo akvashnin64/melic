@@ -26,7 +26,7 @@ const LoginAdmin = () => {
   
       if (response.ok) {
         const admin = await response.json();
-        document.cookie = `authToken=${admin.authToken}`;
+        document.cookie = `authToken=${admin.authToken}; path=/`;
         navigate(`/admin`);
       } else {
         alert('Неверный логин или пароль');
