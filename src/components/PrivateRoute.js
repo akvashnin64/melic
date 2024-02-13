@@ -35,7 +35,7 @@ const PrivateRoute = ({ element, ...rest }) => {
     }
   };
 
-  return checkTokenValidity() ? <Routes element={element} {...rest} /> : redirectToLogin();
+  return checkTokenValidity() ? <Routes element={element} {...rest} /> : null;
 };
 
 export default PrivateRoute;
