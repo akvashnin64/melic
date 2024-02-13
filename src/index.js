@@ -1,11 +1,11 @@
 import React from 'react';
-
-import {
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+/* import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from "react-router-dom";
+} from "react-router-dom"; */
 
 import * as ReactDOM from 'react-dom/client';
 import './index.css';
@@ -51,6 +51,59 @@ import AdminNewsSection from './components/AdminNewsSection';
 import AdminAnonsSection from './components/AdminAnonsSection';
 import AdminPhotoSection from './components/AdminPhotoSection';
 import AdminVideoSection from './components/AdminVideoSection';
+
+const Index = () => { 
+  return(
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<HomePage />} >
+              <Route path="news" element={<NewsPage />} />
+                <Route>
+                  <Route path=':id' element={OneNewPage}/>
+                </Route>
+              <Route path="guide" element={<GuidePage />} />
+              <Route path="directors" element={<DirectorsPage />} />
+              <Route path="gallery" element={<GalleryPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="history" element={<HistoryPage />} />
+              <Route path="contacts" element={<ContactsPage />} />
+              
+              <Route path="admin" element={<AdminPage />} />
+                <Route>
+                  <Route path="login" element={<AdminAutorizationPage />} />
+                  <Route path="news" element={<AdminNewsSection />} />
+                  <Route path="announcements" element={<AdminAnonsSection />} />
+                  <Route path="photos" element={<AdminPhotoSection />} />
+                  <Route path="videos" element={<AdminVideoSection />} />
+                </Route>
+              
+              <Route path="ershov" element={<ErshovPage />} />
+              <Route path="balakovo" element={<BalakovoPage />} />
+              <Route path="penza" element={<PenzaPage />} />
+              <Route path="kalininsk" element={<KalininskPage />} />
+              <Route path="uliyanovsk" element={<UliyanovskPage />} />
+              <Route path="privolg" element={<PrivolgPage />} />
+              <Route path="engels" element={<EngelsPage />} />
+              <Route path="saratov" element={<SaratovPage />} />
+              <Route path="partia" element={<PartiaPage />} />
+              <Route path="mordva" element={<MordvaPage />} />
+              <Route path="samara" element={<SamaraPage />} />
+              <Route path="persons" element={<PersonPage />} />
+            </Route>
+        </Routes>
+      </BrowserRouter>
+  )
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Index />
+  </React.StrictMode>,
+);
+
+export default Index
+/* 
+
 
 const router = createBrowserRouter([
   {
@@ -176,7 +229,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <RouterProvider router={router} />
   </React.StrictMode>
-);
+); */
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -27,16 +27,18 @@ const GalleryPage = () => {
         }
     ];
 
-    const basePath = "http://89.111.154.224/graphContent/photoSlider";
+    const basePathImg = "http://89.111.154.224/graphContent/photoSlider";
+    const basePathVideo = "http://89.111.154.224/graphContent/videoSlider";
 
     return(
         <>
         <Header />
         <Breadcrumbs paths={paths} /> 
         <PhotoSlider 
-  photos={photoData.map(photo => photo.namePicture)} 
-  basePath={basePath} 
-/>
+            photos={photoData.map(photo => photo.namePicture)} 
+            basePath={basePathImg} 
+            />
+
         <VideoSlider/>
         <Links />
         <Footer />
