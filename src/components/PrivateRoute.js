@@ -49,7 +49,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
       }
     };
   
-    return checkTokenValidity() !== undefined ? <Element {...rest} /> : <Navigate to="/admin/login" />;
+    return checkTokenValidity() !== undefined ? <Element {...rest} /> : <Redirect to="/admin/login" />;
 
   };
   
