@@ -11,9 +11,6 @@ const fileUpload = require('express-fileupload');
 
 const app = express();
 
-app.use(fileUpload());
-
-
 const port = 3001; // Подставь свой порт
 
 app.use(cors());
