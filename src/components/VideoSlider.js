@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const VideoSlider = ({ videoData, poster ,  basePath }) => {
+const VideoSlider = ({ videoData ,  basePath }) => {
     const [currentPage, setCurrentPage] = useState(0);
 
     const totalPages = Math.ceil(videoData.length);
