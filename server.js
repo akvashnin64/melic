@@ -208,6 +208,29 @@ app.post('/api/addNews', (req, res) => {
   });
 });
 
+app.delete('/api/deleteNews/:id', (req, res) => {
+  const newsId = req.params.id;
+
+  // Проверяем, что newsId - это целое число
+  if (!Number.isInteger(Number(newsId))) {
+    return res.status(400).send('ID новости должно быть целым числом');
+  }
+
+  const deleteNewsQuery = `
+    DELETE FROM table_news
+    WHERE oldIndex = ?;
+  `;
+
+  db.query(deleteNewsQuery, [newsId], (err, result) => {
+    if (err) {
+      console.error('Ошибка при удалении новости: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).send('Новость успешно удалена из базы данных');
+    }
+  });
+});
+
 app.post('/autorization', (req, res) => {
   const { login, password } = req.body;
   const md5Password = md5(password);

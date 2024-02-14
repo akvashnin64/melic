@@ -6,6 +6,33 @@ const AdminNewsSection = () => {
     // Состояние для отслеживания текущей операции (добавление, удаление, изменение)
     const [operation, setOperation] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState([]);
+    const [deleteNewsId, setDeleteNewsId] = useState('');
+
+  const handleDeleteNews = async () => {
+    try {
+      // Проверяем, что deleteNewsId - это целое число
+      if (!Number.isInteger(Number(deleteNewsId))) {
+        alert('ID новости должно быть целым числом');
+        return;
+      }
+
+      const response = await fetch(`http://89.111.154.224/api/deleteNews/${deleteNewsId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Ошибка при удалении новости Код ошибки: ${response.status}`);
+      }
+
+      console.log('Новость успешно удалена');
+
+      // Дополнительная логика, которую вы хотите выполнить после удаления новости
+
+    } catch (error) {
+      console.error('Ошибка:', error.message);
+      // Дополнительная логика обработки ошибки, если необходимо
+    }
+  };
 
     const handleFileChange = (event) => {
         // Обработчик изменения выбранных файлов
@@ -77,10 +104,8 @@ const AdminNewsSection = () => {
             <div className="pointInAdminPage">
                 <Link onClick={() => setOperation("delete")}>Удалить новость</Link>
                 {operation === "delete" && (
-                    // Поля ввода для удаления новости
                     <div>
-                        <input type="text" placeholder="ID новости" />
-                        {/* Другие поля, если необходимо */}
+                        <input type="text" placeholder="ID новости" onClick={handleDeleteNews}/>
                         <button>Удалить</button>
                     </div>
                 )}
