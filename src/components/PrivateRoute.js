@@ -3,7 +3,6 @@ import { Navigate, Routes } from 'react-router-dom';
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import AdminPage from '../pages/AdminPage';
-import { Route, Redirect } from 'react-router-dom';
 
 
 const PrivateRoute = ({ element: Element, ...rest }) => {
@@ -50,7 +49,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
       }
     };
   
-    return checkTokenValidity() !== undefined ? <Element {...rest} /> : <Redirect to="/admin/login" />;
+    return checkTokenValidity() !== undefined ? <Element {...rest} /> : <Navigate to="/admin/login" replace />;
 
   };
   
