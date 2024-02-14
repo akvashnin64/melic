@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 const PhotoSlider = ({ photos, basePath }) => {
   const [currentPage, setCurrentPage] = useState(0);
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const totalPages = Math.ceil(photos.length);
 
@@ -17,10 +19,21 @@ const PhotoSlider = ({ photos, basePath }) => {
     return `${basePath}/${namePicture}`;
   };
 
+  const openPopup = (index) => {
+    setSelectedImage(currentPage + index); // Используем текущую страницу и индекс внутри слайда
+    setPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setPopupOpen(false);
+  };
+
   return (
     <div className="containerSlider">
       <div className="textSlider">
-        <div><p>ФОТО</p></div>
+        <div>
+          <p>ФОТО</p>
+        </div>
         <div className='arrowNews'>
           <img
             className='leftArrowGallery'
@@ -41,10 +54,25 @@ const PhotoSlider = ({ photos, basePath }) => {
       <div className="photo">
         {photos.slice(currentPage, currentPage + 3).map((photo, index) => (
           <div key={index} className="news-item">
-            <img src={getImagePath(photo)} alt={`Photo ${index + 1}`} />
+            <img
+              src={getImagePath(photo)}
+              alt={`Photo ${index + 1}`}
+              onClick={() => openPopup(index)}
+            />
           </div>
         ))}
       </div>
+
+      {isPopupOpen && (
+        <div className="popup-overlay" onClick={closePopup}>
+          <div className="popup">
+            <img
+              src={getImagePath(photos[selectedImage])}
+              alt={`Photo ${selectedImage + 1}`}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

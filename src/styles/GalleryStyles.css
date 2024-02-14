@@ -14,6 +14,23 @@
     flex-direction: row;
 }
 
+.popup img{
+    border-radius: 20px;
+}
+
+.popup-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
 @media screen and (min-width: 1920px){
     .photo img{
         width: 560px;
@@ -39,6 +56,11 @@
 
     .videoSlider{
         margin-bottom: 30px;
+    }
+
+    .popup img{
+        max-width: 1200px;
+        min-width: 900px;
     }
 }
 

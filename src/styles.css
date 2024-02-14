@@ -1432,7 +1432,7 @@ a:hover {
   }
 
   .dropdownMenu{
-    display:flex;
+    display:grid;
     flex-direction: column;
     justify-content: start;
     height: 110px;
@@ -1440,10 +1440,13 @@ a:hover {
     box-shadow: none;
   }
 
-  .submenu:hover .dropdownMenu {
-    display: block;
-    background-color: white;
-  }
+  .submenu:hover #trigger-dropdown {
+    position: relative;
+}
+
+.submenu:hover .dropdownMenu {
+  display: grid;
+}
 
   #secondItemMenu{
     margin-top: 110px;
@@ -1787,18 +1790,14 @@ a:hover {
   }
 
   .dropdownMenu{
-    display:flex;
-    flex-direction: column;
-    justify-content: start;
-    height: 110px;
+    display:grid;
     border-radius: 0;
     box-shadow: none;
   }
 
-  .submenu:hover .dropdownMenu {
-    display: block;
-    background-color: white;
-  }
+  .submenu:hover #trigger-dropdown {
+    position: relative;
+}
 
   #secondItemMenu{
     margin-top: 110px;
