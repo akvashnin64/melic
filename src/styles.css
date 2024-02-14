@@ -85,7 +85,6 @@ p {
 .banner2 {
   display: flex;
   flex-wrap: nowrap;
-  border-radius: 22px;
   margin-bottom: 30px;
   overflow: hidden;
 }
