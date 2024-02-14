@@ -33,6 +33,7 @@ app.use('/graphContent', (req, res, next) => {
 
 app.use('/graphContent', express.static(imagesPath));
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(fileUpload());
 
 const db = mysql.createConnection({
   host: '89.111.154.224', // Адрес сервера базы данных

@@ -23,6 +23,8 @@ const AdminNewsSection = () => {
             newsData.files.forEach((file, index) => {
                 formData.append(`files[${index}]`, file);
             });
+
+            console.log(selectedFiles);
     
             const response = await fetch('http://89.111.154.224/api/addNews', {
                 method: 'POST',
