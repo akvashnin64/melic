@@ -167,6 +167,7 @@ app.get('/getLastAnonses', (req, res) => {
 
 
 app.post('/api/addNews', (req, res) => {
+  console.log('вход в функцию');
   const { title, text, date } = req.body;
   const files = req.files.files;
 

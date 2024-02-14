@@ -30,6 +30,8 @@ const AdminNewsSection = () => {
                 method: 'POST',
                 body: formData,
             });
+            
+            console.log('запрос отправлен');
     
             if (!response.ok) throw new Error('Ошибка при добавлении новости Код ошибки: ${response.status}`');
             
