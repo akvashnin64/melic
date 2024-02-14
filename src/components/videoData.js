@@ -1,18 +1,18 @@
 const videoData = [
     {
         index: '1',
-        nameVideo: 'Дом воды v2.mp4',
-        poster: 'Дом воды v2.png'
+        nameVideo: 'house-water.mp4',
+        poster: 'house-water.png'
     },
     {
         index: '2',
-        nameVideo: 'МЕЛИОВОДХОЗ_ИСТОРИЯ_ФИЛЬМ 3.mp4',
-        poster: 'МЕЛИОВОДХОЗ_ИСТОРИЯ_ФИЛЬМ 3.png'
+        nameVideo: 'history-video.mp4',
+        poster: 'history-video.png'
     },
     {
         index: '3',
-        nameVideo: 'Работа на Пятерку.mp4',
-        poster: 'Работа на Пятерку.png'
+        nameVideo: 'work-of5.mp4',
+        poster: 'work-of5.png'
     }
 ]
 
