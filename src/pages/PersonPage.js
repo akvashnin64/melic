@@ -21,7 +21,7 @@ const PersonPage = () => {
         },
         {
             label: "Люди дела",
-            url: "/person"
+            url: "/persons"
         }
     ];
 

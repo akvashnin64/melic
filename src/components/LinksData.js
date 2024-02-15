@@ -25,36 +25,30 @@ const linksData = [
     },
     {
         id: 4,
-        picture: '/img/link5.png',
-        text: 'ФП проектов нормативных правовых актов',
-        link: 'https://regulation.gov.ru/'
-    },
-    {
-        id: 5,
         picture: '/img/link6.png',
         text: 'ФГБУ ВНИИ "РАДУГА"',
         link: 'https://inform-raduga.ru/'
     },
     {
-        id: 6,
+        id: 5,
         picture: '/img/link7.png',
         text: 'Правительство Самарской области',
         link: 'https://www.samregion.ru/'
     },
     {
-        id: 7,
+        id: 6,
         picture: '/img/link8.png',
         text: 'Правительство Ульяновской области',
         link: 'https://ulgov.ru/'
     },
     {
-        id: 8,
+        id: 7,
         picture: '/img/link9.png',
         text: 'Правительство Пензенской области',
         link: 'https://pnzreg.ru/'
     },
     {
-        id: 9,
+        id: 8,
         picture: '/img/link10.png',
         text: 'Правительство республики Мордовия',
         link: 'https://e-mordovia.ru/'
