@@ -20,8 +20,12 @@ const HistoryPage = () => {
             url: "/"
         },
         {
+            label: "Об учреждении",
+            url: "/about"
+        },
+        {
             label: "История мелиорации",
-            url: "/history"
+            url: "/about/history"
         }
     ];
 

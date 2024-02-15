@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from '../components/Footer'
 import Directors from "../components/Directors";
 import Breadcrumbs from '../components/BreadCrumbs'
+import Links from "../components/Links";
 
 const DirectorsPage = () => {
     const location = useLocation();
@@ -19,8 +20,12 @@ const DirectorsPage = () => {
             url: "/"
         },
         {
+            label: "Об учреждении",
+            url: "/about"
+        },
+        {
             label: "Руководители",
-            url: "/directors"
+            url: "/about/directors"
         }
     ];
 
@@ -29,6 +34,7 @@ const DirectorsPage = () => {
         <Header />
         <Breadcrumbs paths={paths} />  
         <Directors/>
+        <Links />
         <Footer />
         </>
     )

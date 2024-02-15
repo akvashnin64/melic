@@ -36,14 +36,17 @@ const Menu = ({ isVisible, closeMenu  }) => {
                 ОБ УЧРЕЖДЕНИИ
                 </Link>
             <div className="dropdownMenu">
-                <Link to={"/directors"} className='menuLevel2'>
+                <Link to={"/about/directors"} className='menuLevel2'>
                     РУКОВОДИТЕЛИ
                     </Link>
-                <Link to={"/history"} className='menuLevel2'>
+                <Link to={"/about/history"} className='menuLevel2'>
                     ИСТОРИЯ МЕЛИОРАЦИИ
                     </Link>
-                <Link to={"/persons"} className='menuLevel2'>
+                <Link to={"/about/persons"} className='menuLevel2'>
                     ЛЮДИ ДЕЛА
+                    </Link>
+                <Link to={"/about/acts"} className='menuLevel2'>
+                    НОРМАТИВНО-ПРАВОВЫЕ АКТЫ
                     </Link>
             </div>
         </div>
@@ -61,6 +64,9 @@ const Menu = ({ isVisible, closeMenu  }) => {
             </Link>
         <Link to={"/contacts"} className='menuLevel1'>
             КОНТАКТЫ
+            </Link>
+        <Link to={"/vacancy"} className='menuLevel1'>
+            ВАКАНСИИ
             </Link>
     </div>
     </>

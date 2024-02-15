@@ -636,6 +636,12 @@ a:hover {
   .containerLinks{
     margin-top: 60px;
   }
+
+  .plugText{
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 500;
+  }
 }
 
 

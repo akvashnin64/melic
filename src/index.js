@@ -53,6 +53,8 @@ import AdminAnonsSection from './components/AdminAnonsSection';
 import AdminPhotoSection from './components/AdminPhotoSection';
 import AdminVideoSection from './components/AdminVideoSection';
 import PrivateRoute from './components/PrivateRoute';
+import ActsPage from './pages/ActsPage';
+import VacancyPage from './pages/VacancyPage';
 
 const router = createBrowserRouter([
   {
@@ -76,24 +78,36 @@ const router = createBrowserRouter([
     element: <GuidePage />,
   },
   {
-    path: process.env.PUBLIC_URL + '/directors',
-    element: <DirectorsPage/>
-  },
-  {
     path: process.env.PUBLIC_URL + '/gallery',
     element: <GalleryPage/>
   },
   {
     path: process.env.PUBLIC_URL + '/about',
-    element: <AboutPage /> 
+    element: <AboutPage />
   },
   {
-    path: process.env.PUBLIC_URL + '/history',
-    element: <HistoryPage/>
+    path: process.env.PUBLIC_URL + '/about/history',
+    element: <HistoryPage />
+  },
+  {
+    path: process.env.PUBLIC_URL + '/about/directors',
+    element: <DirectorsPage />
+  },
+  {
+    path: process.env.PUBLIC_URL + '/about/persons',
+    element: <PersonPage />
+  },
+  {
+    path: process.env.PUBLIC_URL + '/about/acts',
+    element: <ActsPage />
   },
   {
     path: process.env.PUBLIC_URL + "/contacts",
     element: <ContactsPage/>
+  },
+  {
+    path: process.env.PUBLIC_URL + "/vacancy",
+    element: <VacancyPage/>
   },
   {
     path: process.env.PUBLIC_URL + '/admin',
@@ -167,10 +181,6 @@ const router = createBrowserRouter([
   {
     path: process.env.PUBLIC_URL + '/samara',
     element: <SamaraPage />
-  },
-  {
-    path: process.env.PUBLIC_URL + '/persons',
-    element: <PersonPage />
   },
 ]);
 

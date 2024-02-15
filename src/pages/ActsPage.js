@@ -1,12 +1,11 @@
 import {React , useEffect} from "react";
 import { useLocation } from 'react-router-dom';
 import Header from "../components/Header";
+import Links from '../components/Links';
 import Footer from '../components/Footer'
-import Links from '../components/Links'
-import Breadcrumbs from "../components/BreadCrumbs";
-import Persons from "../components/Person";
+import Breadcrumbs from '../components/BreadCrumbs'
 
-const PersonPage = () => {
+const ActsPage = () => {
     const location = useLocation();
   
     useEffect(() => {
@@ -24,20 +23,23 @@ const PersonPage = () => {
             url: "/about"
         },
         {
-            label: "Люди дела",
-            url: "/about/persons"
+            label: "Нормативно-правовые акты",
+            url: "/about/acts"
         }
     ];
 
     return(
         <>
         <Header />
-        <Breadcrumbs paths={paths} />
-        <Persons />
+        <Breadcrumbs paths={paths} /> 
+        <div className="plugText">
+            <p>Этот раздел сейчас в разработке.</p>
+            <p>Информация появится в ближайшее время.</p>
+        </div>
         <Links />
         <Footer />
         </>
     )
 }
 
-export default PersonPage
+export default ActsPage
