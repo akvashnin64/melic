@@ -1003,7 +1003,7 @@ a:hover {
   }
 
   .submenu {
-    width: 220px;
+    width: 195px;
   }
 
   .dropdownMenu{
@@ -1013,7 +1013,7 @@ a:hover {
   }
 
   .menuLevel1{
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
     z-index: 1;
   }
