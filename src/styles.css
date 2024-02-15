@@ -533,6 +533,8 @@ a:hover {
     font-weight: 600;
   }
   .link img{
+    max-width: 140px;
+    max-height: 120px;
     margin-bottom: 40px;
   }
 

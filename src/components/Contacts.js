@@ -111,11 +111,11 @@ function Contacts () {
                 </div>
                 <div className='mobilePhoneContacts'>
                     <img src='/img/phoneContacts.png'/>
-                    <p>8(8452) 22-74-00</p>
+                    <p>8(8452) 22-74-00<br></br>8(8452) 22-74-01</p>
                 </div>
                 <div className='timeContacts'>
                     <img src='/img/timeContacts.png'/>
-                    <p>ПН-ПТ с 9:00 до 21:00</p>
+                    <p>ПН-ЧТ с 8:00 до 17:00<br></br>ПТ с 8:00 до 16:00</p>
                 </div>
                 <div className='locationContacts'>
                     <img src='/img/locationContacts.png'/>

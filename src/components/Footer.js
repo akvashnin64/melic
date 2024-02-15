@@ -28,7 +28,7 @@ const Footer = () => {
                     <div><Link to={"/contacts"}>КОНТАКТЫ</Link></div>
                 </div>
                 <div className='footerContacts'>
-                    <div><p>INFO@SARATOVMELIO.MCX.GOV.RU</p></div>
+                    <div><p>SARWODHOZ@MAIL.RU</p></div>
                     <div><p>8(8452) 22-74-00</p></div>
                     <div><p>8(8452) 22-74-01</p></div>
                 </div>
