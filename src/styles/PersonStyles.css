@@ -3,6 +3,10 @@
     flex-wrap: wrap;
 }
 
+.onePerson img{
+    border-radius: 15px;
+}
+
 
 @media screen and (min-width: 1920px){
     .containerPerson{
@@ -26,6 +30,7 @@
     .onePerson img{
         width: 260px;
         height: 295px;
+        border-radius: 15px;
     }
 
     .onePerson p:nth-child(2){

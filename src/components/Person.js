@@ -140,7 +140,26 @@ const dataPersons = [
         idPerson: 28,
         namePerson: "Пестряков Сергей Анатольевич",
         branchePerson: "Гидрогеолого-мелиоративная партия"
-    }
+    },
+    {
+        idPerson: 29,
+        namePerson: "Егоров Александр Сергеевич",
+        branchePerson: "Ершовский филиал"
+    },
+    {
+        idPerson: 30,
+        namePerson: "Лисичкин Владимир Анатольевич",
+        branchePerson: "Ершовский филиал"
+    },
+    {
+        idPerson: 31,
+        namePerson: "Припутников Сергей Васильевич",
+        branchePerson: "Ершовский филиал"
+    },{
+        idPerson: 32,
+        namePerson: "Самохин Василий Олегович",
+        branchePerson: "Ершовский филиал"
+    },
 ]
 
 const getImagePath = (namePicture) => {
