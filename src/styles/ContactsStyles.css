@@ -15,80 +15,6 @@
     align-items: end;
 }
 
-.feedback{
-    box-shadow: 0px 0px 22px 0px #67676730;
-    border-radius: 24px;
-}
-
-.textFeedback{
-    opacity: 60%;
-}
-
-.inputFieldsFeedback{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.inputFieldsFeedback input {
-    background: #E8E8E8;
-    border-radius: 3px;
-}
-
-#message{
-    background: #E8E8E8;
-    border-radius: 3px;
-    resize: none;
-}
-
-.sendFeedback button{
-    background-color: black;
-    color: white;
-    border-radius: 6px;
-}
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-  }
-  
-  .modal {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-  }
-
-  .modal img{
-    margin-left: 95%;
-    margin-bottom: 50px;
-    margin-top: 10px;
-  }
-
-  .modal img:hover{
-    cursor: pointer;
-  }
-
-  .sendFeedback button:hover{
-    cursor: pointer;
-  }
-
-  .defaultBorder{
-    border: 2px solid white;
-  }
-
-  .errorField {
-    border: 2px solid red;
-  }
-
 @media screen and (min-width: 1920px){
     .headerContacts{
         font-size: 50px;
@@ -117,83 +43,9 @@
     }
 
     .mapContactsPage{
-        width: 850px;
+        width: 1000px;
         height: 450px;
     }
-
-    .feedback{
-        width: 50%;
-        height: 800px;
-    }
-
-    .headerFeedback{
-        font-size: 55px;
-        font-weight: 600;
-        line-height: 77px;
-        margin: 65px 0 0 65px;
-    }
-
-    .textFeedback{
-        font-size: 30px;
-        font-weight: 500;
-        line-height: 48px;
-        margin: 25px 0 0 65px;
-        max-width: 700px;
-    }
-    
-
-    .inputFieldsFeedback{
-        width: 80%;
-        margin: 45px 0 0 65px;
-    }
-
-    .inputFieldsFeedback input, #message{
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 32px;
-    }
-
-    .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email'],
-    .inputFieldsFeedback textarea[type='text']{
-        padding: 20px;
-    }
-
-    #nameFeedback{
-        width: 40%;
-        height: 60px;
-    }
-
-    #emailFeedback{
-        width: 50%;
-        height: 60px;
-    }
-
-    #message{
-        width: 100%;
-        height: 250px;
-        margin-top: 35px;
-    }
-
-    .sendFeedback button{
-        font-size: 25px;
-        font-weight: 500;
-        line-height: 36px;
-        width: 400px;
-        height: 60px;
-        margin: 35px 0 0 0;
-    }
-
-    .modal{
-        width: 800px;
-    }
-
-    .modal p{
-        font-size: 25px;
-        line-height: 30px;
-        font-weight: 500;
-        margin-bottom: 50px;
-      }
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){
@@ -220,86 +72,13 @@
     }
 
     .containerMapContactsPage{
+        width: 55%;
         margin: 40px 0 0 0;
     }
 
     .mapContactsPage{
-        width: 500px;
         height: 250px;
     }
-
-    .feedback{
-        width: 50%;
-        height: 540px;
-    }
-
-    .headerFeedback{
-        font-size: 35px;
-        font-weight: 600;
-        line-height: 49px;
-        margin: 40px 0 0 55px;
-    }
-
-    .textFeedback{
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 32px;
-        margin: 15px 0 0 55px;
-        max-width: 500px;
-    }
-
-    .inputFieldsFeedback{
-        width: 80%;
-        margin: 35px 0 0 55px;
-    }
-
-    .inputFieldsFeedback input, #message{
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 26px;
-    }
-
-    .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email'],
-    .inputFieldsFeedback textarea[type='text']{
-        padding: 20px;
-    }
-
-    #nameFeedback{
-        width: 40%;
-        height: 50px;
-    }
-
-    #emailFeedback{
-        width: 50%;
-        height: 50px;
-    }
-
-    #message{
-        width: 100%;
-        height: 130px;
-        margin-top: 30px;
-    }
-
-    .sendFeedback button{
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 26px;
-        width: 270px;
-        height: 50px;
-        margin: 35px 0 0 0;
-    }
-
-    .modal{
-        width: 650px;
-    }
-
-    .modal p{
-        font-size: 20px;
-        line-height: 25px;
-        font-weight: 500;
-        margin-bottom: 50px;
-      }
 }
 
 @media screen and (min-width: 960px) and (max-width: 1279px){
@@ -330,87 +109,15 @@
     }
 
     .mapContactsPage{
-        width: 450px;
+        width: 500px;
         height: 280px;
     }
-
-    .feedback{
-        width: 50%;
-        height: 500px;
-    }
-
-    .headerFeedback{
-        font-size: 30px;
-        font-weight: 600;
-        line-height: 37px;
-        margin: 40px 0 0 30px;
-    }
-
-    .textFeedback{
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 29px;
-        margin: 5px 0 0 30px;
-        max-width: 400px;
-    }
-
-    .inputFieldsFeedback{
-        width: 85%;
-        margin: 20px 0 0 30px;
-    }
-
-    .inputFieldsFeedback input, #message{
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 26px;
-    }
-
-    .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email'],
-    .inputFieldsFeedback textarea[type='text']{
-        padding: 10px 20px;
-    }
-
-    #nameFeedback{
-        width: 190px;
-        height: 50px;
-    }
-
-    #emailFeedback{
-        width: 200px;
-        height: 50px;
-    }
-
-    #message{
-        width: 100%;
-        height: 130px;
-        margin-top: 30px;
-    }
-
-    .sendFeedback button{
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 26px;
-        width: 270px;
-        height: 50px;
-        margin: 20px 0 0 0;
-    }
-
-    .modal{
-        width: 650px;
-    }
-
-    .modal p{
-        font-size: 20px;
-        line-height: 25px;
-        font-weight: 500;
-        margin-bottom: 50px;
-      }
 }
 
 @media screen and (min-width: 640px) and (max-width: 959px){
     .containerContactsPage{
         align-items: start;
+        flex-direction: column;
         height: 570px;
     }
 
@@ -437,94 +144,19 @@
     }
 
     .containerMapContactsPage{
-        margin: 60px 0 0 0;
-    }
-
-    .mapContactsPage{
-        position: absolute;
-        margin-top: 10px;
-        width: 620px;
-        height: 280px;
-    }
-
-    .feedback{
-        width: 320px;
-        height: 270px;
-    }
-
-    .headerFeedback{
-        font-size: 20px;
-        font-weight: 600;
-        line-height: 24px;
-        margin: 20px 0 0 30px;
-    }
-
-    .textFeedback{
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 19px;
-        margin: 5px 0 0 30px;
-        max-width: 260px;
-    }
-
-    .inputFieldsFeedback{
-        width: 82%;
-        margin: 15px 0 0 30px;
-    }
-
-    .inputFieldsFeedback input, #message{
-        font-size: 10px;
-        font-weight: 400;
-        line-height: 16px;
-    }
-
-    .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email'],
-    .inputFieldsFeedback textarea[type='text']{
-        padding: 10px 15px;
-    }
-
-    #nameFeedback{
-        width: 125px;
-        height: 30px;
-    }
-
-    #emailFeedback{
-        width: 125px;
-        height: 30px;
-    }
-
-    #message{
-        width: 260px;
-        height: 50px;
-        margin-top: 10px;
-    }
-
-    .sendFeedback button{
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 20px;
-        width: 200px;
-        height: 35px;
+        width: 100%;
         margin: 20px 0 0 0;
     }
 
-    .modal{
-        width: 500px;
+    .mapContactsPage{
+        height: 280px;
     }
-
-    .modal p{
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-        margin-bottom: 50px;
-      }
 }
 
 @media screen and (min-width: 340px) and (max-width: 639px){
     .containerContactsPage{
         align-items: start;
-        height: 800px;
+        flex-direction: column;
     }
 
     .headerContacts{
@@ -550,93 +182,11 @@
     }
 
     .containerMapContactsPage{
-        margin: 60px 0 0 0;
+        margin: 10px 0 0 0;
     }
 
     .mapContactsPage{
-        position: absolute;
-        margin-top: 280px;
         width: 340px;
         height: 250px;
     }
-
-    .feedback{
-        margin-left: 10px;
-        position: absolute;
-        margin-top: 250px;
-        width: 320px;
-        height: 270px;
-    }
-
-    .headerFeedback{
-        font-size: 20px;
-        font-weight: 600;
-        line-height: 24px;
-        margin: 20px 0 0 30px;
-    }
-
-    .textFeedback{
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 19px;
-        margin: 5px 0 0 30px;
-        max-width: 260px;
-    }
-
-    .inputFieldsFeedback{
-        width: 82%;
-        margin: 15px 0 0 30px;
-    }
-
-    .inputFieldsFeedback input, #message{
-        font-size: 10px;
-        font-weight: 400;
-        line-height: 16px;
-    }
-
-    .inputFieldsFeedback input[type='text'], 
-    .inputFieldsFeedback input[type='email'],
-    .inputFieldsFeedback textarea[type='text']{
-        padding: 10px 15px;
-    }
-
-    #nameFeedback{
-        width: 125px;
-        height: 30px;
-    }
-
-    #emailFeedback{
-        width: 125px;
-        height: 30px;
-    }
-
-    #message{
-        width: 260px;
-        height: 50px;
-        margin-top: 10px;
-    }
-
-    .sendFeedback button{
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 20px;
-        width: 200px;
-        height: 35px;
-        margin: 20px 0 0 0;
-    }
-
-    .containerMapContactsPage YMaps{
-        border-radius: 0;
-    }
-
-    .modal{
-        width: 300px;
-    }
-
-    .modal p{
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-        margin-bottom: 50px;
-      }
 }
