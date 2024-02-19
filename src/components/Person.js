@@ -155,11 +155,12 @@ const dataPersons = [
         idPerson: 31,
         namePerson: "Припутников Сергей Васильевич",
         branchePerson: "Ершовский филиал"
-    },{
+    },
+    {
         idPerson: 32,
         namePerson: "Самохин Василий Олегович",
         branchePerson: "Ершовский филиал"
-    },
+    }
 ]
 
 const getImagePath = (namePicture) => {
