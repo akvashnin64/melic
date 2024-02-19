@@ -36,32 +36,10 @@
       margin-bottom: 50px;
     }
     
-    .guide{
+      .guide{
         margin-bottom: 40px;
         width: 860px;
-        height: 100%;
-      }
-    
-      .guide:nth-child(11){
-        width: 100%;
-      }
-    
-      .guide:nth-child(11) .containerGuide{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    
-      }
-    
-      .guide:nth-child(11) .title{
-        width: 100%;
-      }
-    
-      .guide:nth-child(11) .director,
-      .guide:nth-child(11) .location,
-      .guide:nth-child(11) .phone,
-      .guide:nth-child(11) .email{
-        width: 700px;
+        min-height: 400px;
       }
     
       .title{
@@ -105,27 +83,6 @@
         margin-bottom: 40px;
         width: 49%;
         height: 100%;
-      }
-    
-      .guide:nth-child(11){
-        width: 100%;
-      }
-    
-      .guide:nth-child(11) .containerGuide{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-    
-      .guide:nth-child(11) .title{
-        width: 1300px;
-      }
-    
-      .guide:nth-child(11) .director,
-      .guide:nth-child(11) .location,
-      .guide:nth-child(11) .phone,
-      .guide:nth-child(11) .email{
-        width: 500px;
       }
     
       .title{
@@ -172,27 +129,6 @@
     height: 100%;
   }
 
-  .guide:nth-child(11){
-    width: 100%;
-  }
-
-  .guide:nth-child(11) .containerGuide{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .guide:nth-child(11) .title{
-    max-width: 100%;
-  }
-
-  .guide:nth-child(11) .director,
-  .guide:nth-child(11) .location,
-  .guide:nth-child(11) .phone,
-  .guide:nth-child(11) .email{
-    width: 400px;
-  }
-
   .title{
     font-size: 20px;
     font-weight: 700;
@@ -235,29 +171,6 @@
     margin-bottom: 20px;
     width: 49%;
     height: 205px;
-  }
-
-  .guide:nth-child(11){
-    width: 100%;
-    height: 140px;
-  }
-
-  .guide:nth-child(11) .containerGuide{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .guide:nth-child(11) .title{
-    max-width: 100%;
-  }
-
-  .guide:nth-child(11) .director,
-  .guide:nth-child(11) .location,
-  .guide:nth-child(11) .phone,
-  .guide:nth-child(11) .email{
-    width: 300px;
-    margin-top: 10px;
   }
 
   .title{

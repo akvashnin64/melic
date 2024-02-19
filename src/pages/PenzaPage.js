@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Footer from '../components/Footer'
 import Links from '../components/Links'
 import Breadcrumbs from "../components/BreadCrumbs";
-import Penza from "../components/Penza";
 
 const PenzaPage = () => {
     const location = useLocation();
@@ -29,7 +28,6 @@ const PenzaPage = () => {
         <>
         <Header />
         <Breadcrumbs paths={paths} />
-        <Penza />
         <Links />
         <Footer />
         </>

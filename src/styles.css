@@ -456,7 +456,6 @@ a:hover {
   }
 
   .branche {
-    
     width: 410px;
     height: 200px;
     font-size: 30px;
@@ -477,9 +476,13 @@ a:hover {
   }
 
   .linkBranche:nth-child(9) .branche,
-  .linkBranche:nth-child(10) .branche,
-  .linkBranche:nth-child(11) .branche{
-    width: 560px;
+  .linkBranche:nth-child(10) .branche{
+    width: 860px;
+  }
+
+  .linkBranche:nth-child(9) .branche p,
+  .linkBranche:nth-child(10) .branche p{
+    width: 100%;
   }
 
 
@@ -821,8 +824,10 @@ a:hover {
     width: 400px;
   }
 
-  .linkBranche:nth-child(10),
-  .linkBranche:nth-child(11){
+  .linkBranche:nth-child(7),
+  .linkBranche:nth-child(8),
+  .linkBranche:nth-child(9),
+  .linkBranche:nth-child(10){
     width: 48%;
   }
 
@@ -1085,9 +1090,11 @@ a:hover {
   }
 
 
-  .linkBranche:nth-child(10),
-  .linkBranche:nth-child(11){
-    width: 48%;
+  .linkBranche:nth-child(7),
+  .linkBranche:nth-child(8),
+  .linkBranche:nth-child(9),
+  .linkBranche:nth-child(10){
+    width: 49%;
   }
 
   .news  p:nth-child(2) {
@@ -1692,9 +1699,10 @@ a:hover {
     width: 48%;
   }
 
-  .linkBranche:nth-child(3),
-  .linkBranche:nth-child(6),
-  .linkBranche:nth-child(9){
+  
+
+  .linkBranche:nth-child(5),
+  .linkBranche:nth-child(10){
     width: 100%;
   }
 
