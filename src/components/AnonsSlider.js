@@ -48,7 +48,7 @@ const AnonsSlider = () => {
   }, []);
 
   const getImagePath = (namePic) => {
-    return `/img/anonses/${namePic}`;
+    return `http://89.111.154.224/graphContent/anonses/${namePic}`;
   };
 
   const fadeProps = useSpring({
