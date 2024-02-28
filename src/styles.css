@@ -99,6 +99,8 @@ p {
   justify-content: center;
   align-items: center;
 	align-content: center;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .banner2 p {
@@ -1464,7 +1466,7 @@ a:hover {
 }
 
   #secondItemMenu{
-    margin-top: 110px;
+    margin-top: 145px;
   }
 
    .menuLevel1,
@@ -1822,7 +1824,7 @@ a:hover {
 }
 
   #secondItemMenu{
-    margin-top: 110px;
+    margin-top: 165px;
   }
 
    .menuLevel1,
