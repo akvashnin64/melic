@@ -48,7 +48,7 @@ db.connect(err => {
   }
 });
 
-app.get('/getBranchesById/:id', (rec, res) => {
+app.get('/getBranchesById/:id', (req, res) => {
   const id = req.params.id;
 
   const query = `
