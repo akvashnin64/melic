@@ -48,6 +48,41 @@ db.connect(err => {
   }
 });
 
+app.get('/getBranchesById/:id', (rec, res) => {
+  const id = req.params.id;
+
+  const query = `
+    SELECT *
+    FROM table_branches
+    WHERE idBranch = ?
+  `
+
+  db.query(query, [id], (error, results) => {
+    if (error) {
+      console.error('Ошибка при получении филиалa: ', error);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.json(results[0]); // Отправляем результат в формате JSON
+    }
+  });
+})
+
+app.get('/getBranches', (req, res) => {
+  const query = `
+    SELECT *
+    FROM table_branches
+  `
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении филиалов: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+})
+
 app.get('/getNewsForDate', (req, res) => {
   const startDate = req.query.startDate;
   const endDate = req.query.endDate;
