@@ -155,7 +155,7 @@ app.get('/getLastNews', (req, res) => {
   FROM (
       SELECT * FROM table_news
       ORDER BY idNews DESC
-      LIMIT 50
+      LIMIT 20
   ) table_news
   LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
   GROUP BY table_news.idNews
