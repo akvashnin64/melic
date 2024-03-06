@@ -109,9 +109,16 @@ app.get('/getBranchesForVacancy', (req, res) => {
 app.post('/addVacancy', (req, res) => {
   const { branchId, vacancyName } = req.body;
 
-  console.log(branchId, vacancyName);
+  const query = `INSERT INTO table_vacancy (idBranch, vacancy) VALUES (?, ?)`;
 
-  res.send('Вакансия успешно добавлена в базу данных');
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении вакансий: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  })
 });
 
 app.get('/getBranches', (req, res) => {
