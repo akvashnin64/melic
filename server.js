@@ -67,6 +67,30 @@ app.get('/getBranchesById/:id', (req, res) => {
   });
 })
 
+app.get('/getBranchesForVacancy', (req, res) => {
+  const query = `
+      SELECT
+      tv.idVacancy,
+      tbv.id AS idBranch,
+      tbv.nameBranch,
+      tv.vacancy,
+      tv.phone
+    FROM
+      table_vacancy tv
+    JOIN
+      table_branches_vacancy tbv ON tv.idBranche = tbv.id;
+  `
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении вакансий: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+})
+
 app.get('/getBranches', (req, res) => {
   const query = `
     SELECT *
