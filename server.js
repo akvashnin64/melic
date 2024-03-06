@@ -106,6 +106,14 @@ app.get('/getBranchesForVacancy', (req, res) => {
   });
 })
 
+app.post('/addVacancy', (req, res) => {
+  const { branchId, vacancyName } = req.body;
+
+  console.log(branchId, vacancyName);
+
+  res.send('Вакансия успешно добавлена в базу данных');
+});
+
 app.get('/getBranches', (req, res) => {
   const query = `
     SELECT *
