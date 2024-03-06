@@ -113,12 +113,12 @@ app.post('/addVacancy', (req, res) => {
 
   db.query(query, (err, result) => {
     if (err) {
-      console.error('Ошибка при получении вакансий: ', err);
-      res.status(500).send('Ошибка сервера');
+      console.error('Ошибка при выполнении SQL-запроса: ', err);
+      res.status(500).send(`Ошибка сервера: ${err.message}`);
     } else {
       res.status(200).json(result);
     }
-  })
+  });
 });
 
 app.get('/getBranches', (req, res) => {
