@@ -82,6 +82,21 @@ app.get('/getListBranchesForVacancy', (req, res) => {
   });
 })
 
+app.post('/getVacancyForIdBranche', (req, res) => {
+  const { branchId } = req.body;
+
+  const query = `SELECT * FROM table_vacancy WHERE IdBranche = ?`;
+
+db.query(query, [branchId], (err, result) => {
+  if (err) {
+    console.error('Ошибка при выполнении SQL-запроса: ', err);
+    res.status(500).send(`Ошибка сервера: ${err.message}`);
+  } else {
+    res.status(200).json(result);
+  }
+});
+});
+
 app.get('/getBranchesForVacancy', (req, res) => {
   const query = `
       SELECT
@@ -120,6 +135,7 @@ db.query(query, [branchId, vacancyName], (err, result) => {
   }
 });
 });
+
 
 app.get('/getBranches', (req, res) => {
   const query = `
