@@ -67,6 +67,21 @@ app.get('/getBranchesById/:id', (req, res) => {
   });
 })
 
+app.get('/getListBranchesForVacancy', (req, res) => {
+  const query = `
+    SELECT *
+    FROM table_branches_vacancy
+  `
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении филиалов для новостей: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+})
+
 app.get('/getBranchesForVacancy', (req, res) => {
   const query = `
       SELECT
