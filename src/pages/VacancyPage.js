@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Links from '../components/Links';
 import Footer from '../components/Footer'
 import Breadcrumbs from '../components/BreadCrumbs'
+import Vacancy from "../components/Vacancy";
 
 const VacancyPage = () => {
     const location = useLocation();
@@ -28,10 +29,7 @@ const VacancyPage = () => {
         <>
         <Header />
         <Breadcrumbs paths={paths} /> 
-        <div className="plugText">
-            <p>Этот раздел сейчас в разработке.</p>
-            <p>Информация появится в ближайшее время.</p>
-        </div>
+        <Vacancy/>
         <Links />
         <Footer />
         </>

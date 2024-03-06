@@ -82,7 +82,7 @@
       .guide{
         margin-bottom: 40px;
         width: 49%;
-        height: 320px;
+        min-height: 100%;
       }
     
       .title{
@@ -126,7 +126,7 @@
   .guide{
     margin-bottom: 20px;
     width: 49%;
-    height: 260px;
+    min-height: 100%;
   }
 
   .title{
@@ -170,7 +170,7 @@
   .guide{
     margin-bottom: 20px;
     width: 49%;
-    height: 205px;
+    min-height: 100%;
   }
 
   .title{

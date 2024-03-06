@@ -1,18 +1,10 @@
-import guideData from './GuideData';
-import React from 'react';
-
-function Buf (){
-    return(
-        <div className='headerGuide'>
-            <p>СПРАВОЧНИК</p>
-        </div>
-    )}
-
+import React, { useState, useEffect } from 'react';
+  
 function Guide(props){
     return(
         <div className='guide'>
             <div className='title'>
-                <p>{props.title}</p>
+                <p>{props.title.toUpperCase()}</p>
             </div>
             <div className='containerGuide'>
                 <div className='director'>
@@ -35,15 +27,31 @@ function Guide(props){
     )}
 
 function Guides () {
+    const [guideData, setGuideData] = useState([]);
+
+    useEffect(() => {
+        // Асинхронный запрос на сервер при монтировании компонента
+        fetch('http://89.111.154.224:3001/getBranches')
+          .then(response => response.json())
+          .then(data => {
+            setGuideData(data.map(guide => ({
+              ...guide,
+            })));
+          })
+          .catch(error => console.error('Ошибка при запросе филиалов: ', error));
+      }, []);
+
     const guidesComponents = guideData.map(guide => {
         return(
-            <Guide title={guide.title} director={guide.director} location={guide.location} phone={guide.phone} email={guide.email}/>
+            <Guide key={guide.idBranch} title={guide.nameBranch} director={guide.directorBranch} location={guide.addressBranch} phone={guide.phoneBranch} email={guide.emailBranch}/>
         )
     })
 
     return(
         <>
-            <Buf />
+            <div className='headerGuide'>
+                <p>СПРАВОЧНИК</p>
+            </div>
             <div className='containerGuide'>
                 {guidesComponents}
             </div>

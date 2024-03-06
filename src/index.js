@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactDOM from 'react-dom/client';
 import './index.css';
 import './styles.css';
@@ -21,6 +22,7 @@ import './styles/ContactsStyles.css'
 import './styles/ErshovStyles.css'
 import './styles/NewsStyles.css'
 import './styles/PersonStyles.css'
+import './styles/VacancyStyles.css'
 import ErrorPage from './components/ErrorPage';
 import App from './components/App';
 import HomePage from './pages/HomePage'

@@ -1,7 +1,7 @@
 
 const Banner1 = () => (
     <>
-    <div className='container'>
+    <div className='container-banner1'>
         <div className='banner'>
             <img src='/img/banner1.png'></img>
         </div>

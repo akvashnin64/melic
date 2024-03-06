@@ -1,0 +1,265 @@
+.accordion-button:not(.collapsed) {
+    background: white;
+    color: black;
+    box-shadow: none;
+}
+
+.accordion-item:first-of-type>.accordion-header .accordion-button {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.accordion-item:last-of-type>.accordion-header .accordion-button.collapsed {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.accordion-body{
+    background-color: #F6F6F6;
+}
+
+
+@media screen and (min-width: 1920px){
+    .vacancyHeader{
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 61px;
+        margin-bottom: 50px;
+    }
+
+    .vacancyName{
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 37px;
+        margin-top: 20px;
+    }
+
+    .phoneVacancy{
+        font-size: 35px;
+        font-weight: 500;
+        line-height: 43px;
+        margin-top: 50px;
+    }
+
+    .iconPhone{
+        width: 50px;
+        height: 50px;
+        margin: 0 30px 0 15px;
+    }
+    
+    .accordion-button{
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+        height: 140px;
+        border-radius: 16px;
+    }
+    
+    .accordion-header{
+        border-radius: 16px;
+        margin-bottom: -10px;
+    }
+
+    .accordion-item{
+        margin-bottom: 60px;
+        border: 0;
+        border-radius: 16px;
+        box-shadow: 0px 0px 22px 0px #67676730;
+    }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1919px){
+    .vacancyHeader{
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 49px;
+        margin-bottom: 40px;
+    }
+
+    .vacancyName{
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        margin-top: 20px;
+    }
+
+    .phoneVacancy{
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 34px;
+        margin-top: 30px;
+    }
+
+    .iconPhone{
+        width: 40px;
+        height: 40px;
+        margin: 0 25px 0 15px;
+    }
+    
+    .accordion-button{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        height: 90px;
+        border-radius: 16px;
+    }
+    
+    .accordion-header{
+        border-radius: 16px;
+        margin-bottom: -10px;
+    }
+
+    .accordion-item{
+        margin-bottom: 50px;
+        border: 0;
+        border-radius: 16px;
+        box-shadow: 0px 0px 22px 0px #67676730;
+    }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279px){
+    .vacancyHeader{
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 37px;
+        margin-bottom: 40px;
+    }
+
+    .vacancyName{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        margin-top: 20px;
+    }
+
+    .phoneVacancy{
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 29px;
+        margin-top: 30px;
+    }
+
+    .iconPhone{
+        width: 30px;
+        height: 30px;
+        margin: 0 15px 0 10px;
+    }
+    
+    .accordion-button{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        height: 70px;
+        border-radius: 16px;
+    }
+    
+    .accordion-header{
+        border-radius: 16px;
+        margin-bottom: -10px;
+    }
+
+    .accordion-item{
+        margin-bottom: 40px;
+        border: 0;
+        border-radius: 16px;
+        box-shadow: 0px 0px 22px 0px #67676730;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 959px){
+    .vacancyHeader{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        margin-bottom: 30px;
+    }
+
+    .vacancyName{
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+        margin-top: 15px;
+    }
+
+    .phoneVacancy{
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        margin-top: 15px;
+    }
+
+    .iconPhone{
+        width: 20px;
+        height: 20px;
+        margin: 0 10px 0 5px;
+    }
+    
+    .accordion-button{
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+        height: 50px;
+        border-radius: 16px;
+    }
+    
+    .accordion-header{
+        border-radius: 16px;
+        margin-bottom: -10px;
+    }
+
+    .accordion-item{
+        margin-bottom: 30px;
+        border: 0;
+        border-radius: 16px;
+        box-shadow: 0px 0px 22px 0px #67676730;
+    }
+}
+
+@media screen and (min-width: 340px) and (max-width: 639px){
+    .vacancyHeader{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        margin-bottom: 25px;
+    }
+
+    .vacancyName{
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 12px;
+        margin-top: 15px;
+    }
+
+    .phoneVacancy{
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 17px;
+        margin-top: 15px;
+    }
+
+    .iconPhone{
+        width: 20px;
+        height: 20px;
+        margin: 0 10px 0 5px;
+    }
+    
+    .accordion-button{
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 17px;
+        height: 50px;
+        border-radius: 16px;
+    }
+    
+    .accordion-header{
+        border-radius: 16px;
+        margin-bottom: -10px;
+    }
+
+    .accordion-item{
+        margin-bottom: 30px;
+        border: 0;
+        border-radius: 16px;
+        box-shadow: 0px 0px 22px 0px #67676730;
+    }
+}
