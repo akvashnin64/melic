@@ -109,16 +109,16 @@ app.get('/getBranchesForVacancy', (req, res) => {
 app.post('/addVacancy', (req, res) => {
   const { branchId, vacancyName } = req.body;
 
-  const query = `INSERT INTO table_vacancy (idBranche, vacancy, phone) VALUES (?, ?, 888888)`;
+  const query = `INSERT INTO table_vacancy (idBranch, vacancy, phone) VALUES (?, ?, 888888)`;
 
-  db.query(query, (err, result) => {
-    if (err) {
-      console.error('Ошибка при выполнении SQL-запроса: ', err);
-      res.status(500).send(`Ошибка сервера: ${err.message}`);
-    } else {
-      res.status(200).json(result);
-    }
-  });
+db.query(query, [branchId, vacancyName], (err, result) => {
+  if (err) {
+    console.error('Ошибка при выполнении SQL-запроса: ', err);
+    res.status(500).send(`Ошибка сервера: ${err.message}`);
+  } else {
+    res.status(200).json(result);
+  }
+});
 });
 
 app.get('/getBranches', (req, res) => {
