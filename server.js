@@ -136,6 +136,21 @@ db.query(query, [branchId, vacancyName], (err, result) => {
 });
 });
 
+app.delete('/deleteVacancy', (req, res) => {
+  const {idVacancy} = req.body;
+
+  const query = `DELETE FROM table_vacancy WHERE idVacancy = ?`;
+
+  db.query(query, [idVacancy], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении SQL-запроса: ', err);
+      res.status(500).send(`Ошибка сервера: ${err.message}`);
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 
 app.get('/getBranches', (req, res) => {
   const query = `
