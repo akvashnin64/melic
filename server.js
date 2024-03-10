@@ -97,7 +97,7 @@ db.query(query, [branchId], (err, result) => {
 });
 });
 
-app.get('/getBranchesForVacancy', (req, res) => {
+app.get('/getAllVacancy', (req, res) => {
   const query = `
       SELECT
       tv.idVacancy,
@@ -135,6 +135,7 @@ db.query(query, [branchId, vacancyName], (err, result) => {
   }
 });
 });
+
 
 app.delete('/deleteVacancy', (req, res) => {
   const {idVacancy} = req.body;
