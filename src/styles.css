@@ -26,8 +26,12 @@ html {
 p {
   display: block;
   white-space: pre-line;
-  
   margin: 0;
+}
+
+#text3, #text4{
+  position: absolute;
+  color: white;
 }
 
 .headerSmallMenu{
@@ -94,7 +98,7 @@ p {
   transition: 1s;
 }
 
-.banner2 .announcementsItem {
+.announcementsItem {
   position: relative;
   display: flex;
   justify-content: center;
@@ -104,10 +108,6 @@ p {
   overflow: hidden;
 }
 
-.banner2 p {
-  position: absolute;
-  color: white;
-}
 
 #text1 p, #text2 p, #text3 p, #text4 p{
   margin: 0;
@@ -531,7 +531,7 @@ a:hover {
     text-align: left;
   }
 
-  .banner2 img{
+  .announcementsItem img{
     height: 300px;
   }
 
@@ -861,7 +861,7 @@ a:hover {
     max-width: 460px;
   }
 
-  .banner2 img{
+  .announcementsItem img{
     max-width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -1128,7 +1128,7 @@ a:hover {
     max-width: 460px;
   }
 
-  .banner2 img{
+  .announcementsItem img{
     max-width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -1385,7 +1385,7 @@ a:hover {
   }
   
 
-  .banner2 img{
+  .announcementsItem img{
     max-width: 100%;
     height: 125px;
     border-radius: 15px;
@@ -1565,6 +1565,11 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
   }
+
+  .alice-carousel__stage-item {
+    width: 235px !important;
+    margin: 0 20px 0 0 !important;
+  }
   
   .news{
     overflow: hidden;
@@ -1588,12 +1593,12 @@ a:hover {
     margin: 2px 5px;
   }
 
-  .banner2{
+  .announcementsItem{
     width: 100%;
     overflow: hidden;
   }
 
-  .banner2 img{
+  .announcementsItem img{
     width: 235px;
     height: 125px;
     border-radius: 15px;

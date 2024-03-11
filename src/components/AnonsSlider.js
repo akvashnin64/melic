@@ -1,42 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useSpring, animated, config } from 'react-spring';
-import anonsData from './AnonsData';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 const AnonsSlider = () => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(calculateItemsPerPage());
   const [anonsData, setAnonsData] = useState([]);
-
-  const totalPages = Math.ceil(anonsData.length);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setItemsPerPage(calculateItemsPerPage());
-      setCurrentPage((prev) => Math.min(prev, totalPages - itemsPerPage));
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [totalPages, itemsPerPage]);
-
-  function calculateItemsPerPage() {
-    return window.innerWidth <= 640 ? 2 : 1;
-  }
-
-  const handlePrevClick = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 0));
-  };
-
-  const handleNextClick = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages - itemsPerPage));
-  };
+  const carouselRef = React.createRef();
+  const [isPrevDisabled, setIsPrevDisabled] = useState(true);
+  const [isNextDisabled, setIsNextDisabled] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    // Асинхронный запрос на сервер при монтировании компонента
     fetch('http://89.111.154.224:3001/getLastAnonses')
       .then(response => response.json())
       .then(data => {
@@ -47,19 +21,44 @@ const AnonsSlider = () => {
       .catch(error => console.error('Ошибка при запросе новостей: ', error));
   }, []);
 
+  useEffect(() => {
+    const isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+    setIsTouchDevice(isTouch);
+  }, []);
+
   const getImagePath = (namePic) => {
     return `http://89.111.154.224/graphContent/anonses/${namePic}`;
   };
 
-  const fadeProps = useSpring({
-    opacity: 1,
-    from: { opacity: 0 },
-    reset: true,
-    config: config.molasses, // Вы можете изменить параметры конфигурации для регулировки скорости анимации
-    onRest: () => {
-      fadeProps.start({ reset: true });
-    },
-  });
+  const handlePrevClick = () => {
+    if (carouselRef.current) {
+      carouselRef.current.slidePrev();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (carouselRef.current) {
+      carouselRef.current.slideNext();
+    }
+  };
+
+  const handleSlideChanged = ({ item, isPrevSlideDisabled, isNextSlideDisabled }) => {
+    setIsPrevDisabled(isPrevSlideDisabled);
+    setIsNextDisabled(isNextSlideDisabled);
+  };
+
+  const responsive = {
+    0: { items: 2 },
+    641: { items: 1 }
+  };
+
+  const items = anonsData.map((anons, index) => (
+    <div key={index} className='announcementsItem' data-value={index}>
+      <img src={getImagePath(anons.imageNames)} alt={anons.titleAnons} />
+      <p id='text3'>{anons.titleAnons}</p>
+      <p id='text4'>{anons.dateAnons}</p>
+    </div>
+  ));
 
   return (
     <div className="containerSlider">
@@ -72,27 +71,28 @@ const AnonsSlider = () => {
             id='leftArrowNews'
             src="/img/arrow-left.svg"
             alt="Left Arrow"
-            style={{ opacity: window.innerWidth <= 1280 ? 0.3 : (currentPage > 0 ? 1 : 0.3) }}
             onClick={handlePrevClick}
+            style={{ opacity: isPrevDisabled ? 0.3 : 1, cursor: isPrevDisabled ? 'not-allowed' : 'pointer' }}
           />
           <img
             id='rightArrowNews'
             src="/img/arrow-right.svg"
             alt="Right Arrow"
-            style={{ opacity: window.innerWidth <= 1280 ? 0.3 : (currentPage < totalPages - 1 ? 1 : 0.3) }}
             onClick={handleNextClick}
+            style={{ opacity: isNextDisabled ? 0.3 : 1, cursor: isNextDisabled ? 'not-allowed' : 'pointer' }}
           />
         </div>
       </div>
-      <div className="banner2">
-        {anonsData.slice(currentPage, currentPage + itemsPerPage).map((anons, index) => (
-          <animated.div key={index} className="announcementsItem" style={fadeProps}>
-            <img src={getImagePath(anons.imageNames)} />
-            <p id='text3'>{anons.titleAnons}</p>
-            <p id='text4'>{anons.dateAnons}</p>
-          </animated.div>
-        ))}
-      </div>
+      <AliceCarousel
+        ref={carouselRef}
+        mouseTracking={isTouchDevice}
+        autoHeight
+        disableDotsControls
+        disableButtonsControls
+        items={items}
+        responsive={responsive}
+        onSlideChanged={handleSlideChanged}
+      />
     </div>
   );
 };
