@@ -47,6 +47,8 @@ const AnonsSlider = () => {
     setIsNextDisabled(isNextSlideDisabled);
   };
 
+  const isSmallScreen = window.innerWidth <= 1280;
+
   const responsive = {
     0: { items: 2 },
     641: { items: 1 }
@@ -72,14 +74,13 @@ const AnonsSlider = () => {
             src="/img/arrow-left.svg"
             alt="Left Arrow"
             onClick={handlePrevClick}
-            style={{ opacity: isPrevDisabled ? 0.3 : 1, cursor: isPrevDisabled ? 'not-allowed' : 'pointer' }}
-          />
+            style={{ opacity: isPrevDisabled || isSmallScreen ? 0.3 : 1, cursor: isPrevDisabled ? 'not-allowed' : 'pointer' }}          />
           <img
             id='rightArrowNews'
             src="/img/arrow-right.svg"
             alt="Right Arrow"
             onClick={handleNextClick}
-            style={{ opacity: isNextDisabled ? 0.3 : 1, cursor: isNextDisabled ? 'not-allowed' : 'pointer' }}
+            style={{ opacity: isNextDisabled || isSmallScreen ? 0.3 : 1, cursor: isNextDisabled ? 'not-allowed' : 'pointer' }}
           />
         </div>
       </div>
