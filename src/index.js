@@ -57,6 +57,7 @@ import AdminVideoSection from './components/AdminVideoSection';
 import PrivateRoute from './components/PrivateRoute';
 import ActsPage from './pages/ActsPage';
 import VacancyPage from './pages/VacancyPage';
+import AdminVacancySection from './components/AdminVacancySection';
 
 const router = createBrowserRouter([
   {
@@ -138,6 +139,10 @@ const router = createBrowserRouter([
         path: process.env.PUBLIC_URL + '/admin/videos',
         element: <PrivateRoute element={AdminVideoSection}/>
       },
+      {
+        path: process.env.PUBLIC_URL + '/admin/vacancy',
+        element: <PrivateRoute element={AdminVacancySection}/>
+      }
     ]
   },
   {

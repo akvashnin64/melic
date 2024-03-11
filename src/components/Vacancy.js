@@ -33,7 +33,7 @@ const Vacancys = () => {
 
   useEffect(() => {
     // Асинхронный запрос на сервер при монтировании компонента
-    fetch('http://89.111.154.224:3001/getBranchesForVacancy')
+    fetch('http://89.111.154.224:3001/getAllVacancy')
       .then(response => response.json())
       .then(data => {
         // Группировка данных по филиалам

@@ -8,6 +8,7 @@ const AdminMenu = () => {
         <Link to="/admin/announcements">Анонсы</Link>
         <Link to="/admin/photos">Фото</Link>
         <Link to="/admin/videos">Видео</Link>
+        <Link to="/admin/vacancy">Вакансии</Link>
       </div>
     )
   }

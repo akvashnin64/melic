@@ -83,9 +83,6 @@ const AdminNewsSection = () => {
         <>
         <AdminMenu />
         <div className="adminSection">
-
-            
-
             <div className="pointInAdminPage">
                 <Link className="" onClick={() => setOperation("add")}>Добавить новость</Link>
                 {operation === "add" && (
