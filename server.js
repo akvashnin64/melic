@@ -11,7 +11,7 @@ const fileUpload = require('express-fileupload');
 
 const app = express();
 
-const port = 3001; // Подставь свой порт
+const port = 3001;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -33,11 +33,11 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(fileUpload());
 
 const db = mysql.createConnection({
-  host: '89.111.154.224', // Адрес сервера базы данных
+  host: '89.111.154.224',
   port: '3306', 
-  user: 'smvh_mysql', // Имя пользователя базы данных
-  password: 'gsV4Hsf/53n', // Пароль пользователя базы данных
-  database: 'smvh_db' // Имя базы данных
+  user: 'smvh_mysql',
+  password: 'gsV4Hsf/53n',
+  database: 'smvh_db'
 });
 
 db.connect(err => {
@@ -62,7 +62,7 @@ app.get('/getBranchesById/:id', (req, res) => {
       console.error('Ошибка при получении филиалa: ', error);
       res.status(500).send('Ошибка сервера');
     } else {
-      res.json(results[0]); // Отправляем результат в формате JSON
+      res.json(results[0]);
     }
   });
 })
@@ -104,7 +104,7 @@ app.get('/getAllVacancy', (req, res) => {
       tbv.id AS idBranch,
       tbv.nameBranch,
       tv.vacancy,
-      tbv.phone
+      tbv.phoneBranch
     FROM
       table_vacancy tv
     JOIN
