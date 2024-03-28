@@ -104,7 +104,7 @@ app.get('/getAllVacancy', (req, res) => {
       tbv.id AS idBranch,
       tbv.nameBranch,
       tv.vacancy,
-      tv.phone
+      tbv.phone
     FROM
       table_vacancy tv
     JOIN
@@ -168,6 +168,30 @@ app.get('/getBranches', (req, res) => {
     }
   });
 })
+
+app.patch('/updateInfoAboutBranche', (req, res) => {
+  const { idBranch, addressBranch, phoneBranch, emailBranch, directorBranch } = req.body;
+
+  const query = `
+    UPDATE table_branches
+    SET
+      addressBranch = ?,
+      phoneBranch = ?,
+      emailBranch = ?,
+      directorBranch = ?
+    WHERE
+      idBranch = ?;
+  `;
+
+  db.query(query, [addressBranch, phoneBranch, emailBranch, directorBranch, idBranch], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении запроса: ', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.status(200).send('Информация о филиале успешно обновлена');
+    }
+  });
+});
 
 app.get('/getNewsForDate', (req, res) => {
   const startDate = req.query.startDate;
