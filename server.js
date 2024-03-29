@@ -74,7 +74,7 @@ app.get('/getListBranchesForVacancy', (req, res) => {
   `
   db.query(query, (err, result) => {
     if (err) {
-      console.error('Ошибка при получении филиалов для новостей: ', err);
+      console.error('Ошибка при получении филиалов для вакансий: ', err);
       res.status(500).send('Ошибка сервера');
     } else {
       res.status(200).json(result);
@@ -101,7 +101,7 @@ app.get('/getAllVacancy', (req, res) => {
   const query = `
       SELECT
       tv.idVacancy,
-      tbv.id AS idBranch,
+      tbv.idBranch,
       tbv.nameBranch,
       tv.vacancy,
       tbv.phoneBranch
