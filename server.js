@@ -108,7 +108,7 @@ app.get('/getAllVacancy', (req, res) => {
     FROM
       table_vacancy tv
     JOIN
-      table_branches_vacancy tbv ON tv.idBranche = tbv.id;
+      table_branches_vacancy tbv ON tv.idBranche = tbv.idBranch;
   `
 
   db.query(query, (err, result) => {
