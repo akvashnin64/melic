@@ -502,6 +502,10 @@ a:hover {
     color: rgba(96, 96, 96, 1);
   }
 
+  .news{
+    width: 1810px;
+  }
+
   .newsItem{
     margin-right: 50px;
     transition: 0.2s;
@@ -517,18 +521,6 @@ a:hover {
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
-  }
-
-  .alice-carousel__stage-item:nth-child(1) .newsItem{
-    padding-left: 1px;
-  }
-
-  .alice-carousel__stage-item:nth-child(2) .newsItem{
-    padding-left: 15px;
-  }
-
-  .alice-carousel__stage-item:nth-child(3) .newsItem{
-    padding-left: 30px;
   }
   
   .linkNewSlider {
@@ -664,11 +656,6 @@ a:hover {
   }
 }
 
-
-
-
-
-
 @media screen and (min-width: 1280px) and (max-width: 1919px){
   body{
     width: 84%;
@@ -711,8 +698,13 @@ a:hover {
     object-fit: cover;
   }
 
-  .alice-carousel__stage-item .newsItem{
-    margin-right: 20px;
+  .news{
+    overflow: hidden;
+    width: 1600px;
+  }
+
+  .containerPreviewImageForNewSlider{
+    width: 460px;
   }
 
   .newsItem:nth-child(3){
@@ -971,6 +963,10 @@ a:hover {
     
   }
 
+  .news{
+    width: 990px;
+  }
+
   .newsItem{
     margin-right: 40px;
   }
@@ -1122,25 +1118,6 @@ a:hover {
     width: 49%;
   }
 
-  .news  p:nth-child(2) {
-    font-size: 18px;
-    font-weight: 600;
-    text-align: left;
-    color: rgba(96, 96, 96, 1);
-  }
-  
-  .news  p:nth-child(3) {
-    font-size: 20px;
-    height: 50px;
-    margin-bottom: 70px;
-    font-weight: 600;
-    text-align: left;
-  }
-
-  .news div img{
-    max-width: 460px;
-  }
-
   .announcementsItem img{
     max-width: 100%;
     height: 100%;
@@ -1271,6 +1248,10 @@ a:hover {
     font-size: 25px;
     font-weight: 700;
     line-height: 30px;
+  }
+
+  .news {
+    width: 640px;
   }
 
   .news  p:nth-child(2) {
@@ -1573,15 +1554,15 @@ a:hover {
     width: 340px;
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
   }
 
-  .alice-carousel__stage-item {
-    width: 235px !important;
-    margin: 0 20px 0 0 !important;
-  }
-  
   .news{
-    overflow: hidden;
+    width: 500px;
+  }
+
+  .anonses{
+    width: 500px;
   }
 
   .textSlider{

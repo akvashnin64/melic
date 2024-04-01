@@ -71,7 +71,7 @@ const NewSlider = ({ headerText }) => {
     340: { items: 2 },
     640: { items: 2 },
     960: { items: 2 },
-    1280: { items: 3 },
+    1280: { items: 3, percent: 20 },
   };
 
   const items = newsData.map((news, index) => {
@@ -91,7 +91,6 @@ const NewSlider = ({ headerText }) => {
         </Link>
       </div>
     )
-    
 });
 
   const handlePrevClick = () => {
@@ -110,45 +109,7 @@ const NewSlider = ({ headerText }) => {
     setIsPrevDisabled(isPrevSlideDisabled);
     setIsNextDisabled(isNextSlideDisabled);
     setActiveSlideIndex(item);
-  
-    const activeSlideIndex = item;
-    const slides = document.querySelectorAll('.newsItem');
-    
-    // Определяем padding в зависимости от ширины экрана
-    const padding = calculatePadding(window.innerWidth);
-  
-    // Устанавливаем паддинг для текущего активного слайда
-    slides[activeSlideIndex].style.paddingLeft = padding[0];
-    
-    // Устанавливаем паддинг для следующих слайдов
-    for (let i = 1; i < padding.length; i++) {
-      if (slides[activeSlideIndex + i]) {
-        slides[activeSlideIndex + i].style.paddingLeft = padding[i];
-      }
-    }
   };
-
-  const calculatePadding = (windowWidth) => {
-    if (windowWidth > 1920) {
-      return ['0', '15px', '30px', '10px'];
-    } else if (windowWidth > 1280) {
-      return ['0', '0', '0', '0'];
-    } else if (windowWidth > 960){
-      return ['0', '22px', '0'];
-    } else if (windowWidth > 640){
-      return ['0', '5px', '0'];
-    } else if (windowWidth > 340){
-      return ['0', '0', '5px'];
-    }
-  };
-
-  useEffect(() => {
-    const initialPadding = calculatePadding(window.innerWidth);
-    const slides = document.querySelectorAll('.newsItem');
-    slides.forEach((slide, index) => {
-      slide.style.paddingLeft = initialPadding[index];
-    });
-  }, []);
 
   return (
     <div className="containerSlider">
@@ -181,6 +142,7 @@ const NewSlider = ({ headerText }) => {
           mouseDragEnabled={false}
           touchTrackingEnabled={handleTouchEvents}
           items={items}
+          onResized={handleSlideChanged}
           onSlideChanged={handleSlideChanged}
         />
       </div>

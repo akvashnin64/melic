@@ -84,16 +84,19 @@ const AnonsSlider = () => {
           />
         </div>
       </div>
-      <AliceCarousel
-        ref={carouselRef}
-        mouseTracking={isTouchDevice}
-        autoHeight
-        disableDotsControls
-        disableButtonsControls
-        items={items}
-        responsive={responsive}
-        onSlideChanged={handleSlideChanged}
-      />
+      <div className='anonses'>
+        <AliceCarousel
+          ref={carouselRef}
+          mouseTracking={isTouchDevice}
+          autoHeight
+          disableDotsControls
+          disableButtonsControls
+          items={items}
+          responsive={responsive}
+          onSlideChanged={handleSlideChanged}
+        />
+      </div>
+      
     </div>
   );
 };

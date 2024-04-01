@@ -40,6 +40,7 @@
 
     .photo{
         margin-bottom: 80px;
+        width: 1800px;
     }
 
     .oneVideoInSlider{
@@ -56,6 +57,7 @@
 
     .videoSlider{
         margin-bottom: 30px;
+        width: 1800px;
     }
 
     .popup img{
@@ -73,6 +75,7 @@
 
     .photo{
         margin-bottom: 70px;
+        width: 1800px;
     }
 
     .oneVideoInSlider{
@@ -89,6 +92,7 @@
 
     .videoSlider{
         margin-bottom: 60px;
+        width: 1800px;
     }
 }
 
@@ -101,6 +105,7 @@
 
     .photo{
         margin-bottom: 50px;
+        width: 1200px;
     }
 
     .oneVideoInSlider{
@@ -117,6 +122,7 @@
 
     .videoSlider{
         margin-bottom: 50px;
+        width: 1200px;
     }
 
     .leftArrowGallery{
@@ -133,6 +139,7 @@
 
     .photo{
         margin-bottom: 70px;
+        width: 640px;
     }
 
     .oneVideoInSlider{
@@ -149,6 +156,7 @@
 
     .videoSlider{
         margin-bottom: 55px;
+        width: 640px;
     }
 
     .leftArrowGallery{
@@ -157,6 +165,10 @@
 }
 
 @media screen and (min-width: 340px) and (max-width: 639px){
+    body{
+        overflow: hidden;
+    }
+
     .photo img{
         width: 235px;
         height: 150px;
@@ -165,6 +177,7 @@
 
     .photo{
         margin-bottom: 50px;
+        width: 500px;
     }
 
     .oneVideoInSlider{
@@ -181,6 +194,7 @@
 
     .videoSlider{
         margin-bottom: 50px;
+        width: 500px;
     }
 
     .leftArrowGallery{
