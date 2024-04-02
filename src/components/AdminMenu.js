@@ -9,6 +9,7 @@ const AdminMenu = () => {
         <Link to="/admin/photos">Фото</Link>
         <Link to="/admin/videos">Видео</Link>
         <Link to="/admin/vacancy">Вакансии</Link>
+        <Link to="/admin/branche">Филиалы</Link>
       </div>
     )
   }

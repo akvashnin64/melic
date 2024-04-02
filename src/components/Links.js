@@ -1,7 +1,8 @@
-import {React , useState} from 'react';
+import {React , useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import { useSwipeable } from 'react-swipeable';
 import linksData from './LinksData';
+import AliceCarousel from 'react-alice-carousel';
 
 const UserLink = ({picture, text}) => (
         <div className='link'>
@@ -11,47 +12,77 @@ const UserLink = ({picture, text}) => (
 );
 
 const Links = () => {
-    const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isSliderEnabled, setIsSliderEnabled] = useState(false);
 
-  const handlers = useSwipeable({
-    onSwiped: (eventData) => handleSwipe(eventData.deltaX),
-  });
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
-  const handleSwipe = (deltaX) => {
-    const containerWidth =  1000;
-    const maxOffset = 0; // Начальная точка
-    const minOffset = -((linksData.length - 1) * 80/* Ширина одного элемента */);
+    window.addEventListener('resize', handleResize);
 
-    let newOffset = offset + deltaX;
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-    // Предотвращаем выход за границы
-    newOffset = Math.max(minOffset, Math.min(maxOffset, newOffset));
+  useEffect(() => {
+    setIsSliderEnabled(windowWidth < 960);
+  }, [windowWidth]);
 
-    setOffset(newOffset);
+  if (!isSliderEnabled) {
+    return (
+      <>
+        <div className='containerLinks'>
+          <div className='textLinks'>
+            <p>ПОЛЕЗНЫЕ ССЫЛКИ</p>
+          </div>
+        </div>
+        <div className='containerLink'>
+          {linksData.map((link, index) => (
+            <Link to={link.link} key={link.id}>
+              <UserLink picture={link.picture} text={link.text} />
+            </Link>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  const responsive = {
+    0: { items: 3 },
+    640: { items: 5 }
   };
 
-    return(
+  return (
     <>
-        <div className='containerLinks'>
-            <div className='textLinks'>
-                <p>ПОЛЕЗНЫЕ ССЫЛКИ</p>
-            </div>
-            <img
-              id='rightArrowLinks'
-              src="/img/arrow-right.svg"
-              alt="Right Arrow"
-              />
+      <div className='containerLinks'>
+        <div className='textLinks'>
+          <p>ПОЛЕЗНЫЕ ССЫЛКИ</p>
         </div>
-        <div className='containerLink' style={{ transform: `translateX(${offset}px)` }} {...handlers}>
-        {linksData.map((link, index) => (
-          <Link to={link.link} key={link.id}>
-            <UserLink picture={link.picture} text={link.text} />
-          </Link>
-        ))}
+        <img
+            id='rightArrowLinks'
+            src="/img/arrow-right.svg"
+            alt="Right Arrow"
+          />
       </div>
+      <div className='containerLink'>
+        <AliceCarousel
+          responsive={responsive}
+          disableDotsControls
+          disableButtonsControls
+          mouseDragEnabled
+        >
+          {linksData.map((link, index) => (
+            <Link to={link.link} key={link.id}>
+              <UserLink picture={link.picture} text={link.text} />
+            </Link>
+          ))}
+        </AliceCarousel>
+      </div>
+
     </>
-    )
-    
+  );
 };
 
 export default Links

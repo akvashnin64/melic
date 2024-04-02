@@ -36,6 +36,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-spring": "^9.7.3",
+    "react-spring-carousel": "^2.0.19",
     "react-swipeable": "^7.0.1",
     "slick-carousel": "^1.8.1",
     "universal-cookie": "^7.0.2",

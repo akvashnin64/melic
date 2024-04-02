@@ -367,6 +367,7 @@
 }
 
 @media screen and (min-width: 340px) and (max-width: 639px){
+    
     .mainHeaderHistory{
         font-size: 25px;
         font-weight: 700;
@@ -425,6 +426,7 @@
 
     .blockHistory1 {
         box-shadow: 0px 0px 22px 0px #67676730;
+        border-radius: 15px;
         padding: 50px 10px;
         margin: 50px 0;
     }
@@ -437,6 +439,7 @@
     }
 
     .blockHistory2 {
+        overflow: visible;
         box-shadow: 0px 0px 22px 0px #67676730;
         border-radius: 15px;
         padding: 50px 10px;

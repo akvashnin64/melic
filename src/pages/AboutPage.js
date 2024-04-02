@@ -16,6 +16,12 @@ const AboutPage = () => {
       window.scrollTo(0, 0);
     }, [location.pathname]);
   
+    useEffect(() => {
+        document.body.style.overflow = 'visible';
+        return () => {
+          document.body.style.overflow = 'hidden';
+        };
+      });
 
     const paths = [
         {
