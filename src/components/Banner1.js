@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 
 const Banner1 = () => {
   const [imageUrl, setImageUrl] = useState("/img/banner1.png");
 
-  useEffect(() => {
-    const handleResize = () => {
-      const newImageUrl = window.innerWidth < 640 ? "/img/banner1low.png" : "/img/banner1.png";
-      setImageUrl(newImageUrl);
-    };
+  // Обновление изображения сразу после загрузки компонента
+  useLayoutEffect(() => {
+    handleResize();
+  }, []);
 
+  const handleResize = () => {
+    const newImageUrl = window.innerWidth < 640 ? "/img/banner1low.png" : "/img/banner1.png";
+    setImageUrl(newImageUrl);
+  };
+
+  useEffect(() => {
     window.addEventListener("resize", handleResize);
 
     return () => {
