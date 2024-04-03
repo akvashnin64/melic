@@ -1718,8 +1718,14 @@ a:hover {
     width: 100%;
   }
 
-  .banner img{
-    margin-left: -350%;
+  .banner {
+    width: 340px;
+    height: 400px;
+  }
+
+  .banner img {
+    width: 100%;
+    height: 100%;
   }
 
   #text1 { 
