@@ -17,9 +17,9 @@ const HomePage = () => {
     }, [location.pathname]);
 
     useEffect(() => {
-        document.body.style.overflow = 'visible';
+        document.body.style.overflow = 'hidden';
         return () => {
-          document.body.style.overflow = 'hidden';
+          document.body.style.overflow = 'visible';
         };
       });
   
