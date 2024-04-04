@@ -1,5 +1,5 @@
 @font-face{
-  font-family: 'Montserrat';
+  font-family: 'MontserratNEW';
   src: url("/src/fonts/Montserrat-VariableFont_wght.woff2") format("woff2"),
   url("/src/fonts/Montserrat-VariableFont_wght.woff") format("woff"),
   url("/src/fonts/Montserrat-VariableFont_wght.ttf") format("ttf");
@@ -7,7 +7,7 @@
 }
 
 * {
-  font-family: "Montserrat";
+  font-family: "MontserratNEW";
 }
 
 .boldText500{
