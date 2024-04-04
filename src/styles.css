@@ -24,7 +24,6 @@
 
 html {
   overflow-x: hidden;
-  text-size-adjust: none;
 }
 
 
@@ -352,6 +351,10 @@ a:hover {
 
 .breadCrumb a{
   color: #999999;
+}
+
+body{
+  text-size-adjust: none;
 }
 
 
