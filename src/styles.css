@@ -1426,7 +1426,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0%;
     width: 52%;
@@ -1910,7 +1910,7 @@ a:hover {
     
     flex-direction: column;
     justify-content: start;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 30%;
     width: 70%;
