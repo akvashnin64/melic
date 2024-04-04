@@ -1696,9 +1696,9 @@ body{
   }
 
   .textBranches p{
-    font-size: 25px;
+    font-size: 1.55em;
     font-weight: 700;
-    line-height: 30px;
+    line-height: 1em;
     margin-bottom: 20px;
   }
 
