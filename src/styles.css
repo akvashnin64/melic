@@ -1,13 +1,12 @@
 @font-face{
-  font-family: 'MontserratNEW';
+  font-family: 'Montserrat';
   src: url("/src/fonts/Montserrat-VariableFont_wght.woff2") format("woff2"),
-  url("/src/fonts/Montserrat-VariableFont_wght.woff") format("woff"),
-  url("/src/fonts/Montserrat-VariableFont_wght.ttf") format("ttf");
+  url("/src/fonts/Montserrat-VariableFont_wght.woff") format("woff");
   
 }
 
 * {
-  font-family: "MontserratNEW";
+  font-family: "Montserrat";
 }
 
 .boldText500{
@@ -1696,9 +1695,9 @@ body{
   }
 
   .textBranches p{
-    font-size: 1.55em;
+    font-size: 25px;
     font-weight: 700;
-    line-height: 1em;
+    line-height: 30px;
     margin-bottom: 20px;
   }
 
