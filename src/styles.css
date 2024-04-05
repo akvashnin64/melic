@@ -1857,10 +1857,15 @@ body{
   }
 
   .branche {
+    position: relative;
     height: 125px;
     font-size: 14px;
     font-weight: 600;
     line-height: 17px;
+  }
+
+  .branche p{
+    width: 100%;
   }
 
   .branche img {
