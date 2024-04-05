@@ -1544,13 +1544,8 @@
         line-height: 22px;
     }
 
-    .containerMap YMaps {
-        border-radius: 0;
-    }
-
     .map {
-        margin: 0 0 25px 10px;
-        width: 320px;
+        width: 340px;
         height: 225px;
     }
     

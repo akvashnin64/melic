@@ -91,9 +91,9 @@ const AllNews = () => {
         </div>
         <div className="filterAllNews">
           <p>Дата от</p>
-          <input id="startDate" type="date" onChange={handleStartDateChange} />
+          <input id="startDate" type="date" placeholder="дд.мм.гггг" onChange={handleStartDateChange} />
           <p>до</p>
-          <input id="endDate" type="date" onChange={handleEndDateChange} />
+          <input id="endDate" type="date" placeholder="дд.мм.гггг" onChange={handleEndDateChange} />
         </div>
       </div>
 

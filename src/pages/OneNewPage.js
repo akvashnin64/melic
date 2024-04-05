@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Header from "../components/Header";
 import AnonsSlider from '../components/AnonsSlider'
@@ -12,6 +13,13 @@ const OneNew = ({ setNewsDataForPage }) => {
   const { id } = useParams();
   const [newsData, setNewsData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Прокрутить в верхнюю часть страницы при изменении маршрута
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (id) {
@@ -43,13 +51,20 @@ const OneNew = ({ setNewsDataForPage }) => {
   };
 
   function cleanString(input) {
-    const withoutHtmlTags = input.replace(/<(?!\/?p(\s+[^>]*)?>)[^>]+>/g, '');
+    // Удаляем все HTML теги, включая пустые теги
+    const withoutHtmlTags = input.replace(/<[^>]*>(\s*<\/[^>]*>)?/g, '');
+    // Добавляем перевод строки после закрывающих тегов </p>
     const addNewLineAfterClosingPTags = withoutHtmlTags.replace(/<\/p>/g, '</p>\n');
+    // Удаляем оставшиеся HTML теги
     const removeRemainingTags = addNewLineAfterClosingPTags.replace(/<[^>]*>/g, '');
-    const replacedText = removeRemainingTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/g, '').replace(/&ndash;/g, '-').replace(/&mdash;/g, '-');
+    // Удаляем символы новой строки
+    const removeNewLines = removeRemainingTags.replace(/\n/g, '');
+    // Заменяем специальные символы на соответствующие им символы
+    const replacedText = removeNewLines.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/g, '').replace(/&ndash;/g, '-').replace(/&mdash;/g, '-');
+    // Декодируем строку URL
     const decodedString = decodeURIComponent(replacedText);
     return decodedString;
-  }
+}
 
   function getImagePath(imageNames, oldIndex) {
     const namesArray = imageNames ? imageNames.split(',') : [];
@@ -60,7 +75,11 @@ const OneNew = ({ setNewsDataForPage }) => {
   }
 
   function usageSlider(imageCount) {
-    return imageCount > 3;
+    if (imageCount < 3) {
+      return false;
+    } else {
+      return true; // Используем слайдер
+    }
   }
 
 
@@ -80,23 +99,27 @@ const OneNew = ({ setNewsDataForPage }) => {
         <p>{cleanString(newsData.textNews)}</p>
       </div>
       <div className='containerImagesOneNew'>
-        {usageSlider(newsData.imageCount) ? (
-          <PhotoSlider 
-            photos={newsData.imageNames.split(',')} 
-            basePath={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}`}
-          />
-        ) : (
-          (newsData.imageNames && newsData.imageNames.trim() !== '') ? (
-            newsData.imageNames.split(',').map((imageName, index) => (
-              <img
-                className='photoInOneNewPage'
-                key={index}
-                src={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}/${imageName.trim()}`}
-                alt={`Image ${index + 1}`}
-              />
-            ))
-          ) : null
-        )}
+      {usageSlider(newsData.imageCount) ? (
+        <PhotoSlider 
+          photos={newsData.imageNames ? newsData.imageNames.split(',') : []} 
+          basePath={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}`}
+        />
+      ) : (
+        (newsData.imageNames && newsData.imageNames.trim() !== '') ? (
+          newsData.imageNames.split(',').map((imageName, index) => (
+            <img
+              className='photoInOneNewPage'
+              key={index}
+              src={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}/${imageName.trim()}`}
+              alt={`Image ${index + 1}`}
+              style={{
+                width: newsData.imageCount === 1 ? '75%' : newsData.imageCount === 2 ? '50%' : newsData.imageCount === 3 ? '30%' : 'auto',
+                height: newsData.imageCount === 1 ? '75%' : newsData.imageCount === 2 ? '50%' : newsData.imageCount === 3 ? '30%' : 'auto'
+              }}
+            />
+          ))
+        ) : null
+      )}
       </div>
 
     </div>

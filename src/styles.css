@@ -507,10 +507,6 @@ a:hover {
   color: #999999;
 }
 
-body{
-  text-size-adjust: none;
-}
-
 
 
 @media screen and (min-width: 1920px){
@@ -1862,6 +1858,7 @@ body{
     font-size: 14px;
     font-weight: 600;
     line-height: 17px;
+    box-shadow: none;
   }
 
   .branche p{
