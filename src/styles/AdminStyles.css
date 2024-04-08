@@ -25,7 +25,7 @@
     text-decoration: underline;
 }
 
-.inputLogin input[type='login'], .inputLogin input[type='password']{
+.inputLogin input{
     padding-left: 20px;
 }
 
@@ -98,10 +98,80 @@
         margin-top: 50px;
         width: 1300px;
     }
+
+    .adminForm select {
+        height: 60px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+        font-size: 25px;
+        font-weight: 500;
+        color: rgb(50, 50, 50);
+        padding-left: 20px;
+        border-color: black;
+        border-width: 2px;
+    }
+
+    .adminForm input{
+        height: 60px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+        font-size: 25px;
+        font-weight: 500;
+        color: rgb(50, 50, 50);
+        padding-left: 20px;
+    }
+
+    .adminForm button {
+        height: 50px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+    .textPointInAdminPage{
+        font-size: 30px;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){
+    .adminForm select {
+        height: 60px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+        font-size: 25px;
+        font-weight: 500;
+        color: rgb(50, 50, 50);
+        padding-left: 20px;
+        border-color: black;
+        border-width: 2px;
+    }
 
+    .adminForm input{
+        height: 60px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+        font-size: 25px;
+        font-weight: 500;
+        color: rgb(50, 50, 50);
+        padding-left: 20px;
+    }
+
+    .adminForm button {
+        height: 50px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+    .textPointInAdminPage{
+        font-size: 30px;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
 }
 
 @media screen and (min-width: 960px) and (max-width: 1279px){

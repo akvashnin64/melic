@@ -124,7 +124,7 @@ app.get('/getAllVacancy', (req, res) => {
 app.post('/addVacancy', (req, res) => {
   const { branchId, vacancyName } = req.body;
 
-  const query = `INSERT INTO table_vacancy (idBranche, vacancy, phone) VALUES (?, ?, 888888)`;
+  const query = `INSERT INTO table_vacancy (idBranche, vacancy) VALUES (?, ?)`;
 
 db.query(query, [branchId, vacancyName], (err, result) => {
   if (err) {
