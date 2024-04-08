@@ -6,6 +6,7 @@ const AdminVacancySection = () => {
     const [listBranches, setListBranches] = useState([]);
     const [operation, setOperation] = useState(null);
     const [selectedBranch, setSelectedBranch] = useState('');
+    const [selectedBranchId, setSelectedBranchId] = useState('');
     const [selectedVacancy, setSelectedVacancy] = useState('');
     const [vacancies, setVacancies] = useState([]);
     const [idVacancy, setIdVacancy] = useState();
@@ -93,7 +94,7 @@ const AdminVacancySection = () => {
             <div className="adminSection">
                 <div className="pointInAdminPage">
                     <Link className="" onClick={() => setOperation("add")}>
-                        Добавить новую вакансию
+                        <p className="textPointInAdminPage">Добавить новую вакансию</p>
                     </Link>
                     {operation === "add" && (
                         <form className="adminForm" encType="multipart/form-data" onSubmit={addVacancy}>
@@ -103,52 +104,56 @@ const AdminVacancySection = () => {
                             >
                                 <option value="">Выберите филиал</option>
                                 {listBranches.map(branch => (
-                                    <option key={branch.id} value={branch.id}>
+                                    <option key={branch.idBranch} value={branch.idBranch}>
                                         {branch.nameBranch}
                                     </option>
                                 ))}
                             </select>
-
+    
                             <input
                                 type="text"
                                 placeholder="Введите название вакансии"
                                 name="textVacancy"
                             />
-
+    
                             <button type="submit">Добавить</button>
                         </form>
                     )}
                 </div>
-
+    
                 <div className="pointInAdminPage">
                     <Link className="" onClick={() => setOperation("delete")}>
-                        Удалить существующую вакансию
+                        <p className="textPointInAdminPage">Удалить существующую вакансию</p>
                     </Link>
                     {operation === "delete" && (
                         <form className="adminForm" encType="multipart/form-data" onSubmit={deleteVacancy}>
                             <select
                                 value={selectedBranch}
-                                onChange={(e) => getVacancysForId(e.target.value)}
+                                onChange={(e) => {
+                                    setSelectedBranch(e.target.value);
+                                    getVacancysForId(e.target.value);
+                                }}
                             >
                                 <option value="">Выберите филиал</option>
                                 {listBranches.map(branch => (
-                                    <option key={branch.id} value={branch.id}>
+                                    <option key={branch.idBranch} value={branch.idBranch}>
                                         {branch.nameBranch}
                                     </option>
                                 ))}
                             </select>
-
+    
                             <select
                                 value={selectedVacancy}
                                 onChange={(e) => setSelectedVacancy(e.target.value)}
                             >
+                                <option value="">Выберите вакансию</option>
                                 {vacancies.map(vacancy => (
-                                    <option key={vacancy.id} value={vacancy.id}>
+                                    <option key={vacancy.idVacancy} value={vacancy.idVacancy}>
                                         {vacancy.vacancy}
                                     </option>
                                 ))}
                             </select>
-
+    
                             <button type="submit">Удалить</button>
                         </form>
                     )}

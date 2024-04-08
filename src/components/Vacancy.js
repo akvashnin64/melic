@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Accordion from 'react-bootstrap/Accordion';
 
 const Vacancy = (props) => {
-  const phoneNumbers = [...new Set(props.vacancies.map((vacancy) => vacancy.phone).filter(Boolean))];
+  const phoneNumbers = [...new Set(props.vacancies.map((vacancy) => vacancy.phoneBranch).filter(Boolean))];
 
   return (
     <Accordion.Item eventKey={props.branchId}>
