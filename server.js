@@ -312,6 +312,10 @@ app.get('/getLastAnonses', (req, res) => {
 
 
 app.post('/api/addNews', (req, res) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('Файлы не загружены.');
+  }
+
   const { title, text, date } = req.body;
   const files = req.files;
 
