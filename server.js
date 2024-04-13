@@ -317,7 +317,7 @@ app.post('/api/addNews', (req, res) => {
   }
 
   const { title, text, date } = req.body;
-  const files = req.files;
+  const files = req.files.files;
 
   // Вывод данных в консоль
   console.log('Получены новые данные:', { title, text, date, files });
