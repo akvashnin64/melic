@@ -329,7 +329,7 @@ app.get('/getLastAnonses', (req, res) => {
 
 app.post('/api/addNews', upload.array('files'), (req, res) => {
   const { title, text, date } = req.body;
-  const files = req.files;
+  const files = req.files.newsFile;
 
   // Вывод данных в консоль
   console.log('Получены новые данные:', { title, text, date, files });
