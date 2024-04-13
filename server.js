@@ -8,6 +8,20 @@ const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const newsIndex = req.body.newsIndex; // Предположим, что индекс новости передается в теле запроса
+    const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
+    cb(null, uploadPath);
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 const app = express();
 
@@ -16,6 +30,8 @@ const port = 3001;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+
 
 const imagesPath = path.join(__dirname, 'graphContent');
 
@@ -311,13 +327,9 @@ app.get('/getLastAnonses', (req, res) => {
 });
 
 
-app.post('/api/addNews', (req, res) => {
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('Файлы не загружены.');
-  }
-
+app.post('/api/addNews', upload.array('files'), (req, res) => {
   const { title, text, date } = req.body;
-  const files = req.files.files;
+  const files = req.files;
 
   // Вывод данных в консоль
   console.log('Получены новые данные:', { title, text, date, files });
@@ -333,7 +345,7 @@ app.post('/api/addNews', (req, res) => {
       console.error('Ошибка при добавлении новости в таблицу table_news: ', err);
       res.status(500).send('Ошибка сервера');
     } else {
-      const newsId = result.insertId;
+      const newsId = result.insertId; // Получаем idNews из результата вставки
 
       // Добавление файлов к новости в таблицу table_picture_news
       if (files && files.length > 0) {
@@ -343,7 +355,7 @@ app.post('/api/addNews', (req, res) => {
         `;
 
         files.forEach(async (file) => {
-          db.query(insertPictureQuery, [newsId, file.name], (err) => {
+          db.query(insertPictureQuery, [newsId, file.originalname], (err) => {
             if (err) {
               console.error('Ошибка при добавлении файла к новости: ', err);
             }
@@ -351,9 +363,12 @@ app.post('/api/addNews', (req, res) => {
         });
       }
 
-      res.status(200).send('Новость успешно добавлена в базу данных');
+      req.newsId = newsId; // Сохраняем idNews в объекте запроса для использования при сохранении файлов
+      next(); // Переходим к обработчику, который сохраняет файлы
     }
   });
+}, (req, res) => {
+  res.status(200).send('Новость успешно добавлена в базу данных');
 });
 
 app.delete('/api/deleteNews/:id', (req, res) => {
