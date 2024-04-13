@@ -183,7 +183,7 @@ app.patch('/updateInfoAboutBranche', (req, res) => {
       idBranch = ?;
   `;
 
-  db.query(query, [addressBranch, phoneBranch, emailBranch, directorBranch, idBranch], (err, result) => {
+  db.query(query, [idBranch, addressBranch, phoneBranch, emailBranch, directorBranch], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Internal Server Error');
@@ -313,7 +313,7 @@ app.get('/getLastAnonses', (req, res) => {
 
 app.post('/api/addNews', (req, res) => {
   const { title, text, date } = req.body;
-  const files = req.files.files;
+  const files = req.files;
 
   // Вывод данных в консоль
   console.log('Получены новые данные:', { title, text, date, files });
