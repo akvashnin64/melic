@@ -327,48 +327,28 @@ app.get('/getLastAnonses', (req, res) => {
 });
 
 
-app.post('/api/addNews', upload.array('files'), (req, res) => {
-  const { title, text, date } = req.body;
-  const files = req.files.newsFile;
+app.post('/api/addNews', (req, res) => {
+  const { title, date , text} = req.body;
+  //const files = req.files.newsFile;
 
   // Вывод данных в консоль
-  console.log('Получены новые данные:', { title, text, date, files });
+  console.log('Получены новые данные:', { title, date , text});
 
-  // Здесь вы можете добавить логику сохранения в базу данных
-  const insertNewsQuery = `
+  // логикa сохранения в базу данных
+  const query = `
     INSERT INTO table_news (titleNews, dateNews, textNews)
     VALUES (?, ?, ?);
   `;
 
-  db.query(insertNewsQuery, [title, date, text], (err, result) => {
+  db.query(query, [title, date, text], (err, result) => {
     if (err) {
       console.error('Ошибка при добавлении новости в таблицу table_news: ', err);
       res.status(500).send('Ошибка сервера');
     } else {
       const newsId = result.insertId; // Получаем idNews из результата вставки
-
-      // Добавление файлов к новости в таблицу table_picture_news
-      if (files && files.length > 0) {
-        const insertPictureQuery = `
-          INSERT INTO table_picture_news (content_id, filename)
-          VALUES (?, ?);
-        `;
-
-        files.forEach(async (file) => {
-          db.query(insertPictureQuery, [newsId, file.originalname], (err) => {
-            if (err) {
-              console.error('Ошибка при добавлении файла к новости: ', err);
-            }
-          });
-        });
-      }
-
-      req.newsId = newsId; // Сохраняем idNews в объекте запроса для использования при сохранении файлов
-      next(); // Переходим к обработчику, который сохраняет файлы
+      console.log(newsId);
     }
   });
-}, (req, res) => {
-  res.status(200).send('Новость успешно добавлена в базу данных');
 });
 
 app.delete('/api/deleteNews/:id', (req, res) => {
