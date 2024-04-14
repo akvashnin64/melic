@@ -328,13 +328,12 @@ app.get('/getLastAnonses', (req, res) => {
 
 
 app.post('/api/addNews', (req, res) => {
-  const { title, date , text} = req.body;
-  //const files = req.files.newsFile;
+  const { title, date, text } = req.body;
 
   // Вывод данных в консоль
-  console.log('Получены новые данные:', { title, date , text});
+  console.log('Получены новые данные:', { title, date, text });
 
-  // логикa сохранения в базу данных
+  // Логика сохранения в базу данных
   const query = `
     INSERT INTO table_news (titleNews, dateNews, textNews)
     VALUES (?, ?, ?);
@@ -347,6 +346,7 @@ app.post('/api/addNews', (req, res) => {
     } else {
       const newsId = result.insertId; // Получаем idNews из результата вставки
       console.log(newsId);
+      res.status(200).json({ newsId }); // Отправляем ответ клиенту с ID новости
     }
   });
 });
