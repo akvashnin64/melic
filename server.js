@@ -352,6 +352,26 @@ app.post('/api/addNews', (req, res) => {
   });
 });
 
+app.patch('/api/addOldIndex', (req, res) => {
+  const {idNews} = req.body;
+  const query = `
+  UPDATE table_news
+  SET
+    oldIndex = ?
+  WHERE
+    idNews = ?
+  `;
+
+  db.query(query, [idNews, idNews], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении запроса: ', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.status(200).json({ result });
+    }
+  });
+})
+
 app.delete('/api/deleteNews/:id', (req, res) => {
   const newsId = req.params.id;
 

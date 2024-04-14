@@ -82,6 +82,24 @@ const AdminNewsSection = () => {
                 const data = await response.json();
                 console.log('Ответ от сервера:', data);
                 console.log('Новость успешно добавлена');
+
+                const response = await fetch('http://89.111.154.224:3001/api/addOldIndex', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: {
+                        idNews: data
+                    }
+                });
+
+                if (response.ok){
+                    const data = await response.json();
+                    console.log('Ответ от сервера:', data);
+                }
+                else {
+                    throw new Error('Ошибка при обновлении новости. Код ошибки: ' + response.status);
+                }
             } else {
                 throw new Error('Ошибка при добавлении новости. Код ошибки: ' + response.status);
             }
