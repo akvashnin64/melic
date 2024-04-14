@@ -9,6 +9,7 @@ const md5 = require('md5');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const multer = require('multer');
+const debug = require('debug')('app:server');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -331,7 +332,7 @@ app.post('/api/addNews', (req, res) => {
   const { title, date, text } = req.body;
 
   // Вывод данных в консоль
-  console.log('Получены новые данные:', { title, date, text });
+  debug('Получены новые данные:', { title, date, text });
 
   // Логика сохранения в базу данных
   const query = `
@@ -341,11 +342,11 @@ app.post('/api/addNews', (req, res) => {
 
   db.query(query, [title, date, text], (err, result) => {
     if (err) {
-      console.error('Ошибка при добавлении новости в таблицу table_news: ', err);
+      debug('Ошибка при добавлении новости в таблицу table_news:', err);
       res.status(500).send('Ошибка сервера');
     } else {
       const newsId = result.insertId; // Получаем idNews из результата вставки
-      console.log(newsId);
+      debug('Новость успешно добавлена. ID новости:', newsId);
       res.status(200).json({ newsId }); // Отправляем ответ клиенту с ID новости
     }
   });

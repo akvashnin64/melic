@@ -63,12 +63,12 @@ const AdminNewsSection = () => {
                 }),
             });
 
-            if (!response.ok) throw new Error('Ошибка при добавлении новости Код ошибки:' + response.status);
-            else {
+            if (response.ok) {
                 const data = await response.json();
                 console.log(data);
                 console.log('Новость успешно добавлена');
             }
+            else throw new Error('Ошибка при добавлении новости Код ошибки:' + response.status);
             
         } catch (error) {
             console.error('Ошибка:', error.message);
@@ -80,6 +80,8 @@ const AdminNewsSection = () => {
         const title = document.querySelector('#titleInput').value;
         const text = document.querySelector('#textInput').value;
         const date = document.querySelector('#dateInput').value;
+
+        console.log("Данные из формы:", { title, text, date });
 
         // Отправка данных на сервер
         saveNews({ title, text, date });
