@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer'); 
 const mysql = require('mysql');
+const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
@@ -13,16 +14,26 @@ const debug = require('debug')('app:server');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const newsIndex = req.body.newsIndex; // Предположим, что индекс новости передается в теле запроса
-    const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
-    cb(null, uploadPath);
+      const newsIndex = req.body.newsIndex;
+      const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
+      createNewsFolder(newsIndex); // Создаем папку с индексом новости, если она еще не существует
+      cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+      cb(null, file.originalname);
   }
 });
 
 const upload = multer({ storage: storage });
+
+const createNewsFolder = (newsIndex) => {
+  const folderPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
+
+  // Проверяем, существует ли папка, и создаем ее, если нет
+  if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath);
+  }
+};
 
 const app = express();
 
@@ -371,6 +382,44 @@ app.patch('/api/addOldIndex', (req, res) => {
     }
   });
 })
+
+app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
+  try {
+      const newsIndex = req.body.newsIndex;
+      const images = req.files.map(file => ({
+          content_id: newsIndex,
+          filename: file.filename,
+          sortorder: 1
+      }));
+
+      // Сохраняем информацию о загруженных файлах в базу данных
+      const query = 'INSERT INTO table_picture_news (content_id, filename, sortorder) VALUES (?, ?, ?)';
+      db.beginTransaction((err) => {
+          if (err) {
+              throw err;
+          }
+          db.query(query, [images.map(image => [image.content_id, image.filename, image.sortorder])], (err, result) => {
+              if (err) {
+                  db.rollback(() => {
+                      throw err;
+                  });
+              }
+              db.commit((err) => {
+                  if (err) {
+                      db.rollback(() => {
+                          throw err;
+                      });
+                  }
+                  console.log('Информация о изображениях успешно сохранена в базе данных');
+                  res.status(200).send('Изображения успешно загружены');
+              });
+          });
+      });
+  } catch (error) {
+      console.error('Ошибка:', error.message);
+      res.status(500).send('Ошибка сервера');
+  }
+});
 
 app.delete('/api/deleteNews/:id', (req, res) => {
   const newsId = req.params.id;

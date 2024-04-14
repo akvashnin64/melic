@@ -61,9 +61,7 @@ const AdminNewsSection = () => {
             console.log('Отправка запроса на сервер для добавления новости...');
             console.log('Данные новости:', newsData);
     
-            const oldIndex = 1;
-            const authorNews = 2;
-    
+            // Отправка запроса на добавление новости
             const response = await fetch('http://89.111.154.224:3001/api/addNews', {
                 method: 'POST',
                 headers: {
@@ -83,7 +81,7 @@ const AdminNewsSection = () => {
                 console.log('Ответ от сервера:', data);
                 console.log('Новость успешно добавлена');
     
-                // Дождитесь завершения запроса addOldIndex перед продолжением
+                // Отправка запроса на добавление индекса
                 const response2 = await fetch('http://89.111.154.224:3001/api/addOldIndex', {
                     method: 'PATCH',
                     headers: {
@@ -97,11 +95,46 @@ const AdminNewsSection = () => {
                 if (response2.ok) {
                     const data2 = await response2.json();
                     console.log('Ответ от сервера:', data2);
+    
+                    // Если есть файлы, отправьте их на сервер
+                    if (selectedFiles.length > 0) {
+                        await uploadFiles(data.newsId);
+                    }
+    
+                    // Дополнительные действия после успешного выполнения всех запросов
                 } else {
                     throw new Error('Ошибка при обновлении новости. Код ошибки: ' + response2.status);
                 }
             } else {
                 throw new Error('Ошибка при добавлении новости. Код ошибки: ' + response.status);
+            }
+        } catch (error) {
+            console.error('Ошибка:', error.message);
+        }
+    };
+    
+    const uploadFiles = async (newsId) => {
+        try {
+            const formData = new FormData();
+    
+            // Добавляем каждый файл из списка выбранных файлов в FormData
+            selectedFiles.forEach((file, index) => {
+                formData.append(`file${index}`, file);
+            });
+    
+            // Добавляем идентификатор новости в FormData
+            formData.append('newsId', newsId);
+    
+            // Отправляем FormData на сервер
+            const response = await fetch('http://89.111.154.224:3001/api/uploadNewsImages', {
+                method: 'POST',
+                body: formData
+            });
+    
+            if (response.ok) {
+                console.log('Файлы успешно загружены на сервер');
+            } else {
+                throw new Error('Ошибка при загрузке файлов на сервер. Код ошибки: ' + response.status);
             }
         } catch (error) {
             console.error('Ошибка:', error.message);
