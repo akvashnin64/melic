@@ -89,12 +89,13 @@ const AdminNewsSection = () => {
         // Получение данных из полей ввода и файлов
         const title = document.querySelector('#titleInput').value;
         const text = document.querySelector('#textInput').value;
-        const date = document.querySelector('#dateInput').value;
+        const dateValue = document.querySelector('#dateInput').value;
+        const dateTimestamp = new Date(dateValue).getTime() / 1000;
 
-        console.log("Данные из формы:", { title, text, date });
+        console.log("Данные из формы:", { title, text, dateTimestamp });
 
         // Отправка данных на сервер
-        saveNews({ title, text, date });
+        saveNews({ title, text, dateTimestamp });
     };
     
 
