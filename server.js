@@ -359,7 +359,7 @@ app.patch('/api/addOldIndex', (req, res) => {
   SET
     oldIndex = ?
   WHERE
-    idNews = ?
+    idNews = (? - 1000)
   `;
 
   db.query(query, [idNews, idNews], (err, result) => {

@@ -60,7 +60,7 @@ const AdminNewsSection = () => {
         try {
             console.log('Отправка запроса на сервер для добавления новости...');
             console.log('Данные новости:', newsData);
-
+    
             const oldIndex = 1;
             const authorNews = 2;
     
@@ -82,23 +82,23 @@ const AdminNewsSection = () => {
                 const data = await response.json();
                 console.log('Ответ от сервера:', data);
                 console.log('Новость успешно добавлена');
-
-                const response = await fetch('http://89.111.154.224:3001/api/addOldIndex', {
-                    method: 'POST',
+    
+                // Дождитесь завершения запроса addOldIndex перед продолжением
+                const response2 = await fetch('http://89.111.154.224:3001/api/addOldIndex', {
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: {
-                        idNews: data
-                    }
+                    body: JSON.stringify({
+                        idNews: data.newsId + 1000
+                    })
                 });
-
-                if (response.ok){
-                    const data = await response.json();
-                    console.log('Ответ от сервера:', data);
-                }
-                else {
-                    throw new Error('Ошибка при обновлении новости. Код ошибки: ' + response.status);
+    
+                if (response2.ok) {
+                    const data2 = await response2.json();
+                    console.log('Ответ от сервера:', data2);
+                } else {
+                    throw new Error('Ошибка при обновлении новости. Код ошибки: ' + response2.status);
                 }
             } else {
                 throw new Error('Ошибка при добавлении новости. Код ошибки: ' + response.status);
