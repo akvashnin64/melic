@@ -10,22 +10,22 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
     const authToken = cookies.authToken;
   
     const checkTokenValidity = async () => {
-      console.log('Проверка токена...');
+      //console.log('Проверка токена...');
   
       if (authToken) {
-        console.log('authToken:', authToken);
+        //console.log('authToken:', authToken);
         const isValid = await validateToken(authToken);
-        console.log('Токен валиден:', isValid);
+        //console.log('Токен валиден:', isValid);
         return isValid;
       } else {
-        console.log('Токен отсутствует');
+        //console.log('Токен отсутствует');
         return false;
       }
     };
   
     const validateToken = async (token) => {
       try {
-        console.log('Отправка запроса с токеном:', token);
+        //console.log('Отправка запроса с токеном:', token);
   
         const response = await fetch('http://89.111.154.224/validate-token', {
           method: 'POST',
@@ -36,7 +36,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
           body: JSON.stringify({ token }),
         });
   
-        console.log('Ответ сервера:', response);
+        //console.log('Ответ сервера:', response);
   
         if (response.ok) {
           return true;
