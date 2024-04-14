@@ -53,6 +53,8 @@
         font-size: 50px;
         font-weight: 700;
         line-height: 61px;
+        width: 1760px;
+        margin-left: 0;
     }
 
     .videoSlider{
@@ -88,6 +90,7 @@
         font-size: 40px;
         font-weight: 700;
         line-height: 49px;
+        width: 100%;
     }
 
     .videoSlider{

@@ -42,7 +42,6 @@
 }
 
 .adminForm{
-    width: 50%;
     display: flex;
     flex-direction: column;
 }
@@ -84,12 +83,7 @@
     }
 
     .pointInAdminPage div input{
-        margin: 5px 0;
-        max-width: 500px;
-    }
-
-    .pointInAdminPage div button{
-        max-width: 500px;
+        margin-bottom: 15px;
     }
 
     .adminSection{
@@ -127,6 +121,11 @@
         border-radius: 15px;
         font-size: 25px;
         font-weight: 500;
+    }
+
+    .adminForm label{
+        color: rgb(73, 73, 73);
+        width: 100%;
     }
 
     .textPointInAdminPage{

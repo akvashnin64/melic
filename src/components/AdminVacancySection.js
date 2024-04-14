@@ -98,6 +98,10 @@ const AdminVacancySection = () => {
                     </Link>
                     {operation === "add" && (
                         <form className="adminForm" encType="multipart/form-data" onSubmit={addVacancy}>
+                            <label>
+                                Выберите филиал из списка:
+                            </label>
+                            
                             <select
                                 value={selectedBranch}
                                 onChange={(e) => setSelectedBranch(e.target.value)}
@@ -109,6 +113,11 @@ const AdminVacancySection = () => {
                                     </option>
                                 ))}
                             </select>
+
+                            <label>
+                                Введите вакансию, которую необходимо добавить для выбранного филиала. <br></br>
+                                Для принятия изменений нажмите кнопку ниже.
+                            </label>
     
                             <input
                                 type="text"
@@ -127,6 +136,10 @@ const AdminVacancySection = () => {
                     </Link>
                     {operation === "delete" && (
                         <form className="adminForm" encType="multipart/form-data" onSubmit={deleteVacancy}>
+                            <label>
+                                Выберите филиал из списка:
+                            </label>
+                            
                             <select
                                 value={selectedBranch}
                                 onChange={(e) => {
@@ -141,6 +154,11 @@ const AdminVacancySection = () => {
                                     </option>
                                 ))}
                             </select>
+
+                            <label>
+                                Выберите из списка вакансию, которую необходимо удалить.<br></br>
+                                Для принятия изменений нажмите кнопку ниже.
+                            </label>
     
                             <select
                                 value={selectedVacancy}

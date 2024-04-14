@@ -16,10 +16,16 @@ const AllNews = () => {
 
   function cleanString(input) {
     const withoutHtmlTags = input.replace(/<[^>]*>/g, '');
-    const replacedText = withoutHtmlTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/, '').replace(/&ndash;/, '-').replace(/&mdash;/, '-');
+    console.log(withoutHtmlTags);
+    
+    const replacedText = withoutHtmlTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/g, '').replace(/&ndash;/g, '-').replace(/&mdash;/g, '-');
+    console.log(replacedText);
+    
     const decodedString = decodeURIComponent(replacedText);
+    console.log(decodedString);
+    
     return decodedString;
-  };
+}
 
   useEffect(() => {
     // Асинхронный запрос на сервер при монтировании компонента

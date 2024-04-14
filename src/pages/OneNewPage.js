@@ -51,17 +51,9 @@ const OneNew = ({ setNewsDataForPage }) => {
   };
 
   function cleanString(input) {
-    // Удаляем все HTML теги, включая пустые теги
     const withoutHtmlTags = input.replace(/<[^>]*>(\s*<\/[^>]*>)?/g, '');
-    // Добавляем перевод строки после закрывающих тегов </p>
-    const addNewLineAfterClosingPTags = withoutHtmlTags.replace(/<\/p>/g, '</p>\n');
-    // Удаляем оставшиеся HTML теги
-    const removeRemainingTags = addNewLineAfterClosingPTags.replace(/<[^>]*>/g, '');
-    // Удаляем символы новой строки
-    const removeNewLines = removeRemainingTags.replace(/\n/g, '');
-    // Заменяем специальные символы на соответствующие им символы
-    const replacedText = removeNewLines.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/g, '').replace(/&ndash;/g, '-').replace(/&mdash;/g, '-');
-    // Декодируем строку URL
+    const removeRemainingTags = withoutHtmlTags.replace(/<[^>]*>/g, '');
+    const replacedText = removeRemainingTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/g, '').replace(/&ndash;/g, '-').replace(/&mdash;/g, '-');
     const decodedString = decodeURIComponent(replacedText);
     return decodedString;
 }

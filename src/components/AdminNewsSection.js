@@ -36,33 +36,40 @@ const AdminNewsSection = () => {
 
     const handleFileChange = (event) => {
         // Обработчик изменения выбранных файлов
-        const files = Array.from(event.target.files).slice(0, 10);
+        event.preventDefault();
+        const files = [];
+
+        for (let i = 0; i < event.target.files.length; i++) {
+            const file = event.target.files[i];
+            files.push(file);
+          }
+
+        console.log(files);
+
         setSelectedFiles(files);
     };
 
     const saveNews = async (newsData) => {
         try {
-            const formData = new FormData();
-            formData.append('title', newsData.title);
-            formData.append('text', newsData.text);
-            formData.append('date', newsData.date);
-    
-            newsData.files.forEach((file, index) => {
-                formData.append(`files[${index}]`, file);
+            const response = await fetch('http://89.111.154.224:3001/api/addNews', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: newsData.title,
+                    text: newsData.text,
+                    date: newsData.date
+                }),
             });
 
-            console.log(selectedFiles);
-    
-            const response = await fetch('http://89.111.154.224/api/addNews', {
-                method: 'POST',
-                body: formData,
-            });
+            if (!response.ok) throw new Error('Ошибка при добавлении новости Код ошибки:' + response.status);
+            else {
+                const data = await response.json();
+                console.log(data);
+                console.log('Новость успешно добавлена');
+            }
             
-            console.log('запрос отправлен');
-    
-            if (!response.ok) throw new Error('Ошибка при добавлении новости Код ошибки: ${response.status}`');
-            
-            console.log('Новость успешно добавлена');
         } catch (error) {
             console.error('Ошибка:', error.message);
         }
@@ -75,7 +82,7 @@ const AdminNewsSection = () => {
         const date = document.querySelector('#dateInput').value;
 
         // Отправка данных на сервер
-        saveNews({ title, text, date, files: selectedFiles });
+        saveNews({ title, text, date });
     };
     
 
@@ -84,14 +91,40 @@ const AdminNewsSection = () => {
         <AdminMenu />
         <div className="adminSection">
             <div className="pointInAdminPage">
-                <Link className="" onClick={() => setOperation("add")}>Добавить новость</Link>
+                <Link 
+                    className="textPointInAdminPage"
+                    onClick={() => setOperation("add")}>
+                        Добавить новость
+                </Link>
                 {operation === "add" && (
                     // Поля ввода для добавления новости
-                    <form encType="multipart/form-data">
-                        <input id="titleInput" type="text" placeholder="Заголовок" />
-                        <input id="textInput" type="text" placeholder="Текст новости" />
-                        <input id="dateInput" type="date" placeholder="Дата новости" />
-                        <input id="fileInput" type="file" onChange={handleFileChange} multiple accept="image/*" />
+                    <form className="adminForm">
+                        <label>
+                            Введите заголовок, дату и описание новости:
+                        </label>
+
+                        <input
+                            id="titleInput" 
+                            type="text" 
+                            placeholder="Заголовок" />
+                        <input 
+                            id="textInput" 
+                            type="text" 
+                            placeholder="Текст новости" />
+                        <input 
+                            id="dateInput" 
+                            type="date" 
+                            placeholder="Дата новости" />
+                        
+                        <label>
+                            При необходимости вы можете прикрепить к новости фотографии (до 10 штук) в поле ниже:
+                        </label>
+                        
+                        <input 
+                            id="fileInput" 
+                            type="file" 
+                            onChange={handleFileChange} 
+                            multiple accept="image/*" />
 
                         <button onClick={handleSaveNews}>Сохранить</button>
                     </form>
@@ -99,7 +132,7 @@ const AdminNewsSection = () => {
             </div>
 
             <div className="pointInAdminPage">
-                <Link onClick={() => setOperation("delete")}>Удалить новость</Link>
+                <Link className="textPointInAdminPage" onClick={() => setOperation("delete")}>Удалить новость</Link>
                 {operation === "delete" && (
                     <div>
                         <input type="text" placeholder="ID новости" onClick={handleDeleteNews}/>
@@ -109,7 +142,7 @@ const AdminNewsSection = () => {
             </div>
 
             <div className="pointInAdminPage">
-                <Link onClick={() => setOperation("edit")}>Изменить новость</Link>
+                <Link className="textPointInAdminPage" onClick={() => setOperation("edit")}>Изменить новость</Link>
                 {operation === "edit" && (
                     // Поля ввода для изменения новости
                     <div>

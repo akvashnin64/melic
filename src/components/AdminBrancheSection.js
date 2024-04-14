@@ -40,13 +40,31 @@ const AdminBrancheSection = () => {
         }
     }, [selectedBranch, listBranches]);
 
-    const updateBranche = async(address, phone, email, director) => {
-        try{
-            
+    const updateBranche = async () => {
+        try {
+            const response = await fetch('http://89.111.154.224:3001/updateInfoAboutBranche', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    idBranch: selectedBranch,
+                    addressBranch: address,
+                    phoneBranch: phone,
+                    emailBranch: email,
+                    directorBranch: director
+                }),
+            });
+    
+            if (response.ok) {
+                console.log('Информация о филиале успешно обновлена');
+            } else {
+                console.error('Ошибка при обновлении информации о филиале:', response.statusText);
+            }
         } catch (error) {
-            
+            console.error('Ошибка при выполнении запроса на обновление информации о филиале: ', error);
         }
-    }
+    };
 
     return (
         <>
@@ -56,8 +74,12 @@ const AdminBrancheSection = () => {
                     <form 
                         className="adminForm" 
                         encType="multipart/form-data"
-                        //onSubmit={my func}
+                        onSubmit={updateBranche}
                     >
+                        <label>
+                            Выберите филиал из списка:
+                        </label>
+
                         <select
                             value={selectedBranch}
                             onChange={(e) => setSelectedBranch(e.target.value)}
@@ -69,6 +91,11 @@ const AdminBrancheSection = () => {
                                 </option>
                             ))}
                         </select>
+
+                        <label>
+                            В этих полях вы можете изменить значения для выбранного филиала. <br></br>
+                            Для принятия изменений нажмите кнопку ниже.
+                        </label>
 
                         {selectedBranchData && (
                             <div>
@@ -94,6 +121,10 @@ const AdminBrancheSection = () => {
                                 />
                             </div>
                         )}
+
+                        <button type="submit">
+                            Принять изменения
+                        </button>
                         
                     </form>
                 </div>
