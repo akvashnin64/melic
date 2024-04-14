@@ -8,7 +8,14 @@ const AdminNewsSection = () => {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [deleteNewsId, setDeleteNewsId] = useState('');
 
-  const handleDeleteNews = async () => {
+    const handleIdChange = (event) => {
+        event.preventDefault();
+        const id = document.querySelector('#idDeletedNews').value;
+        setDeleteNewsId(id);
+    }
+
+  const handleDeleteNews = async (event) => {
+    event.preventDefault();
     try {
       // Проверяем, что deleteNewsId - это целое число
       if (!Number.isInteger(Number(deleteNewsId))) {
@@ -67,7 +74,7 @@ const AdminNewsSection = () => {
                     authorNews: authorNews,
                     title: newsData.title,
                     text: newsData.text,
-                    date: newsData.date
+                    date: newsData.dateTimestamp
                 }),
             });
     
@@ -148,12 +155,31 @@ const AdminNewsSection = () => {
             </div>
 
             <div className="pointInAdminPage">
-                <Link className="textPointInAdminPage" onClick={() => setOperation("delete")}>Удалить новость</Link>
+                <Link 
+                    className="textPointInAdminPage" 
+                    onClick={() => setOperation("delete")}>
+                        Удалить новость
+                </Link>
                 {operation === "delete" && (
-                    <div>
-                        <input type="text" placeholder="ID новости" onClick={handleDeleteNews}/>
-                        <button>Удалить</button>
-                    </div>
+                    <form className="adminForm">
+                        <div>
+                            <label>
+                                Впишите в поле ниже id удаляемой новости (id можно увидеть в адресной строке при загрузке страницы новости):
+                            </label>
+
+                            <input 
+                                type="text"
+                                id="idDeletedNews"
+                                placeholder="ID новости" 
+                                onChange={(event) => handleIdChange(event)} />
+
+                            <button 
+                                onClick={(event) => handleDeleteNews(event)}>
+                                    Удалить
+                            </button>
+                        </div>
+                    </form>
+                    
                 )}
             </div>
 

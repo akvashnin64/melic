@@ -362,7 +362,7 @@ app.delete('/api/deleteNews/:id', (req, res) => {
 
   const deleteNewsQuery = `
     DELETE FROM table_news
-    WHERE oldIndex = ?;
+    WHERE idNews = ?;
   `;
 
   db.query(deleteNewsQuery, [newsId], (err, result) => {
