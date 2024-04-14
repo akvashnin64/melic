@@ -60,6 +60,10 @@ const AdminNewsSection = () => {
         try {
             console.log('Отправка запроса на сервер для добавления новости...');
             console.log('Данные новости:', newsData);
+
+            const oldIndex = 1;
+            const authorNews = 2;
+    
     
             // Отправка запроса на добавление новости
             const response = await fetch('http://89.111.154.224:3001/api/addNews', {
