@@ -343,7 +343,7 @@ app.post('/api/addNews', (req, res) => {
   db.query(query, [ oldIndex, authorNews, title, date, text], (err, result) => {
     if (err) {
       debug('Ошибка при добавлении новости в таблицу table_news:', err);
-      res.status(500).send('Ошибка сервера');
+      res.status(500).send('Ошибка сервера', err);
     } else {
       const newsId = result.insertId; // Получаем idNews из результата вставки
       debug('Новость успешно добавлена. ID новости:', newsId);

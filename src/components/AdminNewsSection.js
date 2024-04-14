@@ -53,6 +53,9 @@ const AdminNewsSection = () => {
         try {
             console.log('Отправка запроса на сервер для добавления новости...');
             console.log('Данные новости:', newsData);
+
+            const oldIndex = 1;
+            const authorNews = 2;
     
             const response = await fetch('http://89.111.154.224:3001/api/addNews', {
                 method: 'POST',
@@ -60,8 +63,8 @@ const AdminNewsSection = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    oldIndex: "1",
-                    authorNews: "2",
+                    oldIndex: oldIndex,
+                    authorNews: authorNews,
                     title: newsData.title,
                     text: newsData.text,
                     date: newsData.date
@@ -80,7 +83,9 @@ const AdminNewsSection = () => {
         }
     };
 
-    const handleSaveNews = () => {
+    const handleSaveNews = (event) => {
+        event.preventDefault();
+
         // Получение данных из полей ввода и файлов
         const title = document.querySelector('#titleInput').value;
         const text = document.querySelector('#textInput').value;
@@ -133,7 +138,10 @@ const AdminNewsSection = () => {
                             onChange={handleFileChange} 
                             multiple accept="image/*" />
 
-                        <button onClick={handleSaveNews}>Сохранить</button>
+                        <button 
+                            onClick={(event) => handleSaveNews(event)}>
+                                Сохранить
+                        </button>
                     </form>
                 )}
             </div>
