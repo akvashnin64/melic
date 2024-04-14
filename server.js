@@ -329,18 +329,18 @@ app.get('/getLastAnonses', (req, res) => {
 
 
 app.post('/api/addNews', (req, res) => {
-  const { title, date, text } = req.body;
+  const { oldIndex, authorNews, title, date, text } = req.body;
 
   // Вывод данных в консоль
-  debug('Получены новые данные:', { title, date, text });
+  debug('Получены новые данные:', {  oldIndex, authorNews, title, date, text });
 
   // Логика сохранения в базу данных
   const query = `
-    INSERT INTO table_news (titleNews, dateNews, textNews)
-    VALUES (?, ?, ?);
+    INSERT INTO table_news ( oldIndex, authorNews, titleNews, dateNews, textNews)
+    VALUES (?, ?, ?, ?, ?);
   `;
 
-  db.query(query, [title, date, text], (err, result) => {
+  db.query(query, [ oldIndex, authorNews, title, date, text], (err, result) => {
     if (err) {
       debug('Ошибка при добавлении новости в таблицу table_news:', err);
       res.status(500).send('Ошибка сервера');

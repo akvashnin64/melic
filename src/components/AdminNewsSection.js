@@ -51,25 +51,30 @@ const AdminNewsSection = () => {
 
     const saveNews = async (newsData) => {
         try {
+            console.log('Отправка запроса на сервер для добавления новости...');
+            console.log('Данные новости:', newsData);
+    
             const response = await fetch('http://89.111.154.224:3001/api/addNews', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    oldIndex: "1",
+                    authorNews: "2",
                     title: newsData.title,
                     text: newsData.text,
                     date: newsData.date
                 }),
             });
-
+    
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
+                console.log('Ответ от сервера:', data);
                 console.log('Новость успешно добавлена');
+            } else {
+                throw new Error('Ошибка при добавлении новости. Код ошибки: ' + response.status);
             }
-            else throw new Error('Ошибка при добавлении новости Код ошибки:' + response.status);
-            
         } catch (error) {
             console.error('Ошибка:', error.message);
         }
