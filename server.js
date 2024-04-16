@@ -12,21 +12,19 @@ const fileUpload = require('express-fileupload');
 const multer = require('multer');
 const debug = require('debug')('app:server');
 
-const uploadDir = '/var/www/html/melic/graphContent/news/';
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       const newsIndex = req.body.newsIndex;
-      const uploadPath = path.join(uploadDir, newsIndex);
-      fs.mkdirSync(uploadPath, { recursive: true }); // Создаем директорию (рекурсивно) если ее нет
-      cb(null, uploadDir);
+      const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
+      createNewsFolder(newsIndex); // Создаем папку с индексом новости, если она еще не существует
+      cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
       cb(null, file.originalname);
   }
 });
 
-const upload = multer({ storage: storage });
+app.use(multer({storage:storage}).single("filedata"));
 
 const createNewsFolder = (newsIndex) => {
   const folderPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
@@ -385,38 +383,13 @@ app.patch('/api/addOldIndex', (req, res) => {
   });
 })
 
-app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
+app.post('/api/uploadNewsImages', (req, res) => {
   try {
-      const newsIndex = req.body.newsId;
-      const images = req.files.map((file, index) => ({
-          content_id: newsIndex,
-          filename: file.filename,
-          sortorder: index
-      }));
-
-      // Сохраняем информацию о загруженных файлах в базу данных
-      const query = 'INSERT INTO table_picture_news (content_id, filename, sortorder) VALUES (?, ?, ?)';
-      db.beginTransaction((err) => {
-          if (err) {
-              throw err;
-          }
-          db.query(query, [images.map(image => [image.content_id, image.filename, image.sortorder])], (err, result) => {
-              if (err) {
-                  db.rollback(() => {
-                      throw err;
-                  });
-              }
-              db.commit((err) => {
-                  if (err) {
-                      db.rollback(() => {
-                          throw err;
-                      });
-                  }
-                  console.log('Информация о изображениях успешно сохранена в базе данных');
-                  res.status(200).send('Изображения успешно загружены');
-              });
-          });
-      });
+      const newsIndex = req.body.newsIndex;
+      const filedata = req.files[0];
+      if(!filedata)
+      res.send("Ошибка при загрузке файла");
+      
   } catch (error) {
       console.error('Ошибка:', error.message);
       res.status(500).send('Ошибка сервера');

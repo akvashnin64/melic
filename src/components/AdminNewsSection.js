@@ -196,7 +196,8 @@ const AdminNewsSection = () => {
                         </label>
                         
                         <input 
-                            id="fileInput" 
+                            id="fileInput"
+                            name="images"
                             type="file" 
                             onChange={handleFileChange} 
                             multiple accept="image/*" />
