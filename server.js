@@ -8,7 +8,6 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const cookieParser = require('cookie-parser');
-const fileUpload = require('express-fileupload');
 const multer = require('multer');
 const debug = require('debug')('app:server');
 
@@ -58,7 +57,6 @@ app.use('/graphContent', (req, res, next) => {
 
 app.use('/graphContent', express.static(imagesPath));
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(fileUpload());
 
 const db = mysql.createConnection({
   host: '89.111.154.224',

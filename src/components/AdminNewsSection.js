@@ -120,20 +120,27 @@ const AdminNewsSection = () => {
     const uploadFiles = async (newsId) => {
         try {
             const formData = new FormData();
+
+            // Добавляем идентификатор новости в FormData
+            formData.append('newsIndex', newsId);
+    
     
             // Добавляем каждый файл из списка выбранных файлов в FormData
             selectedFiles.forEach((file, index) => {
-                formData.append(`files`, file);
+                formData.append(`images`, file);
             });
+
     
-            // Добавляем идентификатор новости в FormData
-            formData.append('newsId', newsId);
-    
+            
             // Отправляем FormData на сервер
             const response = await fetch('http://89.111.154.224:3001/api/uploadNewsImages', {
                 method: 'POST',
                 body: formData
             });
+
+            for (const pair of formData.entries()) {
+                console.log(pair[0], pair[1]);
+            }
     
             if (response.ok) {
                 console.log('Файлы успешно загружены на сервер');
@@ -173,7 +180,7 @@ const AdminNewsSection = () => {
                 </Link>
                 {operation === "add" && (
                     // Поля ввода для добавления новости
-                    <form className="adminForm">
+                    <form className="adminForm" encType="multipart/form-data">
                         <label>
                             Введите заголовок, дату и описание новости:
                         </label>
