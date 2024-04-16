@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
       const newsIndex = req.body.newsIndex;
       const uploadPath = path.join(uploadDir, newsIndex);
       fs.mkdirSync(uploadPath, { recursive: true }); // Создаем директорию (рекурсивно) если ее нет
-      cb(null, dir);
+      cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
       cb(null, file.originalname);
