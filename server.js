@@ -12,12 +12,14 @@ const fileUpload = require('express-fileupload');
 const multer = require('multer');
 const debug = require('debug')('app:server');
 
+const uploadDir = '/var/www/html/melic/graphContent/news/';
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       const newsIndex = req.body.newsIndex;
-      const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
-      createNewsFolder(newsIndex); // Создаем папку с индексом новости, если она еще не существует
-      cb(null, uploadPath);
+      const uploadPath = path.join(uploadDir, newsIndex);
+      fs.mkdirSync(uploadPath, { recursive: true }); // Создаем директорию (рекурсивно) если ее нет
+      cb(null, dir);
   },
   filename: function (req, file, cb) {
       cb(null, file.originalname);
@@ -386,10 +388,10 @@ app.patch('/api/addOldIndex', (req, res) => {
 app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
   try {
       const newsIndex = req.body.newsIndex;
-      const images = req.files.map(file => ({
+      const images = req.files.map((file, index) => ({
           content_id: newsIndex,
           filename: file.filename,
-          sortorder: 1
+          sortorder: index
       }));
 
       // Сохраняем информацию о загруженных файлах в базу данных
