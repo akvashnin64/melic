@@ -102,7 +102,7 @@ const AdminNewsSection = () => {
     
                     // Если есть файлы, отправьте их на сервер
                     if (selectedFiles.length > 0) {
-                        await uploadFiles(data.newsId);
+                        await uploadFiles(data.newsId + 1000);
                     }
     
                     // Дополнительные действия после успешного выполнения всех запросов
@@ -123,7 +123,7 @@ const AdminNewsSection = () => {
     
             // Добавляем каждый файл из списка выбранных файлов в FormData
             selectedFiles.forEach((file, index) => {
-                formData.append(`file${index}`, file);
+                formData.append(`files`, file);
             });
     
             // Добавляем идентификатор новости в FormData

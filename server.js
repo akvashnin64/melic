@@ -387,7 +387,7 @@ app.patch('/api/addOldIndex', (req, res) => {
 
 app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
   try {
-      const newsIndex = req.body.newsIndex;
+      const newsIndex = req.body.newsId;
       const images = req.files.map((file, index) => ({
           content_id: newsIndex,
           filename: file.filename,
