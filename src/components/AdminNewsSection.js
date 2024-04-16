@@ -143,6 +143,7 @@ const AdminNewsSection = () => {
             }
     
             if (response.ok) {
+                const data2 = await response.json();
                 console.log('Файлы успешно загружены на сервер');
             } else {
                 throw new Error('Ошибка при загрузке файлов на сервер. Код ошибки: ' + response.status);
