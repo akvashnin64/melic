@@ -409,7 +409,7 @@ app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
                       });
                   }
                   console.log('Информация о изображениях успешно сохранена в базе данных');
-                  res.status(200).json({ insertedIds });
+                  res.status(200).json({ newsIndex });
               });
           });
       });
