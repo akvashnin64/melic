@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
   }
 });
 
-app.use(multer({storage:storage}).single("filedata"));
+const upload = multer({ storage: storage });
 
 const createNewsFolder = (newsIndex) => {
   const folderPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
@@ -383,13 +383,38 @@ app.patch('/api/addOldIndex', (req, res) => {
   });
 })
 
-app.post('/api/uploadNewsImages', (req, res) => {
+app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
   try {
       const newsIndex = req.body.newsIndex;
-      const filedata = req.files[0];
-      if(!filedata)
-      res.send("Ошибка при загрузке файла");
-      
+      const images = req.files.map((file, index) => ({
+          content_id: newsIndex,
+          filename: file.filename,
+          sortorder: index
+      }));
+
+      // Сохраняем информацию о загруженных файлах в базу данных
+      const query = 'INSERT INTO table_picture_news (content_id, filename, sortorder) VALUES (?, ?, ?)';
+      db.beginTransaction((err) => {
+          if (err) {
+              throw err;
+          }
+          db.query(query, [images.map(image => [image.content_id, image.filename, image.sortorder])], (err, result) => {
+              if (err) {
+                  db.rollback(() => {
+                      throw err;
+                  });
+              }
+              db.commit((err) => {
+                  if (err) {
+                      db.rollback(() => {
+                          throw err;
+                      });
+                  }
+                  console.log('Информация о изображениях успешно сохранена в базе данных');
+                  res.status(200).send('Изображения успешно загружены');
+              });
+          });
+      });
   } catch (error) {
       console.error('Ошибка:', error.message);
       res.status(500).send('Ошибка сервера');
