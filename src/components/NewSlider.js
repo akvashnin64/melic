@@ -71,7 +71,7 @@ const NewSlider = ({ headerText }) => {
     340: { items: 2 },
     640: { items: 2 },
     960: { items: 2 },
-    1280: { items: 3, percent: 20 },
+    1280: { items: 3},
   };
 
   const items = newsData.map((news, index) => {

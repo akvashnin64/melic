@@ -15,25 +15,6 @@ const HomePage = () => {
       // Прокрутить в верхнюю часть страницы при изменении маршрута
       window.scrollTo(0, 0);
     }, [location.pathname]);
-
-    useEffect(() => {
-      const handleWindowResize = () => {
-        if (window.innerWidth < 640) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'visible';
-        }
-      };
-  
-      handleWindowResize(); // Устанавливаем overflow при первой загрузке страницы
-  
-      window.addEventListener('resize', handleWindowResize); // Добавляем слушатель события resize
-  
-      return () => {
-        window.removeEventListener('resize', handleWindowResize); // Удаляем слушатель события resize
-        document.body.style.overflow = 'visible'; // Устанавливаем overflow обратно в исходное состояние при размонтировании компонента
-      };
-    }, []);
   
     return(
         <>

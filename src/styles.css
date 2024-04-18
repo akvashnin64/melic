@@ -256,6 +256,10 @@ p {
   transition: 1s;
 }
 
+.containerSlider{
+  overflow: hidden;
+}
+
 .announcementsItem {
   position: relative;
   display: flex;
@@ -1859,7 +1863,6 @@ a:hover {
     font-size: 14px;
     font-weight: 600;
     line-height: 17px;
-    box-shadow: none;
   }
 
   .branche p{
