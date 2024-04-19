@@ -130,9 +130,6 @@ const AdminNewsSection = () => {
             selectedFiles.forEach((file, index) => {
                 formData.append(`images`, file);
             });
-
-            console.log(formData.newsIndex);
-            console.log(formData.images);
     
             
             // Отправляем FormData на сервер
@@ -140,10 +137,6 @@ const AdminNewsSection = () => {
                 method: 'POST',
                 body: formData
             });
-
-            for (const pair of formData.entries()) {
-                console.log(pair[0], pair[1]);
-            }
     
             if (response.ok) {
                 const data2 = await response.json();
