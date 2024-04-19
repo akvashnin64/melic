@@ -102,6 +102,7 @@ const AdminNewsSection = () => {
     
                     // Если есть файлы, отправьте их на сервер
                     if (selectedFiles.length > 0) {
+                        console.log(selectedFiles.length);
                         await uploadFiles(data.newsId + 1000);
                     }
     
@@ -130,6 +131,8 @@ const AdminNewsSection = () => {
                 formData.append(`images`, file);
             });
 
+            console.log(formData.newsIndex);
+            console.log(formData.images);
     
             
             // Отправляем FormData на сервер

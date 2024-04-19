@@ -13,13 +13,15 @@ const debug = require('debug')('app:server');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      const newsIndex = req.body.newsIndex;
-      const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
-      createNewsFolder(newsIndex); // Создаем папку с индексом новости, если она еще не существует
-      cb(null, uploadPath);
+    const newsIndex = req.body.newsIndex;
+    const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
+    createNewsFolder(newsIndex); // Создаем папку с индексом новости, если она еще не существует
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
-      cb(null, file.originalname);
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
   }
 });
 
