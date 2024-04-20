@@ -398,7 +398,7 @@ app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
           if (err) {
               throw err;
           }
-          db.query(query, images.map(image => [image.content_id, image.filename, image.sortorder]), (err, result) => {
+          db.query(query, images.flatMap(image => [image.content_id, image.filename, image.sortorder]), (err, result) => {
               if (err) {
                   db.rollback(() => {
                       throw err;
