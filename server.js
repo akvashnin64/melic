@@ -393,7 +393,7 @@ app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
       }));
 
       // Сохраняем информацию о загруженных файлах в базу данных
-      const query = 'INSERT INTO table_picture_news (content_id, filename, sortorder) VALUES (?, ?, ?)';
+      const query = `INSERT INTO table_picture_news (content_id, filename, sortorder) VALUES (?, ?, ?)`;
       db.beginTransaction((err) => {
           if (err) {
               throw err;
