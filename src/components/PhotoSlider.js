@@ -25,6 +25,10 @@ const PhotoSlider = ({ photos, basePath }) => {
   }, []);
 
   useEffect(() => {
+
+  }, []);
+
+  useEffect(() => {
     const isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
     setIsTouchDevice(isTouch);
   }, []);

@@ -196,16 +196,36 @@ const AdminNewsSection = () => {
 
     function cleanString(input) {
         const withoutHtmlTags = input.replace(/<[^>]*>/g, '');
-        console.log(withoutHtmlTags);
-        
         const replacedText = withoutHtmlTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/g, '').replace(/&ndash;/g, '-').replace(/&mdash;/g, '-');
-        console.log(replacedText);
-        
         const decodedString = decodeURIComponent(replacedText);
-        console.log(decodedString);
-        
         return decodedString;
     }
+
+    const handleUpdateNew = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch('http://89.111.154.224:3001/updateInfoAboutNew', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    oldIndex: selectedNews,
+                    titleNews: title,
+                    textNews: text
+                }),
+            });
+    
+            if (response.ok) {
+                console.log('Информация о новости успешно обновлена');
+            } else {
+                console.error('Ошибка при обновлении информации о новости:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Ошибка при выполнении запроса на обновление информации о новости: ', error);
+        }
+    };
     
     
 
@@ -290,7 +310,11 @@ const AdminNewsSection = () => {
                 <Link className="textPointInAdminPage" onClick={() => setOperation("edit")}>Изменить новость</Link>
                 {operation === "edit" && (
                     // Поля ввода для изменения новости
-                    <form className="adminForm">
+                    <form 
+                        className="adminForm"
+                        //encType="multipart/form-data"
+                        //onSubmit={updateNew}
+                    >
                         <div>
                             <label>
                                 Выберите нужную новость из списка:
@@ -325,7 +349,10 @@ const AdminNewsSection = () => {
                                 onChange={(e) => setText(e.target.value)}
                             />
                             {/* Другие поля, если необходимо */}
-                            <button>Сохранить изменения</button>
+                            <button
+                                onClick={(event) => handleUpdateNew(event)}>
+                                Сохранить изменения
+                            </button>
                         </div>
                     </form>
                     

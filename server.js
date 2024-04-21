@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const debug = require('debug')('app:server');
 
-const storage = multer.diskStorage({
+const newsStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     const newsIndex = req.body.newsIndex;
     const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
@@ -25,7 +25,19 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage: storage });
+const photosStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'graphContent', 'photos'));
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+  }
+});
+
+const uploadNews = multer({ storage: newsStorage });
+const uploadPhotos = multer({ storage: photosStorage });
 
 const createNewsFolder = (newsIndex) => {
   const folderPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
@@ -433,22 +445,19 @@ app.patch('/updateInfoAboutAnons', (req, res) => {
   });
 });
 
-app.post('/api/uploadPhotos', upload.array('images'), (req, res) => {
+app.post('/api/uploadPhotos', uploadPhotos.array('photos'), (req, res) => {
   try {
-      const newsIndex = parseInt(req.body.newsIndex, 10);
-      const images = req.files.map((file, index) => ({
-          content_id: newsIndex,
-          filename: file.filename,
-          sortorder: index
+      const photos = req.files.map((file, index) => ({
+          filename: file.filename
       }));
 
       // Сохраняем информацию о загруженных файлах в базу данных
-      const query = `INSERT INTO table_picture_news (content_id, filename, sortorder) VALUES (?, ?, ?)`;
+      const query = `INSERT INTO table_photos (filename) VALUES (?)`;
       db.beginTransaction((err) => {
           if (err) {
               throw err;
           }
-          db.query(query, images.flatMap(image => [image.content_id, image.filename, image.sortorder]), (err, result) => {
+          db.query(query, photos.flatMap(photo => [photo.filename]), (err, result) => {
               if (err) {
                   db.rollback(() => {
                       throw err;
@@ -461,7 +470,7 @@ app.post('/api/uploadPhotos', upload.array('images'), (req, res) => {
                       });
                   }
                   console.log('Информация о изображениях успешно сохранена в базе данных');
-                  res.status(200).json({ newsIndex });
+                  res.status(200).json({});
               });
           });
       });
@@ -510,7 +519,7 @@ app.patch('/api/addOldIndex', (req, res) => {
   });
 })
 
-app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
+app.post('/api/uploadNewsImages', uploadNews.array('images'), (req, res) => {
   try {
       const newsIndex = parseInt(req.body.newsIndex, 10);
       const images = req.files.map((file, index) => ({

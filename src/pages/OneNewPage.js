@@ -33,13 +33,6 @@ const OneNew = ({ setNewsDataForPage }) => {
     }
   }, [id, setNewsDataForPage]);
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'visible';
-    };
-  });
-
 
   if (!newsData) {
     return <p>Загрузка...</p>;

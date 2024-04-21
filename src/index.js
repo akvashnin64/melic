@@ -53,7 +53,6 @@ import OneNewPage from './pages/OneNewPage';
 import AdminNewsSection from './components/AdminNewsSection';
 import AdminAnonsSection from './components/AdminAnonsSection';
 import AdminPhotoSection from './components/AdminPhotoSection';
-import AdminVideoSection from './components/AdminVideoSection';
 import PrivateRoute from './components/PrivateRoute';
 import ActsPage from './pages/ActsPage';
 import VacancyPage from './pages/VacancyPage';
@@ -135,10 +134,6 @@ const router = createBrowserRouter([
       {
         path: process.env.PUBLIC_URL + '/admin/photos',
         element: <PrivateRoute element={AdminPhotoSection}/>
-      },
-      {
-        path: process.env.PUBLIC_URL + '/admin/videos',
-        element: <PrivateRoute element={AdminVideoSection}/>
       },
       {
         path: process.env.PUBLIC_URL + '/admin/vacancy',
