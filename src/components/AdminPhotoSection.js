@@ -41,13 +41,14 @@ const AdminPhotoSection = () => {
 
     const deletePhoto = async (event) => {
         event.preventDefault();
+        const deletedId = selectedPhotoId + 1;
         try {
-            const response = await fetch('http://89.111.154.224:3001/api/deletePhoto', {
-                method: 'POST',
+            const response = await fetch('http://89.111.154.224:3001/deletePhoto', {
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ selectedPhotoId }),
+                body: JSON.stringify({ deletedId }),
             });
     
             if (response.ok) {
@@ -140,6 +141,7 @@ const AdminPhotoSection = () => {
                             onImageSelect={handlePhotoSelect} 
                             inAdmin={true}
                             />
+                            {console.log(selectedPhotoId)}
 
                         <button 
                             onClick={(event) => deletePhoto(event)}>
