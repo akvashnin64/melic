@@ -180,6 +180,38 @@ app.delete('/deleteVacancy', (req, res) => {
   });
 });
 
+app.get('/getPhotos', (req, res) => {
+  const query = `
+    SELECT *
+    FROM table_photos
+  `
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении фотографий: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+})
+
+app.get('/getVideos', (req, res) => {
+  const query = `
+    SELECT *
+    FROM table_video
+  `
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении видео: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+})
+
 
 app.get('/getBranches', (req, res) => {
   const query = `
@@ -399,6 +431,44 @@ app.patch('/updateInfoAboutAnons', (req, res) => {
       res.status(200).send('Информация о филиале успешно обновлена');
     }
   });
+});
+
+app.post('/api/uploadPhotos', upload.array('images'), (req, res) => {
+  try {
+      const newsIndex = parseInt(req.body.newsIndex, 10);
+      const images = req.files.map((file, index) => ({
+          content_id: newsIndex,
+          filename: file.filename,
+          sortorder: index
+      }));
+
+      // Сохраняем информацию о загруженных файлах в базу данных
+      const query = `INSERT INTO table_picture_news (content_id, filename, sortorder) VALUES (?, ?, ?)`;
+      db.beginTransaction((err) => {
+          if (err) {
+              throw err;
+          }
+          db.query(query, images.flatMap(image => [image.content_id, image.filename, image.sortorder]), (err, result) => {
+              if (err) {
+                  db.rollback(() => {
+                      throw err;
+                  });
+              }
+              db.commit((err) => {
+                  if (err) {
+                      db.rollback(() => {
+                          throw err;
+                      });
+                  }
+                  console.log('Информация о изображениях успешно сохранена в базе данных');
+                  res.status(200).json({ newsIndex });
+              });
+          });
+      });
+  } catch (error) {
+      console.error('Ошибка:', error.message);
+      res.status(500).send('Ошибка сервера');
+  }
 });
 
 
