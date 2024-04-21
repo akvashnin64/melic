@@ -379,6 +379,28 @@ app.delete('/api/deleteAnons/:id', (req, res) => {
   });
 });
 
+app.patch('/updateInfoAboutAnons', (req, res) => {
+  const { idAnons, titleAnons, dateAnons } = req.body;
+
+  const query = `
+    UPDATE table_anonses
+    SET
+      titleAnons = ?,
+      dateAnons = ?
+    WHERE
+      idAnons = ?;
+  `;
+
+  db.query(query, [titleAnons, dateAnons, idAnons], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении запроса: ', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.status(200).send('Информация о филиале успешно обновлена');
+    }
+  });
+});
+
 
 app.post('/api/addNews', (req, res) => {
   const { oldIndex, authorNews, title, date, text } = req.body;
