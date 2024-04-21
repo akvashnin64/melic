@@ -338,14 +338,28 @@ app.get('/getLastAnonses', (req, res) => {
   });
 });
 
+app.post('/api/addAnons', (req, res) => {
+  const { authorAnons, titleAnons, dateAnons } = req.body;
+
+  const query = `
+    INSERT INTO table_anonses (authorAnons, titleAnons, dateAnons)
+    VALUES (?, ?, ?);
+  `;
+
+  db.query(query, [ authorAnons, titleAnons, dateAnons], (err, result) => {
+    if (err) {
+      res.status(500).send('Ошибка сервера', err.message);
+    } else {
+      const anonsId = result.insertId;
+      res.status(200).json({ anonsId });
+    }
+  });
+});
+
 
 app.post('/api/addNews', (req, res) => {
   const { oldIndex, authorNews, title, date, text } = req.body;
 
-  // Вывод данных в консоль
-  debug('Получены новые данные:', {  oldIndex, authorNews, title, date, text });
-
-  // Логика сохранения в базу данных
   const query = `
     INSERT INTO table_news ( oldIndex, authorNews, titleNews, dateNews, textNews)
     VALUES (?, ?, ?, ?, ?);
@@ -353,12 +367,10 @@ app.post('/api/addNews', (req, res) => {
 
   db.query(query, [ oldIndex, authorNews, title, date, text], (err, result) => {
     if (err) {
-      debug('Ошибка при добавлении новости в таблицу table_news:', err);
-      res.status(500).send('Ошибка сервера', err.messages);
+      res.status(500).send('Ошибка сервера', err.message);
     } else {
-      const newsId = result.insertId; // Получаем idNews из результата вставки
-      debug('Новость успешно добавлена. ID новости:', newsId);
-      res.status(200).json({ newsId }); // Отправляем ответ клиенту с ID новости
+      const newsId = result.insertId; 
+      res.status(200).json({ newsId }); 
     }
   });
 });
