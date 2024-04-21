@@ -457,7 +457,7 @@ app.post('/api/uploadPhotos', uploadPhotos.array('photos'), (req, res) => {
           if (err) {
               throw err;
           }
-          db.query(query, photos.flatMap(photo => [photo.filename]), (err, result) => {
+          db.query(query, photos.flatMap(photo => photo.filename), (err, result) => {
               if (err) {
                   db.rollback(() => {
                       throw err;
