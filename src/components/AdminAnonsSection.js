@@ -4,7 +4,7 @@ import AdminMenu from "./AdminMenu";
 
 const AdminAnonsSection = () => {
     const [operation, setOperation] = useState(null);
-    const [selectedFiles, setSelectedFiles] = useState([]);
+    const [selectedFiles, setSelectedFiles] = useState();
     const [deleteAnonsId, setDeleteAnonsId] = useState('');
     const [listAnons, setListAnons] = useState([]);
     const [selectedAnons, setSelectedAnons] = useState();
@@ -58,19 +58,17 @@ const AdminAnonsSection = () => {
     const saveAnons = async (anonsData) => {
         try {
             const authorAnons = 2;
+
+            const formData = new FormData();
+            formData.append('authorAnons', authorAnons)
+            formData.append('titleAnons', anonsData.title)
+            formData.append('dateAnons', anonsData.date)
+            formData.append('fileAnons', selectedFiles)
     
             // Отправка запроса на добавление новости
             const response = await fetch('http://89.111.154.224:3001/api/addAnons', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    idAnons: selectedAnons,
-                    authorAnons: authorAnons,
-                    titleAnons: anonsData.title,
-                    dateAnons: anonsData.date
-                }),
+                body: formData
             });
         } catch (error) {
             console.error('Ошибка:', error.message);
@@ -127,6 +125,13 @@ const AdminAnonsSection = () => {
         }
     };
 
+    const handleFileChange = (event) => {
+        // Обработчик изменения выбранных файлов
+        event.preventDefault();
+        const file = event.target.files[0];
+        setSelectedFiles(file);
+    };
+
     return(
         <>
             <AdminMenu/>
@@ -162,7 +167,7 @@ const AdminAnonsSection = () => {
                             <input 
                                 id="fileInput" 
                                 type="file" 
-                                //onChange={handleFileChange} 
+                                onChange={handleFileChange} 
                                 multiple accept="image/*" />
 
                             <button 

@@ -36,8 +36,20 @@ const photosStorage = multer.diskStorage({
   }
 });
 
+const anonsStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'graphContent', 'anonses'));
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+  }
+});
+
 const uploadNews = multer({ storage: newsStorage });
 const uploadPhotos = multer({ storage: photosStorage });
+const uploadAnons = multer({ storage: anonsStorage });
 
 const createNewsFolder = (newsIndex) => {
   const folderPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
@@ -382,8 +394,9 @@ app.get('/getLastAnonses', (req, res) => {
   });
 });
 
-app.post('/api/addAnons', (req, res) => {
+app.post('/api/addAnons', uploadAnons.array('fileAnons'), (req, res) => {
   const { authorAnons, titleAnons, dateAnons } = req.body;
+  const filename = req.files[0].filename;
 
   const query = `
     INSERT INTO table_anonses (authorAnons, titleAnons, dateAnons)
