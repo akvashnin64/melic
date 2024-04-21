@@ -356,6 +356,29 @@ app.post('/api/addAnons', (req, res) => {
   });
 });
 
+app.delete('/api/deleteAnons/:id', (req, res) => {
+  const anonsId = req.params.id;
+
+  // Проверяем, что newsId - это целое число
+  if (!Number.isInteger(Number(anonsId))) {
+    return res.status(400).send('ID анонса должно быть целым числом');
+  }
+
+  const deleteNewsQuery = `
+    DELETE FROM table_anonses
+    WHERE idAnons = ?;
+  `;
+
+  db.query(deleteNewsQuery, [anonsId], (err, result) => {
+    if (err) {
+      console.error('Ошибка при удалении анонса: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).send('Анонс успешно удален из базы данных');
+    }
+  });
+});
+
 
 app.post('/api/addNews', (req, res) => {
   const { oldIndex, authorNews, title, date, text } = req.body;
