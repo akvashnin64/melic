@@ -27,7 +27,7 @@ const newsStorage = multer.diskStorage({
 
 const photosStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'graphContent', 'photos'));
+    cb(null, path.join(__dirname, 'graphContent', 'photoSlider'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
