@@ -397,18 +397,31 @@ app.get('/getLastAnonses', (req, res) => {
 app.post('/api/addAnons', uploadAnons.array('fileAnons'), (req, res) => {
   const { authorAnons, titleAnons, dateAnons } = req.body;
   const filename = req.files[0].filename;
+  const sortorder = 1;
 
   const query = `
     INSERT INTO table_anonses (authorAnons, titleAnons, dateAnons)
     VALUES (?, ?, ?);
   `;
 
-  db.query(query, [ authorAnons, titleAnons, dateAnons], (err, result) => {
+  db.query(query, [authorAnons, titleAnons, dateAnons], (err, result) => {
     if (err) {
-      res.status(500).send('Ошибка сервера', err.message);
+      res.status(500).send('Ошибка сервера' + err.message);
     } else {
       const anonsId = result.insertId;
-      res.status(200).json({ anonsId });
+
+      const query2 = `
+        INSERT INTO table_picture_anonses (content_id, filename, sortorder)
+        VALUES (?, ?, ?);
+      `;
+
+      db.query(query2, [anonsId, filename, sortorder], (err, result) => {
+        if (err) {
+          res.status(500).send('Ошибка сервера' + err.message);
+        } else {
+          res.status(200).json({ anonsId });
+        }
+      });
     }
   });
 });
