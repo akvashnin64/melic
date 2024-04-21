@@ -180,6 +180,10 @@ html {
   overflow-x: hidden;
 }
 
+.news-item.selected {
+  filter: brightness(0.5);
+}
+
 
 p {
   display: block;
@@ -1878,7 +1882,6 @@ a:hover {
     margin-bottom: 20px;
     width: 48%;
   }
-
   
 
   .linkBranche:nth-child(5),

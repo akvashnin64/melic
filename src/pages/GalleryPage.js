@@ -6,6 +6,7 @@ import PhotoSlider from "../components/PhotoSlider";
 import Breadcrumbs from '../components/BreadCrumbs'
 import VideoSlider from "../components/VideoSlider";
 import Links from "../components/Links"
+import { toHaveAttribute } from "@testing-library/jest-dom/matchers";
 
 const GalleryPage = () => {
     const [photoData, setPhotoData] = useState([]);
@@ -64,6 +65,8 @@ const GalleryPage = () => {
         <PhotoSlider 
             photos={photoData.map(photo => photo.namePicture)} 
             basePath={basePathImg} 
+            visibleHeader={true}
+            inAdmin={false}
             />
 
         <VideoSlider

@@ -480,6 +480,21 @@ app.post('/api/uploadPhotos', uploadPhotos.array('photos'), (req, res) => {
   }
 });
 
+app.delete('/deletePhoto', (req, res) => {
+  const {selectedPhotoId} = req.body;
+
+  const query = `DELETE FROM table_photos WHERE idPhoto = ?`;
+
+  db.query(query, [selectedPhotoId], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении SQL-запроса: ', err);
+      res.status(500).send(`Ошибка сервера: ${err.message}`);
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 
 app.post('/api/addNews', (req, res) => {
   const { oldIndex, authorNews, title, date, text } = req.body;

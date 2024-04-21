@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 
-const PhotoSlider = ({ photos, basePath }) => {
+const PhotoSlider = ({ photos, basePath, visibleHeader, onImageSelect, inAdmin }) => {
   const carouselRef = React.createRef();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
@@ -47,15 +47,23 @@ const PhotoSlider = ({ photos, basePath }) => {
 
   const items = photos.map((photo, index) => {
     return(
-      <div key={index} className="news-item">
+      <div key={index} className={`news-item ${index === selectedImage ? 'selected' : ''}`}>
         <img
           src={getImagePath(photo)}
           alt={`Photo ${index + 1}`}
-          onClick={() => openPopup(index)}
+          onClick={() => handleClick(index)}
         />
       </div>
     )
   });
+
+  const handleClick = (index) => {
+    if (inAdmin) {
+      onSelectPhoto(index); // Если в режиме администратора, вызываем функцию selectPhoto
+    } else {
+      openPopup(index); // Если не в режиме администратора, вызываем функцию openPopup
+    }
+  };
 
   const handlePrevClick = () => {
     if (carouselRef.current) {
@@ -77,6 +85,7 @@ const PhotoSlider = ({ photos, basePath }) => {
 
   const openPopup = (index) => {
     setSelectedImage(index);
+    onImageSelect(index);
     setPopupOpen(true);
   };
 
@@ -84,9 +93,14 @@ const PhotoSlider = ({ photos, basePath }) => {
     setPopupOpen(false);
   };
 
+  const onSelectPhoto = (index) => {
+    setSelectedImage(index);
+    onImageSelect(index);
+  }
+
   return (
     <div className="containerSlider">
-      <div className="textSlider">
+      <div className="textSlider" style={{ display: !visibleHeader ? 'none' : '' }}>
         <div>
           <p>ФОТО</p>
         </div>
