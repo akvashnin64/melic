@@ -421,6 +421,28 @@ app.post('/api/uploadNewsImages', upload.array('images'), (req, res) => {
   }
 });
 
+app.patch('/updateInfoAboutNew', (req, res) => {
+  const { oldIndex, titleNews, textNews } = req.body;
+
+  const query = `
+    UPDATE table_news
+    SET
+      titleNews = ?,
+      textNews = ?
+    WHERE
+      oldIndex = ?;
+  `;
+
+  db.query(query, [titleNews, textNews, oldIndex], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении запроса: ', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.status(200).send('Информация о филиале успешно обновлена');
+    }
+  });
+});
+
 app.delete('/api/deleteNews/:id', (req, res) => {
   const newsId = req.params.id;
 

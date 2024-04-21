@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminMenu from "./AdminMenu";
 
@@ -7,6 +7,12 @@ const AdminNewsSection = () => {
     const [operation, setOperation] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [deleteNewsId, setDeleteNewsId] = useState('');
+    const [listNews, setListNews] = useState([]);
+    const [selectedNews, setSelectedNews] = useState();
+    const [selectedNewsData, setSelectedNewsData] = useState(null);
+
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
 
     const handleIdChange = (event) => {
         event.preventDefault();
@@ -163,6 +169,44 @@ const AdminNewsSection = () => {
         // Отправка данных на сервер
         saveNews({ title, text, dateTimestamp });
     };
+
+    useEffect(() => {
+        const fetchListNews = async () => {
+            try {
+                const response = await fetch('http://89.111.154.224:3001/getLastNews');
+                const data = await response.json();
+                setListNews(data);
+            } catch (error) {
+                console.error('Ошибка при запросе вакансий: ', error);
+            }
+        };
+
+        fetchListNews();
+    }, []);
+
+    useEffect(() => {
+        const newsData = listNews.find(news => news.oldIndex === parseInt(selectedNews));
+        setSelectedNewsData(newsData);
+
+        if (newsData) {
+            setTitle(newsData.titleNews || '');
+            setText(newsData.textNews || '');
+        }
+    }, [selectedNews, listNews]);
+
+    function cleanString(input) {
+        const withoutHtmlTags = input.replace(/<[^>]*>/g, '');
+        console.log(withoutHtmlTags);
+        
+        const replacedText = withoutHtmlTags.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&nbsp;/g, '').replace(/&ndash;/g, '-').replace(/&mdash;/g, '-');
+        console.log(replacedText);
+        
+        const decodedString = decodeURIComponent(replacedText);
+        console.log(decodedString);
+        
+        return decodedString;
+    }
+    
     
 
     return (
@@ -246,13 +290,45 @@ const AdminNewsSection = () => {
                 <Link className="textPointInAdminPage" onClick={() => setOperation("edit")}>Изменить новость</Link>
                 {operation === "edit" && (
                     // Поля ввода для изменения новости
-                    <div>
-                        <input type="text" placeholder="ID новости" />
-                        <input type="text" placeholder="Новый заголовок" />
-                        <input type="text" placeholder="Новый текст новости" />
-                        {/* Другие поля, если необходимо */}
-                        <button>Сохранить изменения</button>
-                    </div>
+                    <form className="adminForm">
+                        <div>
+                            <label>
+                                Выберите нужную новость из списка:
+                            </label>
+
+                            <select
+                                value=""
+                                onChange={(e) => setSelectedNews(e.target.value)}
+                                >
+                                    <option value="">Выберите новость</option>
+                                    {listNews.map(news => (
+                                    <option key={news.oldIndex} value={news.oldIndex}>
+                                        {news.titleNews}
+                                    </option>
+                                    ))}
+
+                            </select>
+
+                            <label>
+                                В этих полях вы можете изменить значения для выбранной новости. <br></br>
+                                Для принятия изменений нажмите кнопку ниже.
+                            </label>
+
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                            <textarea
+                                type="text"
+                                value={cleanString(text)}
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                            {/* Другие поля, если необходимо */}
+                            <button>Сохранить изменения</button>
+                        </div>
+                    </form>
+                    
                 )}
             </div>
         </div>
