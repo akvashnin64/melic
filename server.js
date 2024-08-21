@@ -85,7 +85,7 @@ app.use('/graphContent', express.static(imagesPath));
 app.use(express.static(path.join(__dirname, 'build')));
 
 const db = mysql.createConnection({
-  host: '194.58.126.202',
+  host: 'localhost',
   port: '3306', 
   user: 'smvh_mysql',
   password: 'Gr46jghj56',
