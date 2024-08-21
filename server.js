@@ -85,10 +85,10 @@ app.use('/graphContent', express.static(imagesPath));
 app.use(express.static(path.join(__dirname, 'build')));
 
 const db = mysql.createConnection({
-  host: '89.111.154.224',
+  host: '194.58.126.202',
   port: '3306', 
   user: 'smvh_mysql',
-  password: 'gsV4Hsf/53n',
+  password: 'Gr46jghj56',
   database: 'smvh_db'
 });
 
