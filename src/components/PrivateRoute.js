@@ -17,7 +17,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
                 try {
                     console.log('Отправка запроса с токеном:', authToken);
 
-                    const response = await fetch('http://89.111.154.224/validate-token', {
+                    const response = await fetch('http://194.58.126.202/validate-token', {
                         method: 'POST',
                         credentials: 'include',
                         headers: {

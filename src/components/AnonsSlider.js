@@ -11,7 +11,7 @@ const AnonsSlider = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    fetch('http://89.111.154.224:3001/getLastAnonses')
+    fetch('http://194.58.126.202:3001/getLastAnonses')
       .then(response => response.json())
       .then(data => {
         setAnonsData(data.map(anons => ({
@@ -27,7 +27,7 @@ const AnonsSlider = () => {
   }, []);
 
   const getImagePath = (namePic) => {
-    return `http://89.111.154.224/graphContent/anonses/${namePic}`;
+    return `http://194.58.126.202/graphContent/anonses/${namePic}`;
   };
 
   const handlePrevClick = () => {

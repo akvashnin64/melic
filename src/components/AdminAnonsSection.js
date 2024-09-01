@@ -37,7 +37,7 @@ const AdminAnonsSection = () => {
             return;
           }
     
-          const response = await fetch(`http://89.111.154.224/api/deleteAnons/${deleteAnonsId}`, {
+          const response = await fetch(`http://194.58.126.202/api/deleteAnons/${deleteAnonsId}`, {
             method: 'DELETE',
           });
     
@@ -66,7 +66,7 @@ const AdminAnonsSection = () => {
             formData.append('fileAnons', selectedFiles)
     
             // Отправка запроса на добавление новости
-            const response = await fetch('http://89.111.154.224:3001/api/addAnons', {
+            const response = await fetch('http://194.58.126.202:3001/api/addAnons', {
                 method: 'POST',
                 body: formData
             });
@@ -87,7 +87,7 @@ const AdminAnonsSection = () => {
     useEffect(() => {
         const fetchListAnons = async () => {
             try {
-                const response = await fetch('http://89.111.154.224:3001/getLastAnonses');
+                const response = await fetch('http://194.58.126.202:3001/getLastAnonses');
                 const data = await response.json();
                 setListAnons(data);
             } catch (error) {
@@ -103,7 +103,7 @@ const AdminAnonsSection = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://89.111.154.224:3001/updateInfoAboutAnons', {
+            const response = await fetch('http://194.58.126.202:3001/updateInfoAboutAnons', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

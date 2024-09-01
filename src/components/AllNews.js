@@ -29,7 +29,7 @@ const AllNews = () => {
 
   useEffect(() => {
     // Асинхронный запрос на сервер при монтировании компонента
-    fetch('http://89.111.154.224:3001/getLastNews')
+    fetch('http://194.58.126.202:3001/getLastNews')
       .then(response => response.json())
       .then(data => {
         setNewsData(data.map(news => ({
@@ -42,7 +42,7 @@ const AllNews = () => {
 
   useEffect(() => {
     // Передаем параметры startDate и endDate в URL-строку
-    const url = `http://89.111.154.224:3001/getNewsForDate?startDate=${startDate/1000}&endDate=${endDate/1000}`;
+    const url = `http://194.58.126.202:3001/getNewsForDate?startDate=${startDate/1000}&endDate=${endDate/1000}`;
 
     // Выполняем запрос только если есть выбранные даты
     if (startDate && endDate) {
@@ -65,11 +65,11 @@ const AllNews = () => {
     const namesArray = imageNames ? imageNames.split(',') : [];
 
     if (namesArray.length === 0) {
-      var filepath = `http://89.111.154.224/graphContent/news/default/default.jpg`;
+      var filepath = `http://194.58.126.202/graphContent/news/default/default.jpg`;
       return filepath; 
     }
     else {
-      var filepath = `http://89.111.154.224/graphContent/news/${oldIndex}/${namesArray[0].trim()}`;
+      var filepath = `http://194.58.126.202/graphContent/news/${oldIndex}/${namesArray[0].trim()}`;
       return filepath;
     }
   }

@@ -29,7 +29,7 @@ const AdminNewsSection = () => {
         return;
       }
 
-      const response = await fetch(`http://89.111.154.224/api/deleteNews/${deleteNewsId}`, {
+      const response = await fetch(`http://194.58.126.202/api/deleteNews/${deleteNewsId}`, {
         method: 'DELETE',
       });
 
@@ -72,7 +72,7 @@ const AdminNewsSection = () => {
     
     
             // Отправка запроса на добавление новости
-            const response = await fetch('http://89.111.154.224:3001/api/addNews', {
+            const response = await fetch('http://194.58.126.202:3001/api/addNews', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ const AdminNewsSection = () => {
                 console.log('Новость успешно добавлена');
     
                 // Отправка запроса на добавление индекса
-                const response2 = await fetch('http://89.111.154.224:3001/api/addOldIndex', {
+                const response2 = await fetch('http://194.58.126.202:3001/api/addOldIndex', {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const AdminNewsSection = () => {
     
             
             // Отправляем FormData на сервер
-            const response = await fetch('http://89.111.154.224:3001/api/uploadNewsImages', {
+            const response = await fetch('http://194.58.126.202:3001/api/uploadNewsImages', {
                 method: 'POST',
                 body: formData
             });
@@ -173,7 +173,7 @@ const AdminNewsSection = () => {
     useEffect(() => {
         const fetchListNews = async () => {
             try {
-                const response = await fetch('http://89.111.154.224:3001/getLastNews');
+                const response = await fetch('http://194.58.126.202:3001/getLastNews');
                 const data = await response.json();
                 setListNews(data);
             } catch (error) {
@@ -205,7 +205,7 @@ const AdminNewsSection = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://89.111.154.224:3001/updateInfoAboutNew', {
+            const response = await fetch('http://194.58.126.202:3001/updateInfoAboutNew', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
