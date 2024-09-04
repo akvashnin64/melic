@@ -23,7 +23,7 @@ const OneNew = ({ setNewsDataForPage }) => {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://89.111.154.224:3001/getNewsById/${parseInt(id, 10)}`)
+      fetch(`http://194.58.126.202:3001/getNewsById/${parseInt(id, 10)}`)
         .then(response => response.json())
         .then(data => {
           setNewsData(data);
@@ -55,7 +55,7 @@ const OneNew = ({ setNewsDataForPage }) => {
     const namesArray = imageNames ? imageNames.split(',') : [];
     if (namesArray.length === 0) return null; 
     else {
-      return `http://89.111.154.224/news/${oldIndex}/${namesArray[currentPage].trim()}`;
+      return `http://194.58.126.202/news/${oldIndex}/${namesArray[currentPage].trim()}`;
     }
   }
 
@@ -87,7 +87,7 @@ const OneNew = ({ setNewsDataForPage }) => {
       {usageSlider(newsData.imageCount) ? (
         <PhotoSlider 
           photos={newsData.imageNames ? newsData.imageNames.split(',') : []} 
-          basePath={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}`}
+          basePath={`http://194.58.126.202/graphContent/news/${newsData.oldIndex}`}
         />
       ) : (
         (newsData.imageNames && newsData.imageNames.trim() !== '') ? (
@@ -95,7 +95,7 @@ const OneNew = ({ setNewsDataForPage }) => {
             <img
               className='photoInOneNewPage'
               key={index}
-              src={`http://89.111.154.224/graphContent/news/${newsData.oldIndex}/${imageName.trim()}`}
+              src={`http://194.58.126.202/graphContent/news/${newsData.oldIndex}/${imageName.trim()}`}
               alt={`Image ${index + 1}`}
               style={{
                 width: newsData.imageCount === 1 ? '75%' : newsData.imageCount === 2 ? '50%' : newsData.imageCount === 3 ? '30%' : 'auto',
