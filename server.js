@@ -643,6 +643,19 @@ app.delete('/api/deleteNews/:id', (req, res) => {
   });
 });
 
+app.get('/getFiles', (req, res) => {
+  const query = `SELECT * FROM table_files ORDER BY idFile DESC;`;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении файлов: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 app.post('/autorization', (req, res) => {
   const { login, password } = req.body;
   const md5Password = md5(password);
