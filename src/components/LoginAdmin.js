@@ -18,7 +18,7 @@ const LoginAdmin = () => {
 
   const loginRequest = async () => {
     try {
-      const response = await fetch('http://194.58.126.202/api/auth', {
+      const response = await fetch('http://194.58.126.202:3001/api/auth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
