@@ -661,6 +661,8 @@ app.post('/api/getFileById', (req, res) => {
 app.delete('/api/deleteFile/:id', (req, res) => {
   const { idFile } = parseInt(req.body, 10);
 
+  console.log(idFile);
+
   const deleteFileQuery = `DELETE FROM table_files WHERE idFile = ?;`;
 
   db.query(deleteFileQuery, [idFile], (err, result) => {
