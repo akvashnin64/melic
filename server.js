@@ -660,7 +660,7 @@ app.post('/api/getFileById', (req, res) => {
 });
 
 app.delete('/api/deleteFile/:id', (req, res) => {
-  const { idFile } = parseInt(req.body, 10);
+  const { idFile } = req.body;
   const idFileAsNumber = parseInt(idFile, 10);
 
   console.log(idFileAsNumber);
