@@ -49,13 +49,11 @@ const AdminActsSection = () => {
 
         try {
             const response = await fetch(`http://194.58.126.202:3001/api/deleteFile/${selectedFile}`, {
-                method: 'POST',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    idFile: selectedFile,
-                }),
+                body: JSON.stringify({ selectedFile }),
             });
 
             const data = await response.json();
@@ -68,15 +66,13 @@ const AdminActsSection = () => {
     
 
     const getFileById = async (idFile) => {
-        setSelectedFile(idFile);
-
         try {
             const response = await fetch('http://194.58.126.202:3001/api/getFileById', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ idFile: idFile }),
+                body: JSON.stringify({ idFile }),
             });
 
             const data = await response.json();

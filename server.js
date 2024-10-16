@@ -689,7 +689,7 @@ app.post('/api/addFile', (req, res) => {
       console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send(`Ошибка сервера: ${err.message}`);
     } else {
-      res.status(200).json(result);
+      res.status(200).send('Файл успешно загружен');
     }
   });
 });
