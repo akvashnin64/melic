@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Links from '../components/Links';
 import Footer from '../components/Footer'
 import Breadcrumbs from '../components/BreadCrumbs'
+import Acts from "../components/Acts";
 
 const ActsPage = () => {
     const location = useLocation();
@@ -12,7 +13,7 @@ const ActsPage = () => {
       // Прокрутить в верхнюю часть страницы при изменении маршрута
       window.scrollTo(0, 0);
     }, [location.pathname]);
-  
+
     const paths = [
         {
             label: "Главная",
@@ -32,10 +33,7 @@ const ActsPage = () => {
         <>
         <Header />
         <Breadcrumbs paths={paths} /> 
-        <div className="plugText">
-            <p>Этот раздел сейчас в разработке.</p>
-            <p>Информация появится в ближайшее время.</p>
-        </div>
+        <Acts/>
         <Links />
         <Footer />
         </>

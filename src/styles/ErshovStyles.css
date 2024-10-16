@@ -4,6 +4,25 @@
     justify-content: space-between;
 }
 
+.containerActs{
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 36px;
+}
+
+.containerOneActs a {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+.groupActs{
+    width: 1%;
+    height: 1%;
+    margin-right: 30px;
+}
+
 .textAboutBranche p{
     text-align: justify;
 }

@@ -643,13 +643,63 @@ app.delete('/api/deleteNews/:id', (req, res) => {
   });
 });
 
-app.get('/getFiles', (req, res) => {
+app.get('/api/getFiles', (req, res) => {
   const query = `SELECT * FROM table_files ORDER BY idFile DESC;`;
 
   db.query(query, (err, result) => {
     if (err) {
       console.error('Ошибка при получении файлов: ', err);
       res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+app.delete('/api/deleteFile/:id', (req, res) => {
+  const idFile = req.params.id;
+
+  // Проверяем, что idFile - это целое число
+  if (!Number.isInteger(Number(idFile))) {
+    return res.status(400).send('ID файла должно быть целым числом');
+  }
+
+  const deleteFileQuery = `DELETE FROM table_filesWHERE idFile = ?;`;
+
+  db.query(deleteFileQuery, [idFile], (err, result) => {
+    if (err) {
+      console.error('Ошибка при удалении файла: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).send('Файл успешно удален из базы данных');
+    }
+  });
+});
+
+app.patch('/api/updateInfoAboutFile', (req, res) => {
+  const { idFile, filename, summary } = req.body;
+
+  const updateFileQuery = `UPDATE table_files SET filename = ?, summary = ? WHERE idFile = ?;`;
+
+  db.query(updateFileQuery, [idFile, filename, summary], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении запроса: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).send('Информация о файле успешно обновлена');
+    }
+  });
+});
+
+app.post('/api/addFile', (req, res) => {
+  const { filename, summary } = req.body;
+
+  const addFileQuery = `INSERT INTO table_files (filename, summary) VALUES (?, ?)`;
+
+  db.query(addFileQuery, [filename, summary], (err, result) => {
+    if (err) {
+      console.error('Ошибка при выполнении SQL-запроса: ', err);
+      res.status(500).send(`Ошибка сервера: ${err.message}`);
     } else {
       res.status(200).json(result);
     }
