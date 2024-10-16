@@ -46,12 +46,8 @@ const AdminAnonsSection = () => {
           }
     
           console.log('Анонс успешно удалена');
-    
-          // Дополнительная логика, которую вы хотите выполнить после удаления новости
-    
         } catch (error) {
           console.error('Ошибка:', error.message);
-          // Дополнительная логика обработки ошибки, если необходимо
         }
       };
 
@@ -251,7 +247,6 @@ const AdminAnonsSection = () => {
                                     value={date}
                                     onChange={(e) => setDate(e.target.value)}
                                 />
-                                {/* Другие поля, если необходимо */}
                                 <button
                                     onClick={(event) => handleUpdateAnons(event)}>
                                     Сохранить изменения

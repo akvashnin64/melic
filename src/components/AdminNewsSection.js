@@ -27,7 +27,7 @@ const AdminNewsSection = () => {
         return;
       }
 
-      const response = await fetch(`http://194.58.126.202/api/deleteNews/${deleteIdNews}`, {
+      const response = await fetch(`http://194.58.126.202:3001/api/deleteNews/${deleteIdNews}`, {
         method: 'DELETE',
       });
 

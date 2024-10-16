@@ -58,6 +58,7 @@ import ActsPage from './pages/ActsPage';
 import VacancyPage from './pages/VacancyPage';
 import AdminVacancySection from './components/AdminVacancySection';
 import AdminBrancheSection from './components/AdminBrancheSection';
+import AdminActsSection from './components/AdminActsSection';
 
 const router = createBrowserRouter([
   {
@@ -142,6 +143,10 @@ const router = createBrowserRouter([
       {
         path: process.env.PUBLIC_URL + '/admin/branche',
         element: <PrivateRoute element={AdminBrancheSection}/>
+      },
+      {
+        path: process.env.PUBLIC_URL + '/admin/documents',
+        element: <PrivateRoute element={AdminActsSection}/>
       }
     ]
   },
