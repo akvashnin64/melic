@@ -11,7 +11,7 @@ const AdminActsSection = () => {
     useEffect(() => {
         const fetchListFiles = async () => {
             try {
-                const response = await fetch('http://194.58.126.202:3001/getFiles');
+                const response = await fetch('http://194.58.126.202:3001/api/getFiles');
                 const data = await response.json();
                 setListFiles(data);
             } catch (error) {
@@ -26,7 +26,7 @@ const AdminActsSection = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://194.58.126.202:3001/addFile', {
+            const response = await fetch('http://194.58.126.202:3001/api/addFile', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const AdminActsSection = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://194.58.126.202:3001/deleteFile/${selectedFile}`, {
+            const response = await fetch(`http://194.58.126.202:3001/api/deleteFile/${selectedFile}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const AdminActsSection = () => {
         setSelectedFile(idFile);
 
         try {
-            const response = await fetch('http://194.58.126.202:3001/getFileById', {
+            const response = await fetch('http://194.58.126.202:3001/api/getFileById', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
