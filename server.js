@@ -645,8 +645,6 @@ app.post('/api/getFileById', (req, res) => {
   const { idFile } = req.body;
   const idFileAsNumber = parseInt(idFile, 10);
 
-  console.log(idFileAsNumber);
-
   const getOneFileQuery = `SELECT * FROM table_files WHERE idFile = ?;`;
 
   db.query(getOneFileQuery, [idFileAsNumber], (err, result) => {
@@ -660,14 +658,11 @@ app.post('/api/getFileById', (req, res) => {
 });
 
 app.delete('/api/deleteFile/:id', (req, res) => {
-  const { idFile } = req.body;
-  const idFileAsNumber = parseInt(idFile, 10);
-
-  console.log(idFileAsNumber);
+  const { id } = req.params;
 
   const deleteFileQuery = `DELETE FROM table_files WHERE idFile = ?;`;
 
-  db.query(deleteFileQuery, [idFileAsNumber], (err, result) => {
+  db.query(deleteFileQuery, [id], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
