@@ -644,10 +644,6 @@ app.get('/api/getFiles', (req, res) => {
 app.post('/api/getFileById', (req, res) => {
   const idFile = req.params.id;
 
-  if (!Number.isInteger(Number(idFile))) {
-    return res.status(400).send('ID файла должно быть целым числом');
-  }
-
   const getOneFileQuery = `SELECT * FROM table_files WHERE idFile = ?;`;
 
   db.query(getOneFileQuery, [idFile], (err, result) => {
