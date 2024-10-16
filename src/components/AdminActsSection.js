@@ -76,13 +76,13 @@ const AdminActsSection = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ idFile }),
+                body: JSON.stringify({ idFile: idFile }),
             });
 
             const data = await response.json();
             setFile(data);
         } catch (error) {
-            console.error('Ошибка при запросе вакансий для филиала: ', error);
+            console.error('Ошибка при получении файла: ', error);
         }
     };
 
@@ -104,7 +104,7 @@ const AdminActsSection = () => {
                             <input
                                 type="text"
                                 placeholder="Введите название документа"
-                                name="filename"
+                                name="summary"
                             />
 
                             <label>
@@ -114,7 +114,7 @@ const AdminActsSection = () => {
                             <input
                                 type="text"
                                 placeholder="Вставьте ссылку"
-                                name="summary"
+                                name="filename"
                             />
     
                             <button type="submit">Добавить</button>
@@ -143,7 +143,7 @@ const AdminActsSection = () => {
                                 <option value="">Выберите документ</option>
                                 {listFiles.map(oneFile => (
                                     <option key={oneFile.idFile} value={oneFile.idFile}>
-                                        {oneFile.filename}
+                                        {oneFile.summary}
                                     </option>
                                 ))}
                             </select>
