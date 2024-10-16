@@ -644,6 +644,8 @@ app.get('/api/getFiles', (req, res) => {
 app.post('/api/getFileById', (req, res) => {
   const { idFile } = parseInt(req.body, 10);
 
+  console.log(idFile);
+
   const getOneFileQuery = `SELECT * FROM table_files WHERE idFile = ?;`;
 
   db.query(getOneFileQuery, [idFile], (err, result) => {
