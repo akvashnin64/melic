@@ -661,11 +661,7 @@ app.post('/api/getFileById', (req, res) => {
 });
 
 app.delete('/api/deleteFile/:id', (req, res) => {
-  const idFile = req.params.id;
-
-  if (!Number.isInteger(Number(idFile))) {
-    return res.status(400).send('ID файла должно быть целым числом');
-  }
+  const { idFile } = req.params.id;
 
   const deleteFileQuery = `DELETE FROM table_filesWHERE idFile = ?;`;
 
