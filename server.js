@@ -642,13 +642,14 @@ app.get('/api/getFiles', (req, res) => {
 });
 
 app.post('/api/getFileById', (req, res) => {
-  const { idFile } = parseInt(req.body, 10);
+  const { idFile } = req.body;
+  const idFileAsNumber = parseInt(idFile, 10);
 
-  console.log(idFile);
+  console.log(idFileAsNumber);
 
   const getOneFileQuery = `SELECT * FROM table_files WHERE idFile = ?;`;
 
-  db.query(getOneFileQuery, [idFile], (err, result) => {
+  db.query(getOneFileQuery, [idFileAsNumber], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
@@ -660,12 +661,13 @@ app.post('/api/getFileById', (req, res) => {
 
 app.delete('/api/deleteFile/:id', (req, res) => {
   const { idFile } = parseInt(req.body, 10);
+  const idFileAsNumber = parseInt(idFile, 10);
 
-  console.log(idFile);
+  console.log(idFileAsNumber);
 
   const deleteFileQuery = `DELETE FROM table_files WHERE idFile = ?;`;
 
-  db.query(deleteFileQuery, [idFile], (err, result) => {
+  db.query(deleteFileQuery, [idFileAsNumber], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
