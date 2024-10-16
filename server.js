@@ -642,7 +642,7 @@ app.get('/api/getFiles', (req, res) => {
 });
 
 app.post('/api/getFileById', (req, res) => {
-  const idFile = req.params.id;
+  const { idFile } = parseInt(req.body, 10);
 
   const getOneFileQuery = `SELECT * FROM table_files WHERE idFile = ?;`;
 
@@ -657,7 +657,7 @@ app.post('/api/getFileById', (req, res) => {
 });
 
 app.delete('/api/deleteFile/:id', (req, res) => {
-  const { idFile } = req.params.id;
+  const { idFile } = parseInt(req.body, 10);
 
   const deleteFileQuery = `DELETE FROM table_files WHERE idFile = ?;`;
 
