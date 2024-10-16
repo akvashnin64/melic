@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import AdminMenu from "./AdminMenu";
 
 const AdminNewsSection = () => {
-    // Состояние для отслеживания текущей операции (добавление, удаление, изменение)
     const [operation, setOperation] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState([]);
-    const [deleteNewsId, setDeleteNewsId] = useState('');
+    const [deleteIdNews, setDeleteIdNews] = useState('');
     const [listNews, setListNews] = useState([]);
     const [selectedNews, setSelectedNews] = useState();
     const [selectedNewsData, setSelectedNewsData] = useState(null);
@@ -17,33 +16,27 @@ const AdminNewsSection = () => {
     const handleIdChange = (event) => {
         event.preventDefault();
         const id = document.querySelector('#idDeletedNews').value;
-        setDeleteNewsId(id);
+        setDeleteIdNews(id);
     }
 
   const handleDeleteNews = async (event) => {
     event.preventDefault();
     try {
-      // Проверяем, что deleteNewsId - это целое число
-      if (!Number.isInteger(Number(deleteNewsId))) {
+      if (!Number.isInteger(Number(deleteIdNews))) {
         alert('ID новости должно быть целым числом');
         return;
       }
 
-      const response = await fetch(`http://194.58.126.202/api/deleteNews/${deleteNewsId}`, {
+      const response = await fetch(`http://194.58.126.202/api/deleteNews/${deleteIdNews}`, {
         method: 'DELETE',
       });
 
       if (!response.ok) {
         throw new Error(`Ошибка при удалении новости Код ошибки: ${response.status}`);
       }
-
       console.log('Новость успешно удалена');
-
-      // Дополнительная логика, которую вы хотите выполнить после удаления новости
-
     } catch (error) {
       console.error('Ошибка:', error.message);
-      // Дополнительная логика обработки ошибки, если необходимо
     }
   };
 
@@ -205,7 +198,7 @@ const AdminNewsSection = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://194.58.126.202:3001/updateInfoAboutNew', {
+            const response = await fetch('http://194.58.126.202:3001/api/updateInfoAboutNew', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

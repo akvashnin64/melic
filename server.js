@@ -593,49 +593,38 @@ app.post('/api/uploadNewsImages', uploadNews.array('images'), (req, res) => {
           });
       });
   } catch (error) {
-      console.error('Ошибка:', error.message);
+      console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
   }
 });
 
-app.patch('/updateInfoAboutNew', (req, res) => {
+app.patch('/api/updateInfoAboutNew', (req, res) => {
   const { oldIndex, titleNews, textNews } = req.body;
 
-  const query = `
-    UPDATE table_news
-    SET
-      titleNews = ?,
-      textNews = ?
-    WHERE
-      oldIndex = ?;
-  `;
+  const query = `UPDATE table_news SET titleNews = ?, textNews = ? WHERE oldIndex = ?;`;
 
   db.query(query, [titleNews, textNews, oldIndex], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
-      res.status(500).send('Internal Server Error');
+      res.status(500).send('Ошибка сервера');
     } else {
-      res.status(200).send('Информация о филиале успешно обновлена');
+      res.status(200).send('Информация о новости успешно обновлена');
     }
   });
 });
 
 app.delete('/api/deleteNews/:id', (req, res) => {
-  const newsId = req.params.id;
+  const idNews = req.params.id;
 
-  // Проверяем, что newsId - это целое число
-  if (!Number.isInteger(Number(newsId))) {
+  if (!Number.isInteger(Number(idNews))) {
     return res.status(400).send('ID новости должно быть целым числом');
   }
 
-  const deleteNewsQuery = `
-    DELETE FROM table_news
-    WHERE idNews = ?;
-  `;
+  const deleteNewsQuery = `DELETE FROM table_news WHERE idNews = ?;`;
 
-  db.query(deleteNewsQuery, [newsId], (err, result) => {
+  db.query(deleteNewsQuery, [idNews], (err, result) => {
     if (err) {
-      console.error('Ошибка при удалении новости: ', err);
+      console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
     } else {
       res.status(200).send('Новость успешно удалена из базы данных');
@@ -643,12 +632,16 @@ app.delete('/api/deleteNews/:id', (req, res) => {
   });
 });
 
+/////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////  FILES  //////////////////////////////////
+
 app.get('/api/getFiles', (req, res) => {
   const query = `SELECT * FROM table_files ORDER BY idFile DESC;`;
 
   db.query(query, (err, result) => {
     if (err) {
-      console.error('Ошибка при получении файлов: ', err);
+      console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
     } else {
       res.status(200).json(result);
@@ -668,7 +661,7 @@ app.delete('/api/deleteFile/:id', (req, res) => {
 
   db.query(deleteFileQuery, [idFile], (err, result) => {
     if (err) {
-      console.error('Ошибка при удалении файла: ', err);
+      console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
     } else {
       res.status(200).send('Файл успешно удален из базы данных');
@@ -698,7 +691,7 @@ app.post('/api/addFile', (req, res) => {
 
   db.query(addFileQuery, [filename, summary], (err, result) => {
     if (err) {
-      console.error('Ошибка при выполнении SQL-запроса: ', err);
+      console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send(`Ошибка сервера: ${err.message}`);
     } else {
       res.status(200).json(result);
@@ -706,7 +699,11 @@ app.post('/api/addFile', (req, res) => {
   });
 });
 
-app.post('/autorization', (req, res) => {
+///////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////// AUTH ////////////////////////////////////
+
+app.post('/api/auth', (req, res) => {
   const { login, password } = req.body;
   const md5Password = md5(password);
 
@@ -720,11 +717,7 @@ app.post('/autorization', (req, res) => {
       if (result.length > 0) {
         const user = result[0];
         const token = jwt.sign({ userId: user.user_id }, 'FDH245bnmhsNG4SJs6743', { expiresIn: '1h' });
-
-        // Добавляем токен к объекту ответа
         user.authToken = token;
-
-        // Отправляем объект ответа с токеном
         res.status(200).json(user);
       } else {
         res.status(401).send('Неверный логин или пароль');
@@ -750,36 +743,6 @@ app.post('/validate-token', (req, res) => {
       res.status(200).send('Токен валиден');
     }
   });
-});
-
-app.post('/api/send-feedback', async (req, res) => {
-  const { nameFeedback, emailFeedback, textFeedback } = req.body;
-
-  // Настройте транспорт для отправки электронной почты (здесь используется nodemailer)
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'akvashnin64@gmail.com',
-      pass: 'Gue463hehu11',
-    }
-  });
-
-  // Настройте данные для отправки электронного письма
-  const mailOptions = {
-    from: 'akvashnin64@gmail.com',
-    to: 'akvashnin64@gmail.com',
-    subject: 'Новое обращение',
-    text: `Имя: ${nameFeedback}\nEmail: ${emailFeedback}\nСообщение: ${textFeedback}`,
-  };
-
-  try {
-    // Отправка электронного письма
-    await transporter.sendMail(mailOptions);
-    res.status(200).send('Письмо успешно отправлено');
-  } catch (error) {
-    console.error('Ошибка при отправке электронного письма', error);
-    res.status(500).send('Ошибка при отправке электронного письма');
-  }
 });
 
 app.get('*', (req, res) => {
