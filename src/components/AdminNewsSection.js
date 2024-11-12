@@ -41,7 +41,6 @@ const AdminNewsSection = () => {
   };
 
     const handleFileChange = (event) => {
-        // Обработчик изменения выбранных файлов
         event.preventDefault();
         const files = [];
 
@@ -57,9 +56,6 @@ const AdminNewsSection = () => {
 
     const saveNews = async (newsData) => {
         try {
-            console.log('Отправка запроса на сервер для добавления новости...');
-            console.log('Данные новости:', newsData);
-
             const oldIndex = 1;
             const authorNews = 2;
     
@@ -99,13 +95,12 @@ const AdminNewsSection = () => {
                     const data2 = await response2.json();
                     console.log('Ответ от сервера:', data2);
     
-                    // Если есть файлы, отправьте их на сервер
+                    // Если есть файлы
                     if (selectedFiles.length > 0) {
                         console.log(selectedFiles.length);
                         await uploadFiles(data.newsId + 1000);
                     }
     
-                    // Дополнительные действия после успешного выполнения всех запросов
                 } else {
                     throw new Error('Ошибка при обновлении новости. Код ошибки: ' + response2.status);
                 }
@@ -120,18 +115,12 @@ const AdminNewsSection = () => {
     const uploadFiles = async (newsId) => {
         try {
             const formData = new FormData();
-
-            // Добавляем идентификатор новости в FormData
             formData.append('newsIndex', newsId);
     
-    
-            // Добавляем каждый файл из списка выбранных файлов в FormData
             selectedFiles.forEach((file, index) => {
                 formData.append(`images`, file);
             });
     
-            
-            // Отправляем FormData на сервер
             const response = await fetch('http://194.58.126.202:3001/api/uploadNewsImages', {
                 method: 'POST',
                 body: formData
@@ -151,13 +140,10 @@ const AdminNewsSection = () => {
     const handleSaveNews = (event) => {
         event.preventDefault();
 
-        // Получение данных из полей ввода и файлов
         const title = document.querySelector('#titleInput').value;
         const text = document.querySelector('#textInput').value;
         const dateValue = document.querySelector('#dateInput').value;
         const dateTimestamp = new Date(dateValue).getTime() / 1000;
-
-        console.log("Данные из формы:", { title, text, dateTimestamp });
 
         // Отправка данных на сервер
         saveNews({ title, text, dateTimestamp });
@@ -166,11 +152,11 @@ const AdminNewsSection = () => {
     useEffect(() => {
         const fetchListNews = async () => {
             try {
-                const response = await fetch('http://194.58.126.202:3001/getLastNews');
+                const response = await fetch('http://194.58.126.202:3001/api/getLastNews');
                 const data = await response.json();
                 setListNews(data);
             } catch (error) {
-                console.error('Ошибка при запросе вакансий: ', error);
+                console.error('Ошибка при запросе новостей: ', error);
             }
         };
 
@@ -233,7 +219,6 @@ const AdminNewsSection = () => {
                         Добавить новость
                 </Link>
                 {operation === "add" && (
-                    // Поля ввода для добавления новости
                     <form className="adminForm" encType="multipart/form-data">
                         <label>
                             Введите заголовок, дату и описание новости:
@@ -302,7 +287,6 @@ const AdminNewsSection = () => {
             <div className="pointInAdminPage">
                 <Link className="textPointInAdminPage" onClick={() => setOperation("edit")}>Изменить новость</Link>
                 {operation === "edit" && (
-                    // Поля ввода для изменения новости
                     <form 
                         className="adminForm"
                         //encType="multipart/form-data"
@@ -341,7 +325,6 @@ const AdminNewsSection = () => {
                                 value={cleanString(text)}
                                 onChange={(e) => setText(e.target.value)}
                             />
-                            {/* Другие поля, если необходимо */}
                             <button
                                 onClick={(event) => handleUpdateNew(event)}>
                                 Сохранить изменения

@@ -36,6 +36,17 @@ const photosStorage = multer.diskStorage({
   }
 });
 
+const documentStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'graphContent', 'documents'));
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+  }
+});
+
 const anonsStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, 'graphContent', 'anonses'));
@@ -50,6 +61,7 @@ const anonsStorage = multer.diskStorage({
 const uploadNews = multer({ storage: newsStorage });
 const uploadPhotos = multer({ storage: photosStorage });
 const uploadAnons = multer({ storage: anonsStorage });
+const uploadDocuments = multer({ storage: documentStorage });
 
 const createNewsFolder = (newsIndex) => {
   const folderPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
@@ -338,7 +350,7 @@ app.get('/getNewsById/:id', (req, res) => {
 });
 
 
-app.get('/getLastNews', (req, res) => {
+app.get('/api/getLastNews', (req, res) => {
   const query = `
     SELECT
       table_news.oldIndex,
@@ -685,6 +697,30 @@ app.post('/api/addFile', (req, res) => {
       res.status(200).send('Файл успешно загружен');
     }
   });
+});
+
+app.post('/api/addLocalFile', uploadDocuments.single('file'), (req, res) => {
+  try {
+      const file = req.file;
+      const summary = req.body.summary;
+
+      if (!file) {
+          return res.status(400).send('Файл не был загружен');
+      }
+
+      const addFileQuery = `INSERT INTO table_files (filename, summary) VALUES (?, ?)`;
+      db.query(addFileQuery, [file.filename, summary], (err, result) => {
+          if (err) {
+              console.error('Ошибка при выполнении запроса: ', err);
+              return res.status(500).send('Ошибка сервера');
+          }
+
+          res.status(200).send({ message: 'Файл успешно загружен и добавлен в базу данных' });
+      });
+  } catch (error) {
+      console.error('Ошибка при выполнении запроса: ', error);
+      res.status(500).send('Ошибка сервера');
+  }
 });
 
 ///////////////////////////////////////////////////////////////////////////
