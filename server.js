@@ -723,7 +723,7 @@ app.post('/api/addLocalFile', uploadDocuments.single('file'), (req, res) => {
 
     console.log(isLocalFile);
 
-    const addFileQuery = `INSERT INTO table_files (filename, summary, isLocalFile) VALUES (?, ?)`;
+    const addFileQuery = `INSERT INTO table_files (filename, summary, isLocalFile) VALUES (?, ?, ?)`;
     db.query(addFileQuery, [file.filename, summary, isLocalFile], (err, result) => {
       if (err) {
         console.error('Ошибка при выполнении запроса: ', err);
