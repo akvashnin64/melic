@@ -165,9 +165,14 @@ const AdminActsSection = () => {
                                 disabled={inputFile !== null}
                             />
 
+                        <label>
+                            Загружаемый файл должен быть в формате doc, docx или pdf
+                        </label>
+
                             <input 
                                 type="file"
                                 name="filename"
+                                accept=".doc, .docx, .pdf"
                                 onChange={(e) => {
                                     setInputFile(e.target.files[0]);
                                     setIsLocalFile(true);

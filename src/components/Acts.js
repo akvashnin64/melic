@@ -20,7 +20,7 @@ const Acts = () => {
         <div className='containerActs'>
             {filesData.map((file) => (
                 <div className='containerOneActs'>
-                    <a href={file.filename} key={file.index}>
+                    <a href={file.filename} key={file.index} target="_blank"> 
                         <img className="groupActs" src="/img/group.png"/>
                         <p>{file.summary}</p>
                     </a>
