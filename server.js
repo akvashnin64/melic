@@ -694,7 +694,7 @@ app.post('/api/addFile', (req, res) => {
 
   const addFileQuery = `INSERT INTO table_files (filename, summary, isLocalFile) VALUES (?, ?, ?)`;
 
-  db.query(addFileQuery, [filename, summary, isLocalFile], (err, result) => {
+  db.query(addFileQuery, [filename, summary, 0], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
       return res.status(500).send(`Ошибка сервера: ${err.message}`);
@@ -711,7 +711,6 @@ app.post('/api/addLocalFile', uploadDocuments.single('file'), (req, res) => {
   try {
     const file = req.file;
     const summary = req.body.summary;
-    const isLocalFile = req.body.isLocalFile;
 
     if (!summary) {
       return res.status(400).send('Описание (summary) обязательно');
@@ -721,10 +720,9 @@ app.post('/api/addLocalFile', uploadDocuments.single('file'), (req, res) => {
       return res.status(400).send('Файл не был загружен');
     }
 
-    console.log(isLocalFile);
 
     const addFileQuery = `INSERT INTO table_files (filename, summary, isLocalFile) VALUES (?, ?, ?)`;
-    db.query(addFileQuery, [file.filename, summary, isLocalFile], (err, result) => {
+    db.query(addFileQuery, [file.filename, summary, 1], (err, result) => {
       if (err) {
         console.error('Ошибка при выполнении запроса: ', err);
         return res.status(500).send({ error: 'Ошибка сервера', details: err.message });
