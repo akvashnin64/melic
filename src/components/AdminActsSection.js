@@ -25,41 +25,65 @@ const AdminActsSection = () => {
         fetchListFiles();
     }, []);
 
-    const addFile= async (e) => {
+    const addFile = async (e) => {
         e.preventDefault();
-
+    
+        const summary = e.target.summary.value.trim();
+        const filename = inputLink.trim(); // Берем значение ссылки из состояния.
+    
+        if (!summary || (!inputFile && !filename)) {
+            alert("Пожалуйста, заполните все поля!");
+            return;
+        }
+    
         try {
-            if(isLocalFile){
+            if (isLocalFile) {
+                // Загрузка локального файла
                 const formData = new FormData();
                 formData.append('file', inputFile);
-                formData.append('summary', e.target.summary.value)
-
-                const response = await fetch('http://194.58.126.202:3001/api/addLocalFile',{
+                formData.append('summary', summary);
+    
+                const response = await fetch('http://194.58.126.202:3001/api/addLocalFile', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
                 });
-
+    
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки файла: ${response.statusText}`);
+                }
+    
                 const data = await response.json();
-                console.log(data);
-            }
-            else {
+                console.log("Ответ сервера (локальный файл):", data);
+                alert("Файл успешно добавлен!");
+            } else {
+                // Добавление файла по ссылке
                 const response = await fetch('http://194.58.126.202:3001/api/addFile', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        filename: e.target.filename.value,
-                        summary: e.target.summary.value,
+                        filename, // Ссылка на файл
+                        summary,
                     }),
                 });
     
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки ссылки: ${response.statusText}`);
+                }
+    
                 const data = await response.json();
-                console.log(data);
+                console.log("Ответ сервера (ссылка):", data);
+                alert("Ссылка успешно добавлена!");
             }
-            
+    
+            // Очистка полей формы
+            setInputFile(null);
+            setInputLink('');
+            setIsLocalFile(false);
         } catch (error) {
-            console.error('Ошибка при отправке данных на сервер: ', error);
+            console.error('Ошибка при отправке данных на сервер:', error);
+            alert('Произошла ошибка при добавлении файла.');
         }
     };
 
