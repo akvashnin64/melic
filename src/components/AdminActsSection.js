@@ -42,6 +42,7 @@ const AdminActsSection = () => {
                 const formData = new FormData();
                 formData.append('file', inputFile);
                 formData.append('summary', summary);
+                formData.append('isLocalFile', true);
     
                 const response = await fetch('http://194.58.126.202:3001/api/addLocalFile', {
                     method: 'POST',
@@ -65,6 +66,7 @@ const AdminActsSection = () => {
                     body: JSON.stringify({
                         filename, // Ссылка на файл
                         summary,
+                        isLocalFile
                     }),
                 });
     
