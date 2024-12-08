@@ -721,6 +721,8 @@ app.post('/api/addLocalFile', uploadDocuments.single('file'), (req, res) => {
       return res.status(400).send('Файл не был загружен');
     }
 
+    console.log(isLocalFile);
+
     const addFileQuery = `INSERT INTO table_files (filename, summary, isLocalFile) VALUES (?, ?)`;
     db.query(addFileQuery, [file.filename, summary, isLocalFile], (err, result) => {
       if (err) {
