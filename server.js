@@ -38,7 +38,7 @@ const photosStorage = multer.diskStorage({
 
 const documentStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'graphContent', 'documents'));
+    cb(null, path.join(__dirname, 'build', 'graphContent', 'documents'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -687,39 +687,54 @@ app.delete('/api/deleteFile/:id', (req, res) => {
 app.post('/api/addFile', (req, res) => {
   const { filename, summary } = req.body;
 
+  if (!filename || !summary) {
+    return res.status(400).send('Filename и summary обязательны');
+  }
+
   const addFileQuery = `INSERT INTO table_files (filename, summary) VALUES (?, ?)`;
 
   db.query(addFileQuery, [filename, summary], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
-      res.status(500).send(`Ошибка сервера: ${err.message}`);
-    } else {
-      res.status(200).send('Файл успешно загружен');
+      return res.status(500).send(`Ошибка сервера: ${err.message}`);
     }
+
+    res.status(200).send({
+      message: 'Файл успешно загружен',
+      fileId: result.insertId, // Возвращаем ID созданной записи
+    });
   });
 });
 
 app.post('/api/addLocalFile', uploadDocuments.single('file'), (req, res) => {
   try {
-      const file = req.file;
-      const summary = req.body.summary;
+    const file = req.file;
+    const summary = req.body.summary;
 
-      if (!file) {
-          return res.status(400).send('Файл не был загружен');
+    if (!summary) {
+      return res.status(400).send('Описание (summary) обязательно');
+    }
+
+    if (!file) {
+      return res.status(400).send('Файл не был загружен');
+    }
+
+    const addFileQuery = `INSERT INTO table_files (filename, summary) VALUES (?, ?)`;
+    db.query(addFileQuery, [file.filename, summary], (err, result) => {
+      if (err) {
+        console.error('Ошибка при выполнении запроса: ', err);
+        return res.status(500).send({ error: 'Ошибка сервера', details: err.message });
       }
 
-      const addFileQuery = `INSERT INTO table_files (filename, summary) VALUES (?, ?)`;
-      db.query(addFileQuery, [file.filename, summary], (err, result) => {
-          if (err) {
-              console.error('Ошибка при выполнении запроса: ', err);
-              return res.status(500).send('Ошибка сервера');
-          }
-
-          res.status(200).send({ message: 'Файл успешно загружен и добавлен в базу данных' });
+      res.status(200).send({
+        message: 'Файл успешно загружен и добавлен в базу данных',
+        fileId: result.insertId,
+        filePath: file.path, // Полный путь к загруженному файлу
       });
+    });
   } catch (error) {
-      console.error('Ошибка при выполнении запроса: ', error);
-      res.status(500).send('Ошибка сервера');
+    console.error('Ошибка при выполнении запроса: ', error);
+    res.status(500).send({ error: 'Ошибка сервера', details: error.message });
   }
 });
 
