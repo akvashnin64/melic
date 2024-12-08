@@ -14,7 +14,7 @@ const debug = require('debug')('app:server');
 const newsStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     const newsIndex = req.body.newsIndex;
-    const uploadPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
+    const uploadPath = path.join(__dirname, 'build', 'graphContent', 'news', newsIndex);
     createNewsFolder(newsIndex); // Создаем папку с индексом новости, если она еще не существует
     cb(null, uploadPath);
   },
@@ -27,7 +27,7 @@ const newsStorage = multer.diskStorage({
 
 const photosStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'graphContent', 'photoSlider'));
+    cb(null, path.join(__dirname, 'build', 'graphContent', 'photoSlider'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -49,7 +49,7 @@ const documentStorage = multer.diskStorage({
 
 const anonsStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'graphContent', 'anonses'));
+    cb(null, path.join(__dirname, 'build', 'graphContent', 'anonses'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -64,7 +64,7 @@ const uploadAnons = multer({ storage: anonsStorage });
 const uploadDocuments = multer({ storage: documentStorage });
 
 const createNewsFolder = (newsIndex) => {
-  const folderPath = path.join(__dirname, 'graphContent', 'news', newsIndex);
+  const folderPath = path.join(__dirname, 'build', 'graphContent', 'news', newsIndex);
 
   // Проверяем, существует ли папка, и создаем ее, если нет
   if (!fs.existsSync(folderPath)) {
@@ -720,7 +720,7 @@ app.post('/api/addLocalFile', uploadDocuments.single('file'), (req, res) => {
     }
 
     const addFileQuery = `INSERT INTO table_files (filename, summary) VALUES (?, ?)`;
-    db.query(addFileQuery, [file.filename, summary], (err, result) => {
+    db.query(addFileQuery, [file.path, summary], (err, result) => {
       if (err) {
         console.error('Ошибка при выполнении запроса: ', err);
         return res.status(500).send({ error: 'Ошибка сервера', details: err.message });
