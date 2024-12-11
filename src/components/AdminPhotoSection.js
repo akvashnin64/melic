@@ -26,7 +26,7 @@ const AdminPhotoSection = () => {
       };
 
     useEffect(() => {
-        fetch('http://194.58.126.202:3001/getPhotos')
+        fetch('http://194.58.126.202:3001/api/getPhotos')
         .then(response => response.json())
         .then(data => {
             setPhotoData(data.map(photo => ({
@@ -43,7 +43,7 @@ const AdminPhotoSection = () => {
         event.preventDefault();
         const deletedId = selectedPhotoId + 1;
         try {
-            const response = await fetch('http://194.58.126.202:3001/deletePhoto', {
+            const response = await fetch('http://194.58.126.202:3001/api/deletePhoto', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

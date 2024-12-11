@@ -15,7 +15,7 @@ const AdminBrancheSection = () => {
     useEffect(() => {
         const fetchListBranches = async () => {
             try {
-                const response = await fetch('http://194.58.126.202:3001/getBranches');
+                const response = await fetch('http://194.58.126.202:3001/api/getBranches');
                 const data = await response.json();
                 setListBranches(data);
             } catch (error) {
@@ -42,7 +42,7 @@ const AdminBrancheSection = () => {
 
     const updateBranche = async () => {
         try {
-            const response = await fetch('http://194.58.126.202:3001/updateInfoAboutBranche', {
+            const response = await fetch('http://194.58.126.202:3001/api/updateInfoAboutBranche', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ const AdminVacancySection = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://194.58.126.202:3001/addVacancy', {
+            const response = await fetch('http://194.58.126.202:3001/api/addVacancy', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const AdminVacancySection = () => {
         setSelectedBranch(branchId);
 
         try {
-            const response = await fetch('http://194.58.126.202:3001/getVacancyForIdBranche', {
+            const response = await fetch('http://194.58.126.202:3001/api/getVacancyForIdBranche', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const AdminVacancySection = () => {
 
     const deleteVacancy = async () => {
         try {
-            const response = await fetch('http://194.58.126.202:3001/deleteVacancy', {
+            const response = await fetch('http://194.58.126.202:3001/api/deleteVacancy', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const AdminVacancySection = () => {
     useEffect(() => {
         const fetchListBranches = async () => {
             try {
-                const response = await fetch('http://194.58.126.202:3001/getListBranchesForVacancy');
+                const response = await fetch('http://194.58.126.202:3001/api/getListBranchesForVacancy');
                 const data = await response.json();
                 setListBranches(data);
             } catch (error) {

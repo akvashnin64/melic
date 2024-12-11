@@ -11,6 +11,10 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const debug = require('debug')('app:server');
 
+/////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////  STORAGE  ////////////////////////////////
+
 const newsStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     const newsIndex = req.body.newsIndex;
@@ -112,26 +116,12 @@ db.connect(err => {
   }
 });
 
-app.get('/getBranchesById/:id', (req, res) => {
-  const id = req.params.id;
 
-  const query = `
-    SELECT *
-    FROM table_branches
-    WHERE idBranch = ?
-  `
+/////////////////////////////////////////////////////////////////////////
 
-  db.query(query, [id], (error, results) => {
-    if (error) {
-      console.error('Ошибка при получении филиалa: ', error);
-      res.status(500).send('Ошибка сервера');
-    } else {
-      res.json(results[0]);
-    }
-  });
-})
+//////////////////////////////  VACANCY  ////////////////////////////////
 
-app.get('/getListBranchesForVacancy', (req, res) => {
+app.get('/api/getListBranchesForVacancy', (req, res) => {
   const query = `
     SELECT *
     FROM table_branches_vacancy
@@ -146,7 +136,7 @@ app.get('/getListBranchesForVacancy', (req, res) => {
   });
 })
 
-app.post('/getVacancyForIdBranche', (req, res) => {
+app.post('/api/getVacancyForIdBranche', (req, res) => {
   const { branchId } = req.body;
 
   const query = `SELECT * FROM table_vacancy WHERE IdBranche = ?`;
@@ -161,7 +151,7 @@ db.query(query, [branchId], (err, result) => {
 });
 });
 
-app.get('/getAllVacancy', (req, res) => {
+app.get('/api/getAllVacancy', (req, res) => {
   const query = `
       SELECT
       tv.idVacancy,
@@ -185,7 +175,7 @@ app.get('/getAllVacancy', (req, res) => {
   });
 })
 
-app.post('/addVacancy', (req, res) => {
+app.post('/api/addVacancy', (req, res) => {
   const { branchId, vacancyName } = req.body;
 
   const query = `INSERT INTO table_vacancy (idBranche, vacancy) VALUES (?, ?)`;
@@ -200,8 +190,7 @@ db.query(query, [branchId, vacancyName], (err, result) => {
 });
 });
 
-
-app.delete('/deleteVacancy', (req, res) => {
+app.delete('/api/deleteVacancy', (req, res) => {
   const {idVacancy} = req.body;
 
   const query = `DELETE FROM table_vacancy WHERE idVacancy = ?`;
@@ -216,40 +205,11 @@ app.delete('/deleteVacancy', (req, res) => {
   });
 });
 
-app.get('/getPhotos', (req, res) => {
-  const query = `
-    SELECT *
-    FROM table_photos
-  `
+/////////////////////////////////////////////////////////////////////////
 
-  db.query(query, (err, result) => {
-    if (err) {
-      console.error('Ошибка при получении фотографий: ', err);
-      res.status(500).send('Ошибка сервера');
-    } else {
-      res.status(200).json(result);
-    }
-  });
-})
+//////////////////////////////  BRANCH  /////////////////////////////////
 
-app.get('/getVideos', (req, res) => {
-  const query = `
-    SELECT *
-    FROM table_video
-  `
-
-  db.query(query, (err, result) => {
-    if (err) {
-      console.error('Ошибка при получении видео: ', err);
-      res.status(500).send('Ошибка сервера');
-    } else {
-      res.status(200).json(result);
-    }
-  });
-})
-
-
-app.get('/getBranches', (req, res) => {
+app.get('/api/getBranches', (req, res) => {
   const query = `
     SELECT *
     FROM table_branches
@@ -265,7 +225,26 @@ app.get('/getBranches', (req, res) => {
   });
 })
 
-app.patch('/updateInfoAboutBranche', (req, res) => {
+app.get('/api/getBranchesById/:id', (req, res) => {
+  const id = req.params.id;
+
+  const query = `
+    SELECT *
+    FROM table_branches
+    WHERE idBranch = ?
+  `
+
+  db.query(query, [id], (error, results) => {
+    if (error) {
+      console.error('Ошибка при получении филиалa: ', error);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.json(results[0]);
+    }
+  });
+})
+
+app.patch('/api/updateInfoAboutBranche', (req, res) => {
   const { idBranch, addressBranch, phoneBranch, emailBranch, directorBranch } = req.body;
 
   const query = `
@@ -289,96 +268,11 @@ app.patch('/updateInfoAboutBranche', (req, res) => {
   });
 });
 
-app.get('/getNewsForDate', (req, res) => {
-  const startDate = req.query.startDate;
-  const endDate = req.query.endDate;
+/////////////////////////////////////////////////////////////////////////
 
-  const query = `
-    SELECT
-      table_news.oldIndex,
-      table_news.titleNews,
-      table_news.dateNews,
-      table_news.textNews,
-      GROUP_CONCAT(table_picture_news.filename) AS imageNames
-    FROM (
-      SELECT * FROM table_news
-      WHERE table_news.dateNews BETWEEN ? AND ? 
-      ORDER BY idNews DESC
-      LIMIT 20
-    ) table_news
-    LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
-    GROUP BY table_news.idNews
-    ORDER BY table_news.idNews DESC;
-  `;
+//////////////////////////////  ANONS  //////////////////////////////////
 
-  db.query(query, [startDate, endDate], (err, result) => {  // Передаем параметры для запроса вместе с [startDate, endDate]
-    if (err) {
-      console.error('Ошибка при получении новостей: ', err);
-      res.status(500).send('Ошибка сервера');
-    } else {
-      res.status(200).json(result);
-    }
-  });
-});
-
-
-app.get('/getNewsById/:id', (req, res) => {
-  const id = req.params.id;
-
-  const query = `
-    SELECT
-      table_news.oldIndex,
-      table_news.titleNews,
-      table_news.dateNews,
-      table_news.textNews,
-      GROUP_CONCAT(table_picture_news.filename) AS imageNames,
-      COUNT(table_picture_news.filename) AS imageCount
-    FROM table_news
-    LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
-    WHERE table_news.oldIndex = ?
-    GROUP BY table_news.idNews;
-  `;
-
-  db.query(query, [id], (error, results) => {
-    if (error) {
-      console.error('Ошибка при выполнении запроса: ', error);
-      res.status(500).send('Internal Server Error');
-    } else {
-      res.json(results[0]); // Отправляем результат в формате JSON
-    }
-  });
-});
-
-
-app.get('/api/getLastNews', (req, res) => {
-  const query = `
-    SELECT
-      table_news.oldIndex,
-      table_news.titleNews,
-      table_news.dateNews,
-      table_news.textNews,
-      GROUP_CONCAT(table_picture_news.filename) AS imageNames
-  FROM (
-      SELECT * FROM table_news
-      ORDER BY idNews DESC
-      LIMIT 20
-  ) table_news
-  LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
-  GROUP BY table_news.idNews
-  ORDER BY table_news.idNews DESC;
-  `;
-
-  db.query(query, (err, result) => {
-    if (err) {
-      console.error('Ошибка при получении новостей: ', err);
-      res.status(500).send('Ошибка сервера');
-    } else {
-      res.status(200).json(result);
-    }
-  });
-});
-
-app.get('/getLastAnonses', (req, res) => {
+app.get('/api/getLastAnonses', (req, res) => {
   const query = `
     SELECT
       table_anonses.idAnons,
@@ -461,7 +355,7 @@ app.delete('/api/deleteAnons/:id', (req, res) => {
   });
 });
 
-app.patch('/updateInfoAboutAnons', (req, res) => {
+app.patch('/api/updateInfoAboutAnons', (req, res) => {
   const { idAnons, titleAnons, dateAnons } = req.body;
 
   const query = `
@@ -482,6 +376,26 @@ app.patch('/updateInfoAboutAnons', (req, res) => {
     }
   });
 });
+
+/////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////  PHOTO  //////////////////////////////////
+
+app.get('/api/getPhotos', (req, res) => {
+  const query = `
+    SELECT *
+    FROM table_photos
+  `
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении фотографий: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+})
 
 app.post('/api/uploadPhotos', uploadPhotos.array('photos'), (req, res) => {
   try {
@@ -518,7 +432,7 @@ app.post('/api/uploadPhotos', uploadPhotos.array('photos'), (req, res) => {
   }
 });
 
-app.delete('/deletePhoto', (req, res) => {
+app.delete('/api/deletePhoto', (req, res) => {
   const {selectedPhotoId} = req.body;
 
   const query = `DELETE FROM table_photos WHERE idPhoto = ?`;
@@ -533,6 +447,116 @@ app.delete('/deletePhoto', (req, res) => {
   });
 });
 
+/////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////  VIDEO  //////////////////////////////////
+
+app.get('/api/getVideos', (req, res) => {
+  const query = `
+    SELECT *
+    FROM table_video
+  `
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении видео: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+})
+
+/////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////  NEWS  ///////////////////////////////////
+
+app.get('/api/getLastNews', (req, res) => {
+  const query = `
+    SELECT
+      table_news.oldIndex,
+      table_news.titleNews,
+      table_news.dateNews,
+      table_news.textNews,
+      GROUP_CONCAT(table_picture_news.filename) AS imageNames
+  FROM (
+      SELECT * FROM table_news
+      ORDER BY idNews DESC
+      LIMIT 20
+  ) table_news
+  LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
+  GROUP BY table_news.idNews
+  ORDER BY table_news.idNews DESC;
+  `;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении новостей: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+app.get('/api/getNewsById/:id', (req, res) => {
+  const id = req.params.id;
+
+  const query = `
+    SELECT
+      table_news.oldIndex,
+      table_news.titleNews,
+      table_news.dateNews,
+      table_news.textNews,
+      GROUP_CONCAT(table_picture_news.filename) AS imageNames,
+      COUNT(table_picture_news.filename) AS imageCount
+    FROM table_news
+    LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
+    WHERE table_news.oldIndex = ?
+    GROUP BY table_news.idNews;
+  `;
+
+  db.query(query, [id], (error, results) => {
+    if (error) {
+      console.error('Ошибка при выполнении запроса: ', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.json(results[0]); // Отправляем результат в формате JSON
+    }
+  });
+});
+
+app.get('/api/getNewsForDate', (req, res) => {
+  const startDate = req.query.startDate;
+  const endDate = req.query.endDate;
+
+  const query = `
+    SELECT
+      table_news.oldIndex,
+      table_news.titleNews,
+      table_news.dateNews,
+      table_news.textNews,
+      GROUP_CONCAT(table_picture_news.filename) AS imageNames
+    FROM (
+      SELECT * FROM table_news
+      WHERE table_news.dateNews BETWEEN ? AND ? 
+      ORDER BY idNews DESC
+      LIMIT 20
+    ) table_news
+    LEFT JOIN table_picture_news ON table_picture_news.content_id = table_news.oldIndex
+    GROUP BY table_news.idNews
+    ORDER BY table_news.idNews DESC;
+  `;
+
+  db.query(query, [startDate, endDate], (err, result) => {  // Передаем параметры для запроса вместе с [startDate, endDate]
+    if (err) {
+      console.error('Ошибка при получении новостей: ', err);
+      res.status(500).send('Ошибка сервера');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
 
 app.post('/api/addNews', (req, res) => {
   const { oldIndex, authorNews, title, date, text } = req.body;
@@ -769,7 +793,7 @@ app.post('/api/auth', (req, res) => {
 
 
 
-app.post('/validate-token', (req, res) => {
+app.post('/api/validate-token', (req, res) => {
   const token = req.headers.cookie ? req.headers.cookie.split('=')[1] : null; // Получаем токен из заголовка
 
   if (!token) {

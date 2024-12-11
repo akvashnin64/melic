@@ -37,7 +37,7 @@ const AdminAnonsSection = () => {
             return;
           }
     
-          const response = await fetch(`http://194.58.126.202/api/deleteAnons/${deleteAnonsId}`, {
+          const response = await fetch(`http://194.58.126.202:3001/api/deleteAnons/${deleteAnonsId}`, {
             method: 'DELETE',
           });
     
@@ -83,7 +83,7 @@ const AdminAnonsSection = () => {
     useEffect(() => {
         const fetchListAnons = async () => {
             try {
-                const response = await fetch('http://194.58.126.202:3001/getLastAnonses');
+                const response = await fetch('http://194.58.126.202:3001/api/getLastAnonses');
                 const data = await response.json();
                 setListAnons(data);
             } catch (error) {
@@ -99,7 +99,7 @@ const AdminAnonsSection = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://194.58.126.202:3001/updateInfoAboutAnons', {
+            const response = await fetch('http://194.58.126.202:3001/api/updateInfoAboutAnons', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

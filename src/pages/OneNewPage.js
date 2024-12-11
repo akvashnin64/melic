@@ -23,7 +23,7 @@ const OneNew = ({ setNewsDataForPage }) => {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://194.58.126.202:3001/getNewsById/${parseInt(id, 10)}`)
+      fetch(`http://194.58.126.202:3001/api/getNewsById/${parseInt(id, 10)}`)
         .then(response => response.json())
         .then(data => {
           setNewsData(data);

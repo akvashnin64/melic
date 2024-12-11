@@ -20,7 +20,7 @@ const GalleryPage = () => {
     }, [location.pathname]);
 
     useEffect(() => {
-        fetch('http://194.58.126.202:3001/getPhotos')
+        fetch('http://194.58.126.202:3001/api/getPhotos')
         .then(response => response.json())
         .then(data => {
             setPhotoData(data.map(photo => ({
@@ -32,7 +32,7 @@ const GalleryPage = () => {
     }, []);
 
     useEffect(() => {
-        fetch('http://194.58.126.202:3001/getVideos')
+        fetch('http://194.58.126.202:3001/api/getVideos')
         .then(response => response.json())
         .then(data => {
             setVideoData(data.map(video => ({

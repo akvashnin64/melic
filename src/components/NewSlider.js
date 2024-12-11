@@ -14,7 +14,7 @@ const NewSlider = ({ headerText }) => {
   const handleTouchEvents = windowWidth <= 1279;
 
   useEffect(() => {
-    fetch('http://194.58.126.202:3001/getLastNews')
+    fetch('http://194.58.126.202:3001/api/getLastNews')
       .then(response => response.json())
       .then(data => {
         setNewsData(data.map(news => ({
