@@ -80,11 +80,14 @@ const app = express();
 
 const port = 3001;
 
-app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors({
+  origin: 'http://194.58.126.202', // Укажите домен вашего клиента
+  credentials: true, // Разрешить передачу данных сессии
+}));
 
-
+app.options('*', cors());
 
 const imagesPath = path.join(__dirname, 'graphContent');
 
