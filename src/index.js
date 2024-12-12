@@ -143,16 +143,12 @@ const router = createBrowserRouter([
       {
         path: process.env.PUBLIC_URL + '/admin/branche',
         element: <PrivateRoute element={AdminBrancheSection}/>
+      },
+      {
+        path: process.env.PUBLIC_URL + '/admin/documents',
+        element: <PrivateRoute element={AdminActsSection}/>
       }
-      //{
-      //  path: process.env.PUBLIC_URL + '/admin/documents',
-      //  element: <PrivateRoute element={AdminActsSection}/>
-      //}
     ]
-  },
-  {
-    path: process.env.PUBLIC_URL + '/admin/documents',
-    element: <AdminActsSection />
   },
   {
     path: process.env.PUBLIC_URL + '/ershov',
