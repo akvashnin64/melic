@@ -797,7 +797,8 @@ app.post('/api/auth', (req, res) => {
 
 
 app.post('/api/validate-token', (req, res) => {
-  const token = req.headers.cookie ? req.headers.cookie.split('=')[1] : null; // Получаем токен из заголовка
+  const cookies = req.headers.cookie;
+  const token = cookies?.split('; ').find(row => row.startsWith('authToken='))?.split('=')[1];
 
   if (!token) {
     return res.status(401).send('Токен отсутствует');
