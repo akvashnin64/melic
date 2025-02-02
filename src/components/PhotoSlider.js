@@ -71,21 +71,9 @@ const PhotoSlider = ({ photos, basePath, visibleHeader, onImageSelect, inAdmin }
     }
   };
 
-  const checkLastSlideVisibility = () => {
-    const slider = carouselRef.current?.rootComponent?.stageComponent;
-    if (!slider) return;
-  
-    const { scrollWidth, clientWidth, scrollLeft } = slider;
-  
-    // Если не в конце списка, разрешить дополнительную прокрутку
-    if (scrollLeft + clientWidth < scrollWidth) {
-      carouselRef.current.slideNext();
-    }
-  };
-
   const handleNextClick = () => {
     if (carouselRef.current) {
-      checkLastSlideVisibility();
+      carouselRef.current.slideNext();
     }
   };
 

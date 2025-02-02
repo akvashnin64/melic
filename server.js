@@ -84,8 +84,8 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({
-  //origin: 'http://194.58.126.202',
-  origin: 'http://localhost:3000',
+  origin: 'http://194.58.126.202',
+  //origin: 'http://localhost:3000',
   credentials: true
 }));
 
