@@ -79,7 +79,7 @@ const router = createBrowserRouter([
   //},
   {
     path: process.env.PUBLIC_URL + '/guide',
-    element: <GuidePage />,
+    element: <GuidePage />
   },
   {
     path: process.env.PUBLIC_URL + '/gallery',

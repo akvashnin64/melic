@@ -145,7 +145,6 @@ const AdminNewsSection = () => {
         const dateValue = document.querySelector('#dateInput').value;
         const dateTimestamp = new Date(dateValue).getTime() / 1000;
 
-        // Отправка данных на сервер
         saveNews({ title, text, dateTimestamp });
     };
 

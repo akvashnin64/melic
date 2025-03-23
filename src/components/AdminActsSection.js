@@ -10,6 +10,7 @@ const AdminActsSection = () => {
     const [inputLink, setInputLink] = useState('');
     const [inputFile, setInputFile] = useState(null);
     const [isLocalFile, setIsLocalFile] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchListFiles = async () => {

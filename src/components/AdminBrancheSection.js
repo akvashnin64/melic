@@ -27,11 +27,9 @@ const AdminBrancheSection = () => {
     }, []);
 
     useEffect(() => {
-        // Найдите данные выбранного филиала в списке и обновите состояние
         const branchData = listBranches.find(branch => branch.idBranch === parseInt(selectedBranch));
         setSelectedBranchData(branchData);
 
-        // Установите значения инпутов в данные выбранного филиала
         if (branchData) {
             setAddress(branchData.addressBranch || '');
             setPhone(branchData.phoneBranch || '');

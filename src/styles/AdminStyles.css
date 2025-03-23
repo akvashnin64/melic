@@ -31,10 +31,9 @@
 }
 
 .adminMenu{
-    margin-top: 50px;
-    font-size: 35px;
+    margin-top: 2%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .pointInAdminPage div{
@@ -47,8 +46,16 @@
     flex-direction: column;
 }
 
+.adminSection{
+    margin-top: 2%;
+}
+
 
 @media screen and (min-width: 1920px){
+    .adminMenu {
+        font-size: 35px;
+    }
+
     .headerLogin{
         font-size: 35px;
         font-weight: 600;
@@ -75,7 +82,6 @@
     }
 
     .pointInAdminPage{
-        font-size: 25px;
         margin-bottom: 30px;
     }
 
@@ -85,13 +91,6 @@
 
     .pointInAdminPage div input{
         margin-bottom: 15px;
-    }
-
-    .adminSection{
-        margin-right: auto;
-        margin-left: auto;
-        margin-top: 50px;
-        width: 1300px;
     }
 
     .adminForm select {
@@ -149,6 +148,10 @@
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1919px){
+    .adminMenu {
+        font-size: 35px;
+    }
+
     .adminForm select {
         height: 60px;
         margin-bottom: 30px;
@@ -179,10 +182,13 @@
         font-weight: 500;
     }
 
+    .pointInAdminPage {
+        margin-bottom: 20px;
+    }
+
     .textPointInAdminPage{
-        font-size: 30px;
+        font-size: 20px;
         font-weight: 500;
-        margin-bottom: 15px;
     }
 }
 

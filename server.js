@@ -263,10 +263,10 @@ app.patch('/api/updateInfoAboutBranche', (req, res) => {
       idBranch = ?;
   `;
 
-  db.query(query, [idBranch, addressBranch, phoneBranch, emailBranch, directorBranch], (err, result) => {
+  db.query(query, [addressBranch, phoneBranch, emailBranch, directorBranch, idBranch], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
-      res.status(500).send('Internal Server Error');
+      res.status(500).send('Ошибка сервера');
     } else {
       res.status(200).send('Информация о филиале успешно обновлена');
     }

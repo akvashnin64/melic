@@ -38,11 +38,11 @@ const PhotoSlider = ({ photos, basePath, visibleHeader, onImageSelect, inAdmin }
   };
 
   const responsive = {
-    0: { items: 2 },
-    340: { items: 2 },
-    640: { items: 2 },
-    960: { items: 3 },
-    1280: {items: 3}
+    0: { items: 3 },
+    340: { items: 3 },
+    640: { items: 3 },
+    960: { items: 4 },
+    1280: {items: 4}
   };
 
   const items = photos.map((photo, index) => {
