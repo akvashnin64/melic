@@ -1,7 +1,57 @@
-import React from "react";
+import React, { useState , useEffect } from "react";
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
+function Contacts(props){
+    return (
+        <div className="containerContactsBranche">
+
+            <div className="contactsBranche">
+                <div className='headerContactsBranche'>
+                    <p>КОНТАКТЫ</p>
+                </div>
+                <div className='mobilePhoneContactsBranche'>
+                    <img src='/img/phoneContacts.png'/>
+                    <p>{props.phone}</p> 
+                </div>
+                <div className='emailContactsBranche'>
+                    <img src='/img/emailContacts.png'/>
+                    <p>{props.email}</p>
+                </div>
+                <div className='locationContactsBranche'>
+                    <img src='/img/locationContacts.png'/>
+                    <p>{props.location}</p>
+                </div>
+            </div>
+
+            <div className="containerMap">
+                <YMaps>
+                    <Map 
+                    className="map"
+                    defaultState={{ center: [53.208219, 50.131482], zoom: 11 }}>
+                        <Placemark geometry={[53.208219, 50.131482]} />
+                    </Map>
+                </YMaps>
+            </div>
+        </div>
+    )
+}
+
 const Samara = () => {
+    const [brancheData, setBrancheData] = useState([]);
+    const [selectBrancheData, setSelectBrancheData] = useState();
+
+    useEffect(() => {
+        fetch('http://194.58.126.202:3001/api/getBranches')
+            .then(response => response.json())
+            .then(data => {
+                const fullBranches = data.map(branch => ({ ...branch }));
+                setBrancheData(fullBranches);
+                const selectBranche = fullBranches.find(branch => branch.nameBranch === "Самарский филиал");
+                setSelectBrancheData(selectBranche);
+            })
+            .catch(error => console.error('Ошибка при запросе филиалов: ', error));
+    }, []);
+
     return(
         <>
         <div className="mainHeaderBranche">
@@ -33,36 +83,14 @@ const Samara = () => {
             </div>
         </div>
 
-        <div className="containerContactsBranche">
-
-            <div className="contactsBranche">
-                <div className='headerContactsBranche'>
-                    <p>КОНТАКТЫ</p>
-                </div>
-                <div className='mobilePhoneContactsBranche'>
-                    <img src='/img/phoneContacts.png'/>
-                    <p>8 (8463) 37-07-47</p>
-                </div>
-                <div className='emailContactsBranche'>
-                    <img src='/img/emailContacts.png'/>
-                    <p>info@smvh.ru</p>
-                </div>
-                <div className='locationContactsBranche'>
-                    <img src='/img/locationContacts.png'/>
-                    <p>443110, г. Самара, Самарская область, ул.Ново-Садовая, д. 17</p>
-                </div>
-            </div>
-
-            <div className="containerMap">
-            <YMaps>
-                <Map 
-                className="map"
-                defaultState={{ center: [53.208219, 50.131482], zoom: 11 }}>
-                    <Placemark geometry={[53.208219, 50.131482]} />
-                </Map>
-            </YMaps>
-            </div>
-        </div>
+        {selectBrancheData && (
+            <Contacts 
+                key={selectBrancheData.idBranch} 
+                phone={selectBrancheData.phoneBranch} 
+                email={selectBrancheData.emailBranch} 
+                location={selectBrancheData.addressBranch} 
+            />
+        )}
         </>
     )
 }

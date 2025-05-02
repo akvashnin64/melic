@@ -30,7 +30,6 @@ function Guides () {
     const [guideData, setGuideData] = useState([]);
 
     useEffect(() => {
-        // Асинхронный запрос на сервер при монтировании компонента
         fetch('http://194.58.126.202:3001/api/getBranches')
           .then(response => response.json())
           .then(data => {

@@ -1,7 +1,57 @@
-import React from "react";
+import React, { useState , useEffect } from "react";
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
+function Contacts(props){
+    return (
+        <div className="containerContactsBranche">
+
+            <div className="contactsBranche">
+                <div className='headerContactsBranche'>
+                    <p>КОНТАКТЫ</p>
+                </div>
+                <div className='mobilePhoneContactsBranche'>
+                    <img src='/img/phoneContacts.png'/>
+                    <p>{props.phone}</p> 
+                </div>
+                <div className='emailContactsBranche'>
+                    <img src='/img/emailContacts.png'/>
+                    <p>{props.email}</p>
+                </div>
+                <div className='locationContactsBranche'>
+                    <img src='/img/locationContacts.png'/>
+                    <p>{props.location}</p>
+                </div>
+            </div>
+
+            <div className="containerMap">
+            <YMaps>
+                <Map 
+                className="map"
+                defaultState={{ center: [54.187369, 45.166664], zoom: 11 }}>
+                    <Placemark geometry={[54.187369, 45.166664]} />
+                </Map>
+            </YMaps>
+            </div>
+        </div>
+    )
+}
+
 const Mordva = () => {
+    const [brancheData, setBrancheData] = useState([]);
+    const [selectBrancheData, setSelectBrancheData] = useState();
+
+    useEffect(() => {
+        fetch('http://194.58.126.202:3001/api/getBranches')
+            .then(response => response.json())
+            .then(data => {
+                const fullBranches = data.map(branch => ({ ...branch }));
+                setBrancheData(fullBranches);
+                const selectBranche = fullBranches.find(branch => branch.nameBranch === "Филиал по республике Мордовия");
+                setSelectBrancheData(selectBranche);
+            })
+            .catch(error => console.error('Ошибка при запросе филиалов: ', error));
+    }, []);
+
     return(
         <>
         <div className="mainHeaderBranche">
@@ -27,36 +77,14 @@ const Mordva = () => {
             </div>
         </div>
 
-        <div className="containerContactsBranche">
-
-            <div className="contactsBranche">
-                <div className='headerContactsBranche'>
-                    <p>КОНТАКТЫ</p>
-                </div>
-                <div className='mobilePhoneContactsBranche'>
-                    <img src='/img/phoneContacts.png'/>
-                    <p>8 (8342) 24-88-19</p>
-                </div>
-                <div className='emailContactsBranche'>
-                    <img src='/img/emailContacts.png'/>
-                    <p>melio@list.ru</p>
-                </div>
-                <div className='locationContactsBranche'>
-                    <img src='/img/locationContacts.png'/>
-                    <p>430011, Республика Мордовия, г. Саранск, ул.Степана Разина, д.19</p>
-                </div>
-            </div>
-
-            <div className="containerMap">
-            <YMaps>
-                <Map 
-                className="map"
-                defaultState={{ center: [54.187369, 45.166664], zoom: 11 }}>
-                    <Placemark geometry={[54.187369, 45.166664]} />
-                </Map>
-            </YMaps>
-            </div>
-        </div>
+        {selectBrancheData && (
+            <Contacts 
+                key={selectBrancheData.idBranch} 
+                phone={selectBrancheData.phoneBranch} 
+                email={selectBrancheData.emailBranch} 
+                location={selectBrancheData.addressBranch} 
+            />
+        )}
         </>
     )
 }
