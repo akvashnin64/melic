@@ -11,6 +11,7 @@ const AdminBrancheSection = () => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [director, setDirector] = useState('');
+    const [workingHours, setWorkingHours] = useState('');
 
     useEffect(() => {
         const fetchListBranches = async () => {
@@ -35,6 +36,7 @@ const AdminBrancheSection = () => {
             setPhone(branchData.phoneBranch || '');
             setEmail(branchData.emailBranch || '');
             setDirector(branchData.directorBranch || '');
+            setWorkingHours(branchData.workingHours || '');
         }
     }, [selectedBranch, listBranches]);
 
@@ -50,7 +52,8 @@ const AdminBrancheSection = () => {
                     addressBranch: address,
                     phoneBranch: phone,
                     emailBranch: email,
-                    directorBranch: director
+                    directorBranch: director,
+                    workingHours: workingHours
                 }),
             });
     
@@ -116,6 +119,11 @@ const AdminBrancheSection = () => {
                                     type="text"
                                     value={director}
                                     onChange={(e) => setDirector(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    value={workingHours}
+                                    onChange={(e) => setWorkingHours(e.target.value)}
                                 />
                             </div>
                         )}

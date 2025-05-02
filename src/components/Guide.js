@@ -33,9 +33,9 @@ function Guides () {
         fetch('http://194.58.126.202:3001/api/getBranches')
           .then(response => response.json())
           .then(data => {
-            setGuideData(data.map(guide => ({
-              ...guide,
-            })));
+            const allGuide = data.map(guide => ({...guide,}));
+            const filterGuide = allGuide.filter(guide => guide.nameBranch !== "Саратовмелиоводхоз");
+            setGuideData(filterGuide);
           })
           .catch(error => console.error('Ошибка при запросе филиалов: ', error));
       }, []);

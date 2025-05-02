@@ -250,7 +250,7 @@ app.get('/api/getBranchesById/:id', (req, res) => {
 })
 
 app.patch('/api/updateInfoAboutBranche', (req, res) => {
-  const { idBranch, addressBranch, phoneBranch, emailBranch, directorBranch } = req.body;
+  const { idBranch, addressBranch, phoneBranch, emailBranch, directorBranch, workingHours } = req.body;
 
   const query = `
     UPDATE table_branches
@@ -258,12 +258,13 @@ app.patch('/api/updateInfoAboutBranche', (req, res) => {
       addressBranch = ?,
       phoneBranch = ?,
       emailBranch = ?,
-      directorBranch = ?
+      directorBranch = ?,
+      workingHours = ?
     WHERE
       idBranch = ?;
   `;
 
-  db.query(query, [addressBranch, phoneBranch, emailBranch, directorBranch, idBranch], (err, result) => {
+  db.query(query, [addressBranch, phoneBranch, emailBranch, directorBranch, workingHours, idBranch], (err, result) => {
     if (err) {
       console.error('Ошибка при выполнении запроса: ', err);
       res.status(500).send('Ошибка сервера');
