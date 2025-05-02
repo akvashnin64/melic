@@ -10,11 +10,11 @@ function Contact (props) {
                 </div>
                 <div className='mobilePhoneContacts'>
                     <img src='/img/phoneContacts.png'/>
-                    <p>{props.phone}</p>
+                    <p style={{ whiteSpace: 'pre-line' }}>{props.phone}</p>
                 </div>
                 <div className='timeContacts'>
                     <img src='/img/timeContacts.png'/>
-                    <p>{props.time}</p>
+                    <p style={{ whiteSpace: 'pre-line' }}>{props.time}</p>
                 </div>
                 <div className='locationContacts'>
                     <img src='/img/locationContacts.png'/>
@@ -33,6 +33,16 @@ function Contact (props) {
             </div>
         </div>
     )
+}
+
+function formatWorkingHours(raw) {
+    if (!raw) return "";
+    return raw.replace(/(ПТ|Перерыв)/g, '\n$1');
+}
+
+function formatPhoneNumbers(raw) {
+    if (!raw) return "";
+    return raw.replace(/(8\(\d{4}\)\s\d{2}-\d{2}-\d{2})/g, '\n$1').trim();
 }
 
 function Contacts () {
@@ -56,8 +66,8 @@ function Contacts () {
         {selectBrancheData && (
             <Contact
                 key={selectBrancheData.idBranch} 
-                phone={selectBrancheData.phoneBranch} 
-                time={selectBrancheData.workingHours} 
+                phone={formatPhoneNumbers(selectBrancheData.phoneBranch)} 
+                time={formatWorkingHours(selectBrancheData.workingHours)}
                 location={selectBrancheData.addressBranch} 
             />
         )}
