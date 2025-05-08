@@ -377,6 +377,9 @@ p {
 .footerContacts {
   text-align: right;
   margin: 50px 50px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .footerContacts p{
   margin: 0 0 20px 0;
